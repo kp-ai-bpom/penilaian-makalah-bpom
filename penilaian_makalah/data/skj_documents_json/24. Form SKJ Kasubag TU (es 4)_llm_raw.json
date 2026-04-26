@@ -1,0 +1,182 @@
+{
+  "profil_jabatan": {
+    "nama_jabatan": "Kepala Sub Bagian Tata Usaha",
+    "kode_jabatan": "2-05-16-01-07-510",
+    "level_jabatan": "",
+    "kelompok_jabatan": "Pengawas",
+    "urusan_pemerintah": "Kesekretariatan"
+  },
+  "ikhtisar_jabatan": "Melakukan urusan fasilitasi penyusunan rencana, program, dan anggaran, pelaporan kinerja, koordinasi data dan informasi, koordinasi administrasi penerapan sistem pengendalian intern, administrasi kepegawaian, ketatalaksanaan, administrasi keuangan, administrasi barang milik negara, tata persuratan, kearsipan, mutu serta kerumahtanggaan unit kerja terkait.",
+  "standar_kompetensi": {
+    "manajerial": [
+      {
+        "nama": "Integritas",
+        "level_target": "2",
+        "deskripsi": "Mampu mengingatkan, mengajak rekan kerja untuk bertindak sesuai nilai, norma, dan etika organisasi",
+        "indikator": [
+          "Mengingatkan rekan kerja untuk bertindak sesuai dengan nilai, norma, dan etika organisasi dalam segala situasi dan kondisi; Mengajak orang lain untuk bertindak sesuai etika dan kode etik;",
+          "Menerapkan norma-norma secara konsisten dalam setiap situasi, pada unit kerja terkecil/kelompok kerjanya;",
+          "Memberikan informasi yang dapat dipercaya sesuai dengan etika organisasi."
+        ]
+      },
+      {
+        "nama": "Kerjasama",
+        "level_target": "2",
+        "deskripsi": "Menumbuhkan tim kerja yang partisipatif dan efektif",
+        "indikator": [
+          "Membantu orang lain dalam menyelesaikan tugas-tugas mereka untuk mendukung sasaran tim;",
+          "Berbagi informasi yang relevan atau bermanfaat pada anggota tim; mempertimbangkan masukan dan keahlian anggota dalam tim/kelompok kerja serta bersedia untuk belajar dari orang lain;",
+          "Membangun komitmen yang tinggi untuk menyelesaikan tugas tim."
+        ]
+      },
+      {
+        "nama": "Komunikasi",
+        "level_target": "2",
+        "deskripsi": "Aktif menjalankan komunikasi secara formal dan informal ; Bersedia mendengarkan orang lain, menginterpretasikan pesan dengan respon yang sesuai, mampu menyusun materi presentasi, pidato, naskah, laporan, dll",
+        "indikator": [
+          "Menggunakan gaya komunikasi informal untuk meningkatkan hubungan profesional;",
+          "Mendengarkan pihak lain secara aktif; menangkap dan menginterpretasikan pesan-pesan dari orang lain, serta memberikan respon yang sesuai;",
+          "Membuat materi presentasi, pidato, draft naskah, laporan dll sesuai arahan pimpinan"
+        ]
+      },
+      {
+        "nama": "Orientasi pada hasil",
+        "level_target": "2",
+        "deskripsi": "Berupaya meningkatkan hasil kerja pribadi yang lebih tinggi dari standar yang ditetapkan, mencari, mencoba metode alternatif untuk peningkatan kinerja",
+        "indikator": [
+          "Menetapkan dan  berupaya mencapai standar kerja pribadi yang lebih tinggi dari standar kerja yang ditetapkan organisasi;",
+          "Mencari, mencoba metode kerja alternatif untuk meningkatkan hasil kerjanya;",
+          "Memberi contoh kepada orang-orang di unit kerjanya untuk mencoba menerapkan metode kerja yang lebih efektif yang sudah dilakukannya."
+        ]
+      },
+      {
+        "nama": "Pelayanan Publik",
+        "level_target": "2",
+        "deskripsi": "Mampu mensupervisi/ mengawasi/menyelia dan menjelaskan proses pelaksanaan tugas tugas pemerintahan/ pelayanan publik secara transparan",
+        "indikator": [
+          "Menunjukan sikap yakin dalam mengerjakan tugas-tugas pemerintahan/pelayanan publik, mampu menyelia dan menjelaskan secara obyektif bila ada yang mempertanyakan kebijakan yang diambil;",
+          "Secara aktif mencari informasi untuk mengenali kebutuhan pemangku kepentingan agar dapat menjalankan pelaksanaan tugas pemerintahan, pembangunan dan pelayanan publik secara cepat dan tanggap;",
+          "Mampu mengenali dan memanfaatkan kebiasaan, tatacara, situasi tertentu sehingga apa yang disampaikan menjadi perhatian pemangku kepentingan dalam hal penyelesaian tugas-tugas pemerintahan, pembangunan dan pelayanan publik."
+        ]
+      },
+      {
+        "nama": "Pengembangan diri dan orang lain",
+        "level_target": "2",
+        "deskripsi": "Meningkatkan kemampuan bawahan dengan memberikan contoh dan penjelasan cara melaksanakan suatu pekerjaan",
+        "indikator": [
+          "Meningkatkan kemampuan bawahan dengan memberikan contoh, instruksi, penjelasan dan petunjuk praktis yang jelas kepada bawahan dalam menyelesaikan suatu pekerjaan;",
+          "Membantu bawahan untuk mempelajari proses, program atau sistem baru;",
+          "Menggunakan metode lain untuk meyakinkan bahwa orang lain telah memahami penjelasan atau pengarahan."
+        ]
+      },
+      {
+        "nama": "Mengelola Perubahan",
+        "level_target": "2",
+        "deskripsi": "Proaktif beradaptasi mengikuti perubahan",
+        "indikator": [
+          "Menyesuaikan cara kerja lama dengan menerapkan metode/proses baru selaras dengan ketentuan yang berlaku tanpa arahan orang lain;",
+          "Mengembangkan kemampuan diri untuk menghadapi perubahan;",
+          "Cepat dan tanggap dalam menerima perubahan."
+        ]
+      },
+      {
+        "nama": "Pengambilan Keputusan",
+        "level_target": "2",
+        "deskripsi": "Menganalisis masalah secara mendalam",
+        "indikator": [
+          "Melakukan analisis secara mendalam terhadap informasi yang tersedia dalam upaya mencari solusi;",
+          "Mempertimbangkan berbagai alternatif yang ada sebelum membuat kesimpulan;",
+          "Membuat keputusan operasional berdasarkan kesimpulan dari berbagai sumber informasi sesuai dengan pedoman yang ada."
+        ]
+      }
+    ],
+    "sosial_kultural": [
+      {
+        "nama": "Perekat Bangsa",
+        "level_target": "2",
+        "deskripsi": "Aktif mengembangkan sikap saling menghargai, menekankan persamaan dan persatuan",
+        "indikator": [
+          "Menampilkan sikap dan perilaku yang peduli akan nilai-nilai keberagaman dan menghargai perbedaan;",
+          "Membangun hubungan baik antar individu dalam organisasi, mitra kerja, pemangku kepentingan;",
+          "Bersikap tenang, mampu mengendalikan emosi, kemarahan dan frustasi dalam menghadapi pertentangan yang ditimbulkan oleh perbedaan latar belakang, agama/kepercayaan, suku, jender, sosial ekonomi, preferensi politik di lingkungan unit kerjanya."
+        ]
+      }
+    ],
+    "teknis": [
+      {
+        "nama": "Manajemen Perkantoran",
+        "level_target": "2",
+        "deskripsi": "Mampu melaksanakan manajemen perkantoran sesuai pedoman/petunjuk teknis",
+        "indikator": [
+          "Mampu mengumpulkan data-data yang mencakup pengelolaan persuratan, barang milik negara, kearsipan, keprotokolan, dan kesekretariatan.",
+          "Mampu menyajikan data keuangan.",
+          "Mampu mengolah data-data yang mencakup pengelolaan persuratan, barang milik negara, kearsipan, keprotokolan, dan kesekretariatan."
+        ]
+      },
+      {
+        "nama": "Pembinaan Disiplin Pegawai",
+        "level_target": "2",
+        "deskripsi": "Mampu melaksanakan pembinaan disiplin pegawai sesuai pedoman kerja dan petunjuk teknis",
+        "indikator": [
+          "Mampu mengidentifikasi dan menganalisis ketaatan dan pelanggaran atas kewajiban dan larangan yang dilakukan oleh pegawai dan memberi peringatan kepada pegawai;",
+          "Mampu menyelenggarakan administrasi pelaksanaan penegakan disiplin pegawai di lingkup kewenanganya;",
+          "Mampu menjelaskan secara lengkap, rinci dan jelas perihal disiplin pegawai kepada masyarakat dan stakeholder."
+        ]
+      },
+      {
+        "nama": "Manajemen Data dan Informasi SDM Aparatur",
+        "level_target": "2",
+        "deskripsi": "Mampu mengoperasikan sistem informasi kepegawaian dan menggunakan dalam administrasi kepegawaian",
+        "indikator": [
+          "Mampu mengoperasikan sistem informasi kepegawaian untuk kepentingan unit organisasi",
+          "Mampu menyajikan informasi manajemen SDM yang diperlukan dalam pengelolaan manajemen kepegawaian berdasarkan sistem merit",
+          "Mampu menyajikan informasi kepegawaian yang diperlukan untuk menyusun pola karier dan penerapannya dalam manajemen ASN"
+        ]
+      },
+      {
+        "nama": "Manajemen Keuangan",
+        "level_target": "2",
+        "deskripsi": "Mampu melaksanakan manajemen keuangan sesuai pedoman kerja/petunjuk teknis",
+        "indikator": [
+          "Mampu mengumpulkan data-data yang mencakup pengelolaan keuangan.",
+          "Mampu menyajikan data keuangan dengan teliti dan cermat.",
+          "Mampu mengolah data-data keuangan dengan rinci dan jelas."
+        ]
+      },
+      {
+        "nama": "Manajemen Mutu",
+        "level_target": "2",
+        "deskripsi": "Menerapkan prinsip-prinsip Sistem Manajemen Mutu (SMM) dalam organisasi",
+        "indikator": [
+          "Mampu menyiapkan rencana mutu",
+          "Mampu mengidentifikasi penerapan mutu dalam tahapan pekerjaan yang menjadi tugas pokok di unit kerja",
+          "Mampu melakukan audit mutu"
+        ]
+      }
+    ]
+  },
+  "persyaratan_jabatan": {
+    "pendidikan": [
+      {
+        "jenjang": "Diploma III atau yang setara",
+        "bidang_ilmu": "Teknik/Farmasi/Manajemen/Administrasi Pemerintahan/Hukum/Psikologi/Kedokteran/Kesehatan Masyarakat/Apoteker"
+      }
+    ],
+    "pelatihan": [
+      {
+        "manajerial": "Pelatihan Kepemimpinan Tingkat IV (PIM IV) atau yang setara",
+        "teknis": [
+          "Perencanaan Program dan Anggaran",
+          "Manajemen SDM",
+          "Diklat Manajemen Mutu",
+          "Diklat Teknis/Substansi terkait tugas jabatan"
+        ],
+        "fungsional": []
+      }
+    ],
+    "pengalaman": [
+      "Memiliki pengalaman dalam Jabatan pelaksana paling singkat 4 (empat) tahun atau JF yang setingkat dengan Jabatan pelaksana sesuai dengan bidang tugas Jabatan yang akan diduduki"
+    ],
+    "pangkat": "Penata Muda Tingkat I (III/b)"
+  }
+}

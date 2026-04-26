@@ -1,0 +1,45 @@
+services:
+
+  postgres:
+    image: zulfifazhar/light-postgres:latest
+    container_name: light_postgres
+    environment:
+      POSTGRES_USER: light_postgres
+      POSTGRES_PASSWORD: light_postgres_root
+      POSTGRES_DB: lightrag
+    ports:
+      - "5452:5432"
+    volumes:
+      - ./storage/postgres/data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+
+  neo4j:
+    image: neo4j:latest
+    container_name: neo4j
+    environment:
+      NEO4J_AUTH: neo4j/lightrag_neo4j_root
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - ./storage/neo4j/data:/data
+      - ./storage/neo4j/logs:/logs
+      - ./storage/neo4j/plugins:/plugins
+    restart: always
+
+
+
+  minio:
+    image: quay.io/minio/minio
+    container_name: minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: password123
+    volumes:
+      - ./storage/minio/data:/data
+    command: server /data --console-address ":9001"
+    restart: unless-stopped

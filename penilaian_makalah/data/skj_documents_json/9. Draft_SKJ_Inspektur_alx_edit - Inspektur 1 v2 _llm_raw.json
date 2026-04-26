@@ -1,0 +1,189 @@
+{
+  "profil_jabatan": {
+    "nama_jabatan": "Inspektur",
+    "kode_jabatan": "1-02-16-01-11-000",
+    "level_jabatan": "",
+    "kelompok_jabatan": "Struktural",
+    "urusan_pemerintah": "Pengawasan Intern Pemerintah"
+  },
+  "ikhtisar_jabatan": "Inspektur melaksanakan Pengawasan Intern berupa Layanan Jasa Asurans meliputi kegiatan audit, reviu, evaluasi, pemantauan, kegiatan pengawasan lain dan Layanan Jasa Konsultansi meliputi kegiatan pemberian saran dan jasa lainnya dalam rangka memberikan keyakinan yang memadai bahwa kegiatan telah dilaksanakan dengan tata kepemerintahan yang baik dan untuk memberikan nilai tambah dalam upaya meningkatkan proses tata kelola, manajemen risiko, dan kegiatan pengendalian terhadap penyelenggaraan tugas dan fungsi pada mitra kerja pengawasan intern tertentu.",
+  "standar_kompetensi": {
+    "manajerial": [
+      {
+        "nama": "Integritas",
+        "level_target": "4",
+        "deskripsi": "Mampu menciptakan situasi kerja yang mendorong kepatuhan pada nilai, norma, dan etika organisasi",
+        "indikator": [
+          "Menciptakan situasi kerja yang mendorong seluruh pemangku kepentingan mematuhi nilai, norma, dan etika organisasi dalam segala situasi dan kondisi.",
+          "Mendukung dan menerapkan prinsip moral dan standar etika yang tinggi, serta berani menanggung konsekuensinya.",
+          "Berani melakukan koreksi atau mengambil Tindakan atas penyimpangan kode etik/ nilai-nilai yang dilakukan oleh orang lain, pada tataran lingkup kerja setingkat instansi meskipun ada resiko."
+        ]
+      },
+      {
+        "nama": "Kerjasama",
+        "level_target": "4",
+        "deskripsi": "Membangun komitmen tim, sinergi",
+        "indikator": [
+          "Membangun sinergi antar unit kerja di lingkup instansi yang dipimpin;",
+          "Memfasilitasi kepentingan yang berbeda dari unit kerja lain sehingga tercipta sinergi dalam rangka pencapaian target kerja organisasi;",
+          "Mengembangkan sistem yang menghargai kerja sama antar unit, memberikan dukungan/semangat untuk memastikan tercapainya sinergi dalam rangka pencapaian target kerja organisasi."
+        ]
+      },
+      {
+        "nama": "Komunikasi",
+        "level_target": "4",
+        "deskripsi": "Mampu mengemukakan pemikiran multidimensi secara lisan dan tertulis untuk mendorong kesepakatan dengan tujuan meningkatkan kinerja secara keseluruhan",
+        "indikator": [
+          "Mengintegrasikan informasi-informasi penting hasil diskusi dengan pihak lain untuk mendapatkan pemahaman yang sama;",
+          "Berbagi informasi dengan pemangku kepentingan untuk tujuan meningkatkan kinerja secara keseluruhan;",
+          "Menuangkan pemikiran/konsep yang multidimensi dalam bentuk tulisan formal;",
+          "Menyampaikan informasi secara persuasif untuk mendorong pemangku kepentingan sepakat pada langkah-langkah bersama dengan tujuan meningkatkan kinerja secara keseluruhan."
+        ]
+      },
+      {
+        "nama": "Orientasi pada hasil",
+        "level_target": "4",
+        "deskripsi": "Mendorong unit kerja mencapai target yang ditetapkan atau melebihi hasil kerja sebelumnya",
+        "indikator": [
+          "Mendorong unit kerja di tingkat instansi untuk mencapai kinerja yang melebihi target yang ditetapkan;",
+          "Memantau dan mengevaluasi hasil kerja unitnya agar selaras dengan sasaran strategis instansi;",
+          "Mendorong pemanfaatan sumber daya bersama antar unit kerja dalam rangka meningkatkan efektifitas dan efisiensi pencapaian target organisasi."
+        ]
+      },
+      {
+        "nama": "Pelayanan Publik",
+        "level_target": "4",
+        "deskripsi": "Mampu memonitor, mengevaluasi, memperhitungkan dan mengantisipasi dampak dari isu-isu jangka panjang, kesempatan, atau kekuatan politik dalam hal pelayanan kebutuhan pemangku kepentingan yang transparan, objektif, dan profesional",
+        "indikator": [
+          "Memahami dan memberi perhatian kepada isu-isu jangka panjang, kesempatan atau kekuatan politik yang mempengaruhi organisasi dalam hubungannya dengan dunia luar, memperhitungkan dan mengantisipasi dampak terhadap pelaksanaan tugas-tugas pelayanan publik secara objektif, transparan, dan profesional dalam lingkup organisasi;",
+          "Menjaga agar kebijakan pelayanan publik yang diselenggarakan oleh instansinya telah selaras dengan standar pelayanan yang objektif, netral, tidak memihak, tidak diskriminatif, serta tidak terpengaruh kepentingan pribadi/kelompok/partai politik;",
+          "Menerapkan strategi jangka panjang yang berfokus pada pemenuhan pemangku kepentingan dalam menyusun kebijakan dengan mengikuti standar objektif, netral, tidak memihak, tidak diskriminatif, transparan, tidak terpengaruh kepentingan pribadi/ kelompok."
+        ]
+      },
+      {
+        "nama": "Pengembangan diri dan orang lain",
+        "level_target": "4",
+        "deskripsi": "Menyusun program pengembangan jangka panjang dalam rangka mendorong manajemen pembelajaran",
+        "indikator": [
+          "Menyusun program pengembangan jangka panjang bersama-sama dengan bawahan, termasuk di dalamnya penetapan tujuan, bimbingan, penugasan dan pengalaman lainnya, serta mengalokasikan waktu untuk mengikuti pelatihan/pendidikan/pengembangan kompetensi dan karir;",
+          "Melaksanakan manajemen pembelajaran termasuk evaluasi dan umpan balik pada tataran organisasi;",
+          "Mengembangkan orang-orang disekitarnya secara konsisten, melakukan kaderisasi untuk posisi-posisi di unit kerjanya."
+        ]
+      },
+      {
+        "nama": "Mengelola Perubahan",
+        "level_target": "4",
+        "deskripsi": "Memimpin perubahan pada unit kerja",
+        "indikator": [
+          "Mengarahkan unit kerja untuk lebih siap dalam menghadapi perubahan termasuk memitigasi risiko yang mungkin terjadi;",
+          "Memastikan perubahan sudah diterapkan secara aktif di lingkup unit kerjanya secara berkala;",
+          "Memimpin dan memastikan penerapan program-program perubahan selaras antar unit kerja."
+        ]
+      },
+      {
+        "nama": "Pengambilan Keputusan",
+        "level_target": "4",
+        "deskripsi": "Menyelesaikan masalah yang mengandung risiko tinggi, mengantisipasi dampak keputusan, membuat tindakan pengamanan, mitigasi risiko",
+        "indikator": [
+          "Menyusun dan/atau memutuskan konsep penyelesaian masalah yang melibatkan beberapa/seluruh fungsi dalam organisasi.",
+          "Menghasilkan solusi dari berbagai masalah yang kompleks, terkait dengan bidang kerjanya yang berdampak pada pihak lain.",
+          "Membuat keputusan dan mengantisipasi dampak keputusannya serta menyiapkan tindakan penanganannya (mitigasi risiko)."
+        ]
+      }
+    ],
+    "sosial_kultural": [
+      {
+        "nama": "Perekat Bangsa",
+        "level_target": "4",
+        "deskripsi": "Mendayagunakan perbedaan secara konstruktif dan kreatif untuk meningkatkan efektifitas organisasi",
+        "indikator": [
+          "Menginisiasi dan merepresentasikan pemerintah di lingkungan kerja dan masyarakat untuk senantiasa menjaga persatuan dan kesatuan dalam keberagaman dan menerima segala bentuk perbedaan dalam kehidupan bermasyarakat;",
+          "Mampu mendayagunakan perbedaan latar belakang, agama/kepercayaan, suku, gender, sosial ekonomi, preferensi politik untuk mencapai kelancaran pencapaian tujuan organisasi;",
+          "Mampu membuat program yang mengakomodasi perbedaan latar belakang, agama/kepercayaan, suku, gender, sosial ekonomi, preferensi politik."
+        ]
+      }
+    ],
+    "teknis": [
+      {
+        "nama": "Manajemen Audit (pengawasan) intern",
+        "level_target": "4",
+        "deskripsi": "Mampu berkolaborasi dengan rekan sejawat untuk mencapai tujuan organisasi, dan berkontribusi dalam perencanaan",
+        "indikator": [
+          "Mampu melakukan evaluasi permasalahan Tim;",
+          "Menyampaikan ekspektasi dan tujuan bisnis yang jelas serta mengaitkannya dengan strategi organisasi;",
+          "Mampu menyusun perencanaan pengawasan intern berbasis risiko dengan mempertimbangkan kompetensi dan kapabilitas Tim."
+        ]
+      },
+      {
+        "nama": "Standar Audit",
+        "level_target": "4",
+        "deskripsi": "Mampu mengevaluasi pelaksanaan pengawasan intern dengan kebijakan organisasi APIP dan standar audit serta melaksanakan program pengembangan dan penjaminan kualitas",
+        "indikator": [
+          "Mampu mengevaluasi pelaksanaan pengawasan intern dengan kebijakan organisasi APIP dan standar audit;",
+          "Mampu memutuskan penggunaan dan interpretasi Standar Audit Intern dengan tepat.",
+          "Mampu melaksanakan program pengembangan dan penjaminan kualitas (quality assurance and improvement program)."
+        ]
+      },
+      {
+        "nama": "Tata Kelola, Manajemen Risiko, dan Pengendalian",
+        "level_target": "4",
+        "deskripsi": "Menilai penerapan Tata Kelola, Manajemen Risiko, dan Pengendalian organisasi dalam kegiatan pengawasan intern",
+        "indikator": [
+          "Mampu menetapkan metodologi pengawasan intern yang tepat dalam mengevaluasi penerapan kerangka kerja tata kelola, manajemen risiko, dan pengendalian organisasi;",
+          "Menilai penerapan Tata Kelola, Manajemen Risiko, dan Pengendalian organisasi;",
+          "Memberikan saran perbaikan penerapan Tata Kelola, Manajemen Risiko, dan Pengendalian untuk pencapaian tujuan organisasi;",
+          "Mampu mengevaluasi penerapan kesadaran atas risiko kecurangan (fraud) pada semua level organisasi."
+        ]
+      },
+      {
+        "nama": "Analisis Proses Bisnis Mitra Pengawasan",
+        "level_target": "4",
+        "deskripsi": "Mampu mengevaluasi strategi yang diterapkan mitra pengawasan dalam mencapai tujuan organisasinya",
+        "indikator": [
+          "Mengevaluasi titik kritis mitra pengawasan dalam penugasan pengawasan intern;",
+          "Mampu mengevaluasi keterkaitan tujuan program/kegiatan, risiko, dan pengendalian internal dalam mencapai tujuan strategis mitra pengawasan;",
+          "Mampu mengevaluasi faktor-faktor lingkungan strategis yang berdampak pada mitra pengawasan."
+        ]
+      },
+      {
+        "nama": "Pelaksanaan Pengawasan Intern",
+        "level_target": "4",
+        "deskripsi": "Mampu mengendalikan teknis pelaksanaan pengawasan intern",
+        "indikator": [
+          "Mampu mengendalikan teknis pelaksanaan pengawasan intern meliputi antara lain pengalokasian sumber daya yang optimal, pemilihan teknik yang tepat untuk pengumpulan data, analisis data, interpretasi, dan pelaporan untuk memastikan tujuan pengawasan intern tercapai;",
+          "Mampu mereviu program kerja pengawasan intern meliputi antara ruang lingkup, sumber daya, jadwal untuk memastikan tujuan pengawasan intern tercapai;",
+          "Mereviu usulan rekomendasi yang disusun tim untuk memastikan akar permasalahan dan memberikan perbaikan bagi organisasi dan telah didukung bukti-bukti akurat;",
+          "Mampu mengevaluasi pelaksanaan dan hasil tindak lanjut untuk memonitor tindakan manajemen;"
+        ]
+      },
+      {
+        "nama": "Pengembangan Metodologi Pengawasan",
+        "level_target": "4",
+        "deskripsi": "Mengembangkan pendekatan-pendekatan inovatif untuk meningkatkan aktivitas audit intern, dan mampu melatih tim dalam menerima perubahan di dalam aktivitas audit intern",
+        "indikator": [
+          "Mampu mengarahkan Tim Pengawasan Intern untuk menciptakan lingkungan yang mendukung perubahan;",
+          "Mampu mendorong orang lain/tim pengawasan untuk mengajukan ide-ide inovatif dan memberikan umpan balik yang positif untuk memastikan bahwa ide-ide baru diterapkan dan memberikan kontribusi peningkatan kualitas pengawasan intern;",
+          "Mampu mengevaluasi/ menilai hambatan-hambatan potensial dan sumber daya yang dibutuhkan untuk inisiatif perubahan;",
+          "Mampu mengimplementasikan program perubahan pada seluruh fungsi audit intern dan tim audit intern."
+        ]
+      }
+    ]
+  },
+  "persyaratan_jabatan": {
+    "pendidikan": [
+      "S1 (Sarjana StrataI)",
+      "Sarjana Strata satu dengan program studi farmasi, kimia, biologi, Teknik, manajemen, ekonomi, akuntansi, hukum, atau program studi lain yang relevan dengan bidang tugas"
+    ],
+    "pelatihan": [
+      "Pelatihan Kepemimpinan Nasional Tingkat III (PIM III)",
+      "Pelatihan terkait tata kelola, manajemen risiko, atau pengendalian intern",
+      "Pelatihan dan pembelajaran lain sesuai dengan tugas dan fungsi Inspektorat",
+      "Pelatihan Fungsional Auditor Ahli Madya (Pengendali Teknis)"
+    ],
+    "pengalaman": [
+      "Lulus pelatihan dasar bagi Calon PNS",
+      "Paling kurang 2 (dua) tahun untuk perpindahan atau penyesuaian/inpassing dalam pelaksanaan tugas di bidang pengawasan intern"
+    ],
+    "pangkat": "IV/b – Pembina"
+  }
+}
