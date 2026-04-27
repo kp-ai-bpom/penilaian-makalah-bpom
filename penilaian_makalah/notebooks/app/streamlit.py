@@ -9,7 +9,6 @@ import zipfile
 import tempfile
 import logging
 import datetime
-import re
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
@@ -34,7 +33,6 @@ MINIO_SECRET_KEY = os.getenv("MINIO_SECRET_KEY", "")
 BUCKET_MAKALAH   = os.getenv("BUCKET_MAKALAH", "makalah")
 BUCKET_KNOWLEDGE = os.getenv("BUCKET_KNOWLEDGE", "knowledge")
 BUCKET_RIWAYAT   = os.getenv("BUCKET_RIWAYAT", "riwayat-penilaian-makalah")
-BUCKET_TEMA      = os.getenv("BUCKET_TEMA", "ketentuan-penulisan-makalah")
 SKJ_JSON_FOLDER  = os.getenv("SKJ_JSON_FOLDER", os.path.join(os.path.dirname(__file__), "../data/skj_documents_json"))
 PG_HOST  = os.getenv("POSTGRES_HOST", "localhost")
 PG_PORT  = os.getenv("POSTGRES_PORT", "5432")
@@ -85,9 +83,6 @@ Melakukan penilaian terhadap makalah berdasarkan kriteria penilaian yang telah d
 ---Konteks Jabatan---
 {assessment_context}
 
----Ketentuan Penulisan Makalah (Tema)---
-{tema_text}
-
 ---Instructions---
 1. Baca dan pahami isi makalah secara menyeluruh.
 2. Tinjau konteks jabatan di atas sebagai acuan penilaian.
@@ -101,8 +96,8 @@ Melakukan penilaian terhadap makalah berdasarkan kriteria penilaian yang telah d
 10. Output harus dalam format JSON yang valid dan tidak boleh mengandung teks tambahan di luar JSON.
 
 ---Assessment Criteria---
-1. Kesesuaian judul dengan tema (berdasarkan Ketentuan Penulisan Makalah di atas)
-2. Kesesuaian isi makalah dengan judul dan tema (berdasarkan Ketentuan Penulisan Makalah di atas)
+1. Kesesuaian judul dengan tema
+2. Kesesuaian isi makalah dengan judul dan tema
 3. Sistematika penulisan
 4. Ketajaman analisis (bobot 2x)
 5. Penggunaan bahasa dalam penulisan makalah
@@ -261,18 +256,7 @@ def parse_response(raw: str) -> dict:
         raw = parts[1] if len(parts) > 1 else raw
         if raw.startswith("json"):
             raw = raw[4:]
-    
-    raw = raw.strip()
-    # Ekstrak hanya blok JSON
-    start = raw.find('{')
-    end = raw.rfind('}')
-    if start != -1 and end != -1:
-        raw = raw[start:end+1]
-        
-    # Hapus trailing commas yang sering bikin json.loads error
-    raw = re.sub(r',\s*([\]}])', r'\1', raw)
-    
-    return json.loads(raw)
+    return json.loads(raw.strip())
 
 
 def score_color(score: float) -> str:
@@ -494,19 +478,9 @@ def log_ingestion(filename, status, error_message=None):
 
 
 # ── RAG Async Functions ───────────────────────────────────────────────────────
-import threading
-
-@st.cache_resource(show_spinner=False)
-def get_async_loop():
-    loop = asyncio.new_event_loop()
-    thread = threading.Thread(target=loop.run_forever, daemon=True)
-    thread.start()
-    return loop
-
 def run_async(coro):
-    loop = get_async_loop()
-    future = asyncio.run_coroutine_threadsafe(coro, loop)
-    return future.result()
+    loop = asyncio.get_event_loop()
+    return loop.run_until_complete(coro)
 
 
 async def _initialize_rag():
@@ -559,7 +533,15 @@ async def _initialize_rag():
 
 @st.cache_resource(show_spinner=False)
 def get_rag():
-    return run_async(_initialize_rag())
+    try:
+        loop = asyncio.get_event_loop()
+        if loop.is_closed():
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+    return loop.run_until_complete(_initialize_rag())
 
 
 async def retrieve_assessment_context(rag, selected_jabatan: str, query_mode: str) -> str:
@@ -577,11 +559,10 @@ async def retrieve_assessment_context(rag, selected_jabatan: str, query_mode: st
         return f"Error retrieving context: {str(e)}"
 
 
-async def evaluate_paper_with_context(rag, makalah_text: str, assessment_context: str, tema_text: str, query_mode: str) -> dict:
+async def evaluate_paper_with_context(rag, makalah_text: str, assessment_context: str, query_mode: str) -> dict:
     evaluation_prompt = PROMPT_PENILAIAN.format(
         assessment_context=assessment_context,
         makalah_text=makalah_text,
-        tema_text=tema_text,
     )
     
     # Memanggil LLM secara langsung tanpa melakukan pencarian database lagi,
@@ -814,32 +795,20 @@ def page_penilaian():
     skj_data    = st.session_state.skj_data or {}
     jabatan_list = list(skj_data.keys())
 
-    # ── Step 1: Pilih Jabatan & Tema ─────────────────────────────────────────────────
+    # ── Step 1: Pilih Jabatan ─────────────────────────────────────────────────
     with st.container(border=True):
         st.markdown("""<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
           <div style="background:#3b82f6;color:white;width:28px;height:28px;border-radius:50%;
             display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">1</div>
-          <div style="font-size:16px;font-weight:700;color:#090088;">Pilih Jabatan & Tema Penulisan Makalah</div>
+          <div style="font-size:16px;font-weight:700;color:#090088;">Pilih Jabatan yang Dituju</div>
         </div>""", unsafe_allow_html=True)
 
-        col1_1, col1_2 = st.columns(2)
-        with col1_1:
-            st.markdown("**1A. Pilih Jabatan yang Dituju**")
-            if jabatan_list:
-                sel_jabatan = st.selectbox("Jabatan", jabatan_list, label_visibility="collapsed")
-            else:
-                sel_jabatan = st.text_input("Jabatan", placeholder="contoh: Sekretaris Utama", label_visibility="collapsed")
-            st.session_state.eval_jabatan = sel_jabatan
-
-        with col1_2:
-            st.markdown("**1B. Pilih Ketentuan Tema**")
-            tema_files = list_minio_files(BUCKET_TEMA)
-            if tema_files:
-                sel_tema = st.selectbox("Ketentuan Tema (PDF/DOCX)", tema_files, label_visibility="collapsed")
-            else:
-                sel_tema = st.selectbox("Ketentuan Tema (PDF/DOCX)", ["(Tidak ada file di MinIO)"], disabled=True, label_visibility="collapsed")
-                st.warning(f"⚠️ Bucket `{BUCKET_TEMA}` kosong atau tidak dapat diakses.")
-            st.session_state.eval_tema_file = sel_tema if tema_files else None
+        if jabatan_list:
+            sel_jabatan = st.selectbox("Jabatan", jabatan_list, label_visibility="collapsed")
+        else:
+            sel_jabatan = st.text_input("Jabatan (input manual — file SKJ tidak ditemukan)",
+                                        placeholder="contoh: Sekretaris Utama")
+        st.session_state.eval_jabatan = sel_jabatan
 
     st.divider()
 
@@ -941,16 +910,15 @@ def page_penilaian():
         </div>""", unsafe_allow_html=True)
 
         qmode    = st.session_state.query_mode
-        sel_tema = st.session_state.get("eval_tema_file")
-        can_eval = bool(sel_jabatan and sel_tema and loaded_papers and rag_ready)
+        can_eval = bool(sel_jabatan and loaded_papers and rag_ready)
 
         if not can_eval:
-            if not sel_jabatan or not sel_tema:
-                st.info("ℹ️ Selesaikan Langkah 1: Pilih jabatan dan ketentuan tema terlebih dahulu.")
+            if not sel_jabatan:
+                st.info("ℹ️ Selesaikan Langkah 1: Pilih jabatan terlebih dahulu.")
             elif not loaded_papers:
                 st.info("ℹ️ Selesaikan Langkah 2: Load minimal 1 makalah terlebih dahulu.")
         else:
-            st.info(f"Siap menilai **{len(loaded_papers)}** makalah untuk jabatan **{sel_jabatan}** dengan tema **{sel_tema}** (mode: `{qmode}`)")
+            st.info(f"Siap menilai **{len(loaded_papers)}** makalah untuk jabatan **{sel_jabatan}** (mode: `{qmode}`)")
 
         eval_btn = st.button("🚀 Mulai Penilaian Otomatis", type="primary",
                              disabled=not can_eval, use_container_width=True)
@@ -964,19 +932,11 @@ def page_penilaian():
                     ctx = run_async(retrieve_assessment_context(rag_instance, sel_jabatan, qmode))
                     st.session_state.eval_context = ctx
 
-                    # Stage 1.5: retrieve tema text
-                    st.write(f"⏳ Mengunduh file ketentuan tema: {sel_tema}...")
-                    tema_data = download_from_minio(BUCKET_TEMA, sel_tema)
-                    tema_text = extract_text_from_bytes(tema_data, sel_tema) if tema_data else "Tidak ada teks tema."
-                    # Batasi panjang teks tema jika terlalu panjang agar tidak merusak prompt (opsional, batas 5000 karakter)
-                    if len(tema_text) > 5000:
-                        tema_text = tema_text[:5000] + "\n\n... (teks dipotong karena terlalu panjang)"
-
                     # Stage 2: evaluate each paper
                     total = len(loaded_papers)
                     for idx, (fname, txt) in enumerate(loaded_papers.items(), 1):
                         st.write(f"⏳ Menilai: {fname} ({idx}/{total})...")
-                        result = run_async(evaluate_paper_with_context(rag_instance, txt, ctx, tema_text, qmode))
+                        result = run_async(evaluate_paper_with_context(rag_instance, txt, ctx, qmode))
                         result["final_score"] = compute_final_score(result.get("scores", {}))
                         results[fname] = result
 
