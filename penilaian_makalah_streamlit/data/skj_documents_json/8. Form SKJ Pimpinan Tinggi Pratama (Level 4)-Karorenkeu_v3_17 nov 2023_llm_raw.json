@@ -1,0 +1,168 @@
+{
+  "profil_jabatan": {
+    "nama_jabatan": "Kepala Biro Perencanaan dan Keuangan",
+    "kode_jabatan": "1-03-16-01-06-000",
+    "level_jabatan": "Jabatan Pimpinan Tinggi Pratama",
+    "kelompok_jabatan": "Jabatan Pimpinan Tinggi Pratama",
+    "urusan_pemerintah": "Kesekretariatan"
+  },
+  "ikhtisar_jabatan": "mempunyai tugas mengkoordinasi, menyusun, mengintegrasikan rencana strategis, rencana tahunan, mengkoordinasi penyusunan apbn, pengelolaan pinjaman dan hibah luar negeri, mengkoordinasi pemantauan, evaluasi dan pelaporan kinerja organisasi, mengkoordinasi pengelolaan dan pelaporan keuangan serta pelaksanaan urusan tata usaha dan rumah tangga biro",
+  "standar_kompetensi": {
+    "manajerial": [
+      {
+        "nama": "Integritas",
+        "level_target": "4",
+        "deskripsi": "Mampu menciptakan situasi kerja yang mendorong kepatuhan pada nilai, norma, dan etika organisasi",
+        "indikator": [
+          "Menciptakan situasi kerja yang mendorong seluruh pemangku kepentingan mematuhi nilai, norma, dan etika organisasi dalam segala situasi dan kondisi;",
+          "Mendukung dan menerapkan prinsip moral dan standar etika yang tinggi, serta berani menanggung konsekuensinya;",
+          "Berani melakukan koreksi atau mengambil tindakan atas penyimpangan kode etik/nilai-nilai yang dilakukan oleh orang lain, pada tataran lingkup kerja setingkat instansi meskipun ada resiko."
+        ]
+      },
+      {
+        "nama": "Kerjasama",
+        "level_target": "4",
+        "deskripsi": "Membangun komitmen tim, sinergi",
+        "indikator": [
+          "Membangun sinergi antar unit kerja di lingkup instansi yang dipimpin;",
+          "Memfasilitasi kepentingan yang berbeda dari unit kerja lain sehingga tercipta sinergi dalam rangka pencapaian target kerja organisasi;",
+          "Mengembangkan sistem yang menghargai kerja sama antar unit, memberikan dukungan/semangat untuk memastikan tercapainya sinergi dalam rangka pencapaian target kerja organisasi."
+        ]
+      },
+      {
+        "nama": "Komunikasi",
+        "level_target": "4",
+        "deskripsi": "Mampu mengemukakan pemikiran multidimensi secara lisan dan tertulis untuk mendorong kesepakatan dengan tujuan meningkatkan kinerja secara keseluruhan",
+        "indikator": [
+          "Mengintegrasikan informasi-informasi penting hasil diskusi dengan pihak lain untuk mendapatkan pemahaman yang sama;",
+          "Berbagi informasi dengan pemangku kepentingan untuk tujuan meningkatkan kinerja secara keseluruhan;",
+          "Menuangkan pemikiran/konsep yang multidimensi dalam bentuk tulisan formal;",
+          "Menyampaikan informasi secara persuasif untuk mendorong pemangku kepentingan sepakat pada langkah-langkah bersama dengan tujuan meningkatkan kinerja secara keseluruhan."
+        ]
+      },
+      {
+        "nama": "Orientasi pada hasil",
+        "level_target": "4",
+        "deskripsi": "Mendorong unit kerja mencapai target yang ditetapkan atau melebihi hasil kerja sebelumnya",
+        "indikator": [
+          "Mendorong unit kerja di tingkat instansi untuk mencapai kinerja yang melebihi target yang ditetapkan;",
+          "Memantau dan mengevaluasi hasil kerja unitnya agar selaras dengan sasaran strategis instansi;",
+          "Mendorong pemanfaatan sumber daya bersama antar unit kerja dalam rangka meningkatkan efektifitas dan efisiensi pencapaian target organisasi."
+        ]
+      },
+      {
+        "nama": "Pelayanan Publik",
+        "level_target": "4",
+        "deskripsi": "Mampu memonitor, mengevaluasi, memperhitungkan dan mengantisipasi dampak dari isu-isu jangka panjang, kesempatan, atau kekuatan politik dalam hal pelayanan kebutuhan pemangku kepentingan yang transparan, objektif, dan profesional",
+        "indikator": [
+          "Memahami dan memberi perhatian kepada isu-isu jangka panjang, kesempatan atau kekuatan politik yang mempengaruhi organisasi dalam hubungannya dengan dunia luar, memperhitungkan dan mengantisipasi dampak terhadap pelaksanaan tugas-tugas pelayanan publik secara objektif, transparan, dan professional dalam lingkup organisasi;",
+          "Menjaga agar kebijakan pelayanan publik yang diselenggarakan oleh instansinya telah selaras dengan standar pelayanan yang objektif, netral, tidak memihak, tidak diskriminatif, serta tidak terpengaruh kepentingan pribadi/kelompok/partai politik;",
+          "Menerapkan strategi jangka panjang yang berfokus pada pemenuhan kebutuhan pemangku kepentingan dalam menyusun kebijakan dengan mengikuti standar objektif, netral, tidak memihak, tidak diskriminatif, transparan, tidak terpengaruh kepentingan pribadi/kelompok."
+        ]
+      },
+      {
+        "nama": "Pengembangan diri dan orang lain",
+        "level_target": "4",
+        "deskripsi": "Menyusun program pengembangan jangka panjang dalam rangka mendorong manajemen pembelajaran",
+        "indikator": [
+          "Menyusun program pengembangan jangka panjang bersama-sama dengan bawahan, termasuk didalamnya penetapan tujuan, bimbingan, penugasan dan pengalaman lainnya, serta mengalokasikan waktu untuk mengikuti pelatihan/pendidikan/pengembangan kompetensi dan karir;",
+          "Melaksanakan manajemen pembelajaran termasuk evaluasi dan umpan balik pada tataran organisasi;",
+          "Mengembangkan orang-orang disekitarnya secara konsisten, melakukan kaderisasi untuk posisi-posisi di unit kerjanya."
+        ]
+      },
+      {
+        "nama": "Mengelola Perubahan",
+        "level_target": "4",
+        "deskripsi": "Memimpin perubahan pada unit kerja",
+        "indikator": [
+          "Mengarahkan unit kerja untuk lebih siap dalam menghadapi perubahan termasuk memitigasi risiko yang mungkin terjadi;",
+          "Memastikan perubahan sudah diterapkan secara aktif di lingkup unit kerjanya secara berkala;",
+          "Memimpin dan memastikan penerapan program-program perubahan selaras antar unit kerja"
+        ]
+      },
+      {
+        "nama": "Pengambilan Keputusan",
+        "level_target": "4",
+        "deskripsi": "Menyelesaikan masalah yang mengandung risiko tinggi, mengantisipasi dampak keputusan, membuat tindakan pengamanan; mitigasi risiko",
+        "indikator": [
+          "Menyusun dan/atau memutuskan konsep penyelesaian masalah yang melibatkan beberapa/seluruh fungsi dalam organisasi;",
+          "Menghasilkan solusi dari berbagai masalah yang kompleks, terkait dengan bidang kerjanya yang berdampak pada pihak lain.",
+          "Membuat keputusan dan mengantisipasi dampak keputusannya serta menyiapkan tindakan penanganannya (mitigasi risiko)."
+        ]
+      }
+    ],
+    "sosial_kultural": [
+      {
+        "nama": "Perekat Bangsa",
+        "level_target": "4",
+        "deskripsi": "Mendayagunakan perbedaan secara konstruktif dan kreatif untuk meningkatkan efektifitas organisasi",
+        "indikator": [
+          "Menginisiasi dan merepresentasikan pemerintah di lingkungan kerja dan masyarakat untuk senantiasa menjaga persatuan dan kesatuan dalam keberagaman dan menerima segala bentuk perbedaan dalam kehidupan bermasyarakat;",
+          "Mampu mendayagunakan perbedaan latar belakang, agama/kepercayaan, suku, jender, sosial ekonomi, preferensi politik untuk mencapai kelancaran pencapaian tujuan organisasi;",
+          "Mampu membuat program yang mengakomodasi perbedaan latar belakang, agama/kepercayaan, suku, jender, sosial ekonomi, preferensi politik."
+        ]
+      }
+    ],
+    "teknis": [
+      {
+        "nama": "Penyusunan Rencana Kerja dan Anggaran",
+        "level_target": "4",
+        "deskripsi": "Memberikan rekomendasi terkait penyusunan rencana kerja dan anggaran",
+        "indikator": [
+          "Mampu membandingkan efektivitas penyusunan rencana kerja dan anggaran;",
+          "Mampu memberikan rekomendasi kebijakan terhadap penyusunan rencana kerja dan anggaran dengan memberikan rekomendasi yang tepat dan aplikatif menyangkut kedudukan, tugas dan fungsi lembaga dan unit-unit kerjanya;",
+          "Mampu memberikan rekomendasi mengenai penyusunan rencana kerja dan anggaran."
+        ]
+      },
+      {
+        "nama": "Penyusunan Arsitektur Kinerja dan Indikator Kinerja",
+        "level_target": "4",
+        "deskripsi": "Memberikan rekomendasi terkait penyusunan arsitektur kinerja dan indikator kinerja",
+        "indikator": [
+          "Mampu membandingkan efektivitas penyusunan arsitektur kinerja dan indikator kinerja;",
+          "Mampu memberikan rekomendasi kebijakan terhadap penyusunan arsitektur kinerja dan indikator kinerja dengan memberikan rekomendasi yang tepat dan aplikatif menyangkut kedudukan, tugas dan fungsi lembaga dan unit-unit kerjanya;",
+          "Mampu memberikan rekomendasi mengenai penyusunan arsitektur kinerja dan indikator kinerja."
+        ]
+      },
+      {
+        "nama": "Penyusunan Rencana Pembangunan Jangka Menengah, Rencana Pembangunan Jangka Panjang, dan Rencana Strategis",
+        "level_target": "4",
+        "deskripsi": "Memberikan rekomendasi terkait penyusunan RPJP, RPJM, dan Renstra",
+        "indikator": [
+          "Mampu membandingkan efektivitas penyusunan RPJP, RPJM, dan Renstra;",
+          "Mampu memberikan rekomendasi kebijakan terhadap penyusunan RPJP, RPJM, dan Renstra dengan memberikan rekomendasi yang tepat dan aplikatif menyangkut kedudukan, tugas dan fungsi lembaga dan unit-unit kerjanya;",
+          "Mampu memberikan rekomendasi mengenai penyusunan RPJP, RPJM, dan Renstra."
+        ]
+      },
+      {
+        "nama": "Manajemen Keuangan",
+        "level_target": "4",
+        "deskripsi": "Memberikan rekomendasi terhadap manajemen keuangan",
+        "indikator": [
+          "Mengevaluasi hasil analisis yang dilakukan dan memberikan rekomendasi dalam rangka perbaikan pelaksanaan pengelolaan keuangan;",
+          "Memberikan solusi atas permasalahan jangka panjang yang bersifat strategis pada pengelolaan keuangan;",
+          "Membuat langkah antisipatif atas perubahan lingkungan eksternal yang dapat mempengaruhi pengelolaan keuangan."
+        ]
+      }
+    ]
+  },
+  "persyaratan_jabatan": {
+    "pendidikan": [
+      {
+        "jenjang": "Paling rendah Sarjana (S1) diutamakan Pasca Sarjana (S2)/Doktor (S3)/Profesi.",
+        "bidang_ilmu": "Magister Ekonomi, Magister Manajemen, Magister Perencanaan Ekonomi dan Kebijakan Pembangunan, dan bidang ilmu lain yang relevan"
+      }
+    ],
+    "pelatihan": [
+      {
+        "manajerial": "√",
+        "teknis": "√",
+        "fungsional": "√"
+      }
+    ],
+    "pengalaman": [
+      " Memiliki pengalaman jabatan dalam bidang tugas yang terkait dengan manajemen kinerja/organisasi/pengelolaan keuangan negara/kerja sama secara kumulatif paling singkat selama 5 (lima) tahun"
+    ],
+    "pangkat": "Paling rendah Pembina Utama Muda/IV/b"
+  }
+}

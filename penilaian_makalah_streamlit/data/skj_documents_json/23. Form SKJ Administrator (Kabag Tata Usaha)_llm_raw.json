@@ -1,0 +1,184 @@
+{
+  "profil_jabatan": {
+    "nama_jabatan": "Kepala Bagian Tata Usaha",
+    "kode_jabatan": "2-04-16-01-07-500",
+    "level_jabatan": "",
+    "kelompok_jabatan": "Administrator",
+    "urusan_pemerintah": "Kesekretariatan"
+  },
+  "ikhtisar_jabatan": "Melakukan urusan fasilitasi penyusunan rencana, program, dan anggaran, pelaporan kinerja, koordinasi data dan informasi, koordinasi administrasi penerapan sistem pengendalian intern, administrasi kepegawaian, ketatalaksanaan, administrasi keuangan, administrasi barang milik negara, tata persuratan, kearsipan, mutu serta kerumahtanggaan unit kerja terkait.",
+  "standar_kompetensi": {
+    "manajerial": [
+      {
+        "nama": "Integritas",
+        "level_target": "3",
+        "deskripsi": "Mampu memastikan, menanamkan keyakinan bersama agar anggota yang dipimpin bertindak sesuai nilai, norma, dan etika organisasi, dalam lingkup formal",
+        "indikator": [
+          "Memastikan anggota yang dipimpin bertindak sesuai dengan nilai, norma, dan etika organisasi dalam segala situasi dan kondisi;",
+          "Mampu untuk memberi apresiasi dan teguran bagi anggota yang dipimpin agar bertindak selaras dengan nilai, norma, dan etika organisasi dalam segala situasi dan kondisi;",
+          "Melakukan monitoring dan evaluasi terhadap penerapan sikap integritas di dalam unit kerja yang dipimpin."
+        ]
+      },
+      {
+        "nama": "Kerjasama",
+        "level_target": "3",
+        "deskripsi": "Efektif membangun tim kerja untuk peningkatan kinerja organisasi",
+        "indikator": [
+          "Melihat kekuatan/kelemahan anggota tim, membentuk tim yang tepat, mengantisipasi kemungkinan hambatan, dan mencari solusi yang optimal;",
+          "Mengupayakan dan mengutamakan pengambilan keputusan berdasarkan usulan-usulan anggota tim/kelompok, bernegosiasi secara efektif untuk upaya menyelesaikan pekerjaan yang menjadi target kinerja kelompok dan/atau unit kerja;",
+          "Membangun aliansi dengan para pemangku kepentingan dalam rangka mendukung penyelesaian target kerja kelompok."
+        ]
+      },
+      {
+        "nama": "Komunikasi",
+        "level_target": "3",
+        "deskripsi": "Berkomunikasi secara asertif, terampil berkomunikasi lisan/tertulis untuk menyampaikan informasi yang sensitif/rumit/kompleks",
+        "indikator": [
+          "Menyampaikan suatu informasi yang sensitif/rumit dengan cara penyampaian dan kondisi yang tepat, sehingga dapat dipahami dan diterima oleh pihak lain;",
+          "Menyederhanakan topik yang rumit dan sensitif sehingga lebih mudah dipahami dan diterima orang lain;",
+          "Membuat laporan tahunan/periodik/naskah/dokumen/proposal yang kompleks; Membuat surat resmi yang sistematis dan tidak menimbulkan pemahaman yang berbeda; membuat proposal yang rinci dan lengkap;"
+        ]
+      },
+      {
+        "nama": "Orientasi pada hasil",
+        "level_target": "3",
+        "deskripsi": "Menetapkan target kerja yang menantang bagi unit kerja, memberi apresiasi dan teguran untuk mendorong kinerja",
+        "indikator": [
+          "Menetapkan target kinerja unit yang lebih tinggi dari target yang ditetapkan organisasi.",
+          "Memberikan apresiasi dan teguran untuk mendorong pencapaian hasil unit kerjanya;",
+          "Mengembangkan metode kerja yang lebih efektif dan efisien untuk mencapai target kerja unitnya."
+        ]
+      },
+      {
+        "nama": "Pelayanan Publik",
+        "level_target": "3",
+        "deskripsi": "Mampu memanfaatkan kekuatan kelompok serta memperbaiki standar pelayanan publik di lingkup unit kerja",
+        "indikator": [
+          "Memahami, mendeskripsikan pengaruh dan hubungan/kekuatan kelompok yang sedang berjalan di organisasi (aliansi atau persaingan), dan dampaknya terhadap unit kerja untuk menjalankan tugas pemerintahan secara profesional dan netral, tidak memihak;",
+          "Menggunakan keterampilan dan pemahaman lintas organisasi untuk secara efektif memfasilitasi kebutuhan kelompok yang lebih besar dengan cara-cara yang mengikuti standar objektif, transparan, profesional, sehingga tidak merugikan para pihak di lingkup pelayanan publik unit kerjanya;",
+          "Mengimplementasikan cara-cara yang efektif untuk memantau dan mengevaluasi masalah yang dihadapi pemangku kepentingan/masyarakat serta mengantisipasi kebutuhan mereka saat menjalankan tugas pelayanan publik di unit kerjanya."
+        ]
+      },
+      {
+        "nama": "Pengembangan diri dan orang lain",
+        "level_target": "3",
+        "deskripsi": "Memberikan umpan balik, membimbing",
+        "indikator": [
+          "Memberikan tugas-tugas yang menantang pada bawahan sebagai media belajar untuk mengembangkan kemampuannya;",
+          "Mengamati bawahan dalam mengerjakan tugasnya dan memberikan umpan balik yang objektif dan jujur; melakukan diskusi dengan bawahan untuk memberikan bimbingan dan umpan balik yang berguna bagi bawahan;",
+          "Mendorong kepercayaan diri bawahan; memberikan kepercayaan penuh pada bawahan untuk mengerjakan tugas dengan caranya sendiri; memberi kesempatan dan membantu bawahan menemukan peluang untuk berkembang."
+        ]
+      },
+      {
+        "nama": "Mengelola Perubahan",
+        "level_target": "3",
+        "deskripsi": "Membantu orang lain mengikuti perubahan, mengantisipasi perubahan secara tepat",
+        "indikator": [
+          "Membantu orang lain dalam melakukan perubahan;",
+          "Menyesuaikan prioritas kerja secara berulang-ulang jika diperlukan;",
+          "Mengantisipasi perubahan yang dibutuhkan oleh unit kerjanya secara tepat. Memberikan solusi efektif terhadap masalah yang ditimbulkan oleh adanya perubahan."
+        ]
+      },
+      {
+        "nama": "Pengambilan Keputusan",
+        "level_target": "3",
+        "deskripsi": "Membandingkan berbagai alternatif, menyeimbangkan risiko keberhasilan dalam implementasi",
+        "indikator": [
+          "Membandingkan berbagai alternatif tindakan dan implikasinya;",
+          "Memilih alternatif solusi yang terbaik, membuat keputusan operasional mengacu pada alternatif solusi terbaik yang didasarkan pada analisis data yang sistematis, seksama, mengikuti prinsip kehati-hatian;",
+          "Menyeimbangkan antara kemungkinan risiko dan keberhasilan dalam implementasinya."
+        ]
+      }
+    ],
+    "sosial_kultural": [
+      {
+        "nama": "Perekat Bangsa",
+        "level_target": "3",
+        "deskripsi": "Mempromosikan, mengembangkan sikap toleransi dan persatuan",
+        "indikator": [
+          "Mempromosikan sikap menghargai perbedaan di antara orang-orang yang mendorong toleransi dan keterbukaan.",
+          "Melakukan pemetaan sosial di masyarakat sehingga dapat memberikan respon yang sesuai dengan budaya yang berlaku.",
+          "Menjadi mediator untuk menyelesaikan konflik atau mengurangi dampak negatif dari konflik atau potensi konflik."
+        ]
+      }
+    ],
+    "teknis": [
+      {
+        "nama": "Manajemen Perkantoran",
+        "level_target": "3",
+        "deskripsi": "Mampu menyelenggarakan membimbing pelaksanaan manajemen perkantoran",
+        "indikator": [
+          "Mampu melakukan analisis terhadap hasil pengolahan data persuratan, barang milik negara, kearsipan, keprotokolan, dan kesekretariatan",
+          "Mampu memberikan bimbingan pegawai lain di lingkup organisasi dalam penyelenggaraan manajemen perkantoran",
+          "Mampu memecahkan masalah teknis operasional yang timbul dan mengambil keputusan dalam pelaksanaan manajemen perkantoran"
+        ]
+      },
+      {
+        "nama": "Pembinaan Disiplin",
+        "level_target": "3",
+        "deskripsi": "Mampu menyelenggarakan, membimbing pelaksanaan menyelesaikan permasalahan, penerapan pembinaan disiplin pegawai",
+        "indikator": [
+          "Mampu menganalisis pelaksanaan kewajiban dan larangan oleh pegawai di lingkungan, menemukenali faktor penyebab atas ketaatan dan pelanggaran untuk membentuk budaya disiplin dalam unit kerjanya;",
+          "Mampu mensosialisasikan tentang disiplin pegawai dan memberikan bimbingan, coaching mentoring kepada pegawai di lingkungannya dalam melaksanakan pengelolaan disiplin pegawai;",
+          "Mampu menjadi suri tauladan penerapan disiplin dan mampu memecahkan permasalahan teknis operasional yang timbul dalam penerapan disiplin pegawai di lingkup kerjanya."
+        ]
+      },
+      {
+        "nama": "Manajemen Data dan Informasi",
+        "level_target": "3",
+        "deskripsi": "Mampu mengkoordinasikan penyelenggaraan sistem informasi kepegawaian, dan penerapannya dalam penyelenggaraan manajemen ASN di instansinya",
+        "indikator": [
+          "Mampu menyajikan dan menggunakan informasi manajemen SDM untuk pengambilan keputusan dalam pengelolaan pegawai di lingkup unit kerjanya",
+          "Kemampuan menganalisis informasi manajemen SDM; menyajikan analisis informasi manajemen SDM serta temuan dan rekomendasi hasil analisis informasi manajemen SDM",
+          "Mampu memanfaatkan sistem informasi kepegawaian untuk menyelesaikan permasalahan teknis operasional pelaksanaan manajemen SDM di lingkungan organisasi/unit kerja"
+        ]
+      },
+      {
+        "nama": "Manajemen Keuangan",
+        "level_target": "3",
+        "deskripsi": "Mampu menyelenggarakan membimbing pelaksanaan manajemen keuangan",
+        "indikator": [
+          "Mampu melakukan analisis terhadap data keuangan",
+          "Mampu memberikan bimbingan pegawai lain di lingkup organisasi dalam penyelenggaraan manajemen keuangan",
+          "Mampu memecahkan masalah teknis operasional yang timbul dan mengambil keputusan dalam pelaksanaan manajemen keuangan"
+        ]
+      },
+      {
+        "nama": "Manajemen Mutu",
+        "level_target": "3",
+        "deskripsi": "Menganalisis gap antara harapan dan kenyataan serta hambatan yang ada dalam penerapan Sistem Manajemen Mutu (SMM) pada suatu organisasi",
+        "indikator": [
+          "Mampu menganalisa potensi penyimpangan pada setiap tahapan pekerjaan",
+          "Mampu menetapkan tahapan pekerjaan yang menjadi tugas pokok di unit kerja yang rentan pencapaian mutu",
+          "Mampu menyiapkan rencana tindak pengendalian pada pekerjaan yang menjadi tugas pokok di unit kerja yang rentan pencapaian mutu"
+        ]
+      }
+    ]
+  },
+  "persyaratan_jabatan": {
+    "pendidikan": [
+      {
+        "jenjang": "Memiliki kualifikasi dan tingkat pendidikan paling rendah sarjana atau diploma IV",
+        "bidang ilmu": "Teknik/Farmasi/Manajemen/Administrasi Pemerintahan/Hukum/Psikologi/Kedokteran/Kesehatan Masyarakat/Apoteker"
+      }
+    ],
+    "pelatihan": [
+      {
+        "manajerial": "Pelatihan Kepemimpinan Tingkat III (PIM III) atau yang setara"
+      },
+      {
+        "teknis": [
+          "Perencanaan Program dan Anggaran",
+          "Kearsipan",
+          "Manajemen SDM",
+          "Diklat Manajemen Mutu",
+          "Diklat Teknis/Subtansi terkait tugas jabatan."
+        ]
+      }
+    ],
+    "pengalaman": [
+      "Memiliki pengalaman pada Jabatan pengawas paling singkat 3 (tiga) tahun atau JF yang setingkat dengan Jabatan pengawas sesuai dengan bidang tugas Jabatan yang akan diduduki"
+    ],
+    "pangkat": "Paling Rendah Penata Tk. I (III/d)"
+  }
+}

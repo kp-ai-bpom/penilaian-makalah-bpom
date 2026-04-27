@@ -1,0 +1,164 @@
+{
+  "profil_jabatan": {
+    "nama_jabatan": "Kepala Pusat Pengembangan SDM POM",
+    "kode_jabatan": "1-03-16-01-03-000",
+    "level_jabatan": "Jabatan Pimpinan Tinggi Pratama",
+    "kelompok_jabatan": "Pimpinan Tinggi Pratama",
+    "urusan_pemerintah": "Kesekretariatan"
+  },
+  "ikhtisar_jabatan": "Memimpin dan melaksanakan koordinasi, pembinaan, pemberian dukungan perencanaan strategis program penilaian kompetensi, sertifikasi kompetensi, pengembangan kompetensi, serta pembinaan jabatan fungsional",
+  "standar_kompetensi": {
+    "manajerial": [
+      {
+        "nama": "Integritas",
+        "level_target": "4",
+        "deskripsi": "Mampu menciptakan situasi kerja yang mendorong kepatuhan pada nilai, norma, dan etika organisasi",
+        "indikator": [
+          "Menciptakan situasi kerja yang mendorong seluruh pemangku kepentingan mematuhi nilai, norma, dan etika organisasi dalam segala situasi dan kondisi;",
+          "Mendukung dan menerapkan prinsip moral dan standar etika yang tinggi, serta berani menanggung konsekuensinya;",
+          "Berani melakukan koreksi atau mengambil tindakan atas penyimpangan kode etik/nilai-nilai yang dilakukan oleh orang lain, pada tataran lingkup kerja setingkat instansi meskipun ada resiko."
+        ]
+      },
+      {
+        "nama": "Kerjasama",
+        "level_target": "4",
+        "deskripsi": "Membangun komitmen tim, sinergi",
+        "indikator": [
+          "Membangun sinergi antar unit kerja di lingkup instansi yang dipimpin;",
+          "Memfasilitasi kepentingan yang berbeda dari unit kerja lain sehingga tercipta sinergi dalam rangka pencapaian target kerja organisasi;",
+          "Mengembangkan sistem yang menghargai kerja sama antar unit, memberikan dukungan / semangat  untuk memastikan tercapainya sinergi dalam rangka pencapaian target kerja organisasi."
+        ]
+      },
+      {
+        "nama": "Komunikasi",
+        "level_target": "4",
+        "deskripsi": "Mampu mengemukakan pemikiran multidimensi secara lisan dan tertulis untuk mendorong kesepakatan dengan tujuan meningkatkan kinerja secara keseluruhan",
+        "indikator": [
+          "Mengintegrasikan informasi-informasi penting hasil diskusi dengan pihak lain untuk mendapatkan pemahaman yang sama;",
+          "Berbagi informasi dengan pemangku kepentingan untuk tujuan meningkatkan kinerja secara keseluruhan;",
+          "Menuangkan pemikiran/konsep yang multidimensi dalam bentuk tulisan formal;",
+          "Menyampaikan informasi secara persuasif untuk mendorong pemangku kepentingan sepakat pada langkah-langkah bersama dengan tujuan meningkatkan kinerja secara keseluruhan."
+        ]
+      },
+      {
+        "nama": "Orientasi pada hasil",
+        "level_target": "4",
+        "deskripsi": "Mendorong unit kerja mencapai target yang ditetapkan atau melebihi hasil kerja sebelumnya",
+        "indikator": [
+          "Mendorong unit kerja di tingkat instansi untuk mencapai kinerja yang melebihi target yang ditetapkan;",
+          "Memantau dan mengevaluasi hasil kerja unitnya agar selaras dengan sasaran strategis instansi;",
+          "Mendorong pemanfaatan sumber daya bersama antar unit kerja dalam rangka  meningkatkan efektifitas dan efisiensi pencapaian target organisasi."
+        ]
+      },
+      {
+        "nama": "Pelayanan Publik",
+        "level_target": "4",
+        "deskripsi": "Mampu memonitor, mengevaluasi, memperhitungkan dan mengantisipasi dampak dari isu-isu jangka panjang, kesempatan, atau kekuatan politik dalam hal pelayanan kebutuhan pemangku kepentingan yang transparan, objektif, dan profesional",
+        "indikator": [
+          "Memahami dan memberi perhatian kepada isu-isu jangka panjang, kesempatan atau kekuatan politik yang mempengaruhi organisasi dalam hubungannya dengan dunia luar, memperhitungkan dan mengantisipasi dampak terhadap pelaksanaan tugas-tugas pelayanan publik secara objektif, transparan, dan profesional dalam lingkup organisasi;",
+          "Menjaga agar kebijakan pelayanan publik yang diselenggarakan oleh instansinya telah selaras dengan standar pelayanan yang objektif, netral, tidak memihak, tidak diskriminatif, serta tidak terpengaruh kepentingan pribadi/kelompok/partai politik;",
+          "Menerapkan strategi jangka panjang yang berfokus pada pemenuhan kebutuhan pemangku kepentingan dalam menyusun kebijakan dengan mengikuti standar objektif, netral, tidak memihak, tidak diskriminatif, transparan, tidak terpengaruh kepentingan pribadi/kelompok."
+        ]
+      },
+      {
+        "nama": "Pengembangan diri dan orang lain",
+        "level_target": "4",
+        "deskripsi": "Menyusun program pengembangan jangka panjang dalam rangka mendorong manajemen pembelajaran",
+        "indikator": [
+          "Menyusun program pengembangan jangka panjang bersama-sama dengan bawahan, termasuk didalamnya penetapan tujuan, bimbingan, penugasan dan pengalaman lainnya, serta mengalokasikan waktu untuk mengikuti pelatihan / pendidikan / pengembangan kompetensi dan karir;",
+          "Melaksanakan manajemen pembelajaran termasuk evaluasi dan umpan balik pada tataran organisasi;",
+          "Mengembangkan orang-orang disekitarnya secara konsisten, melakukan kaderisasi untuk posisi-posisi di unit kerjanya."
+        ]
+      },
+      {
+        "nama": "Mengelola Perubahan",
+        "level_target": "4",
+        "deskripsi": "Memimpin perubahan pada unit kerja",
+        "indikator": [
+          "Mengarahkan unit kerja untuk lebih siap dalam menghadapi perubahan termasuk memitigasi risiko yang mungkin terjadi;",
+          "Memastikan perubahan sudah diterapkan secara aktif di lingkup unit kerjanya secara berkala;",
+          "Memimpin dan memastikan penerapan program-program perubahan selaras antar unit kerja."
+        ]
+      },
+      {
+        "nama": "Pengambilan Keputusan",
+        "level_target": "4",
+        "deskripsi": "Menyelesaikan masalah yang mengandung risiko tinggi, mengantisipasi dampak keputusan, membuat tindakan pengamanan; mitigasi risiko",
+        "indikator": [
+          "Menyusun dan/atau memutuskan konsep penyelesaian masalah yang melibatkan beberapa/seluruh fungsi dalam organisasi;",
+          "Menghasilkan solusi dari berbagai masalah yang kompleks, terkait dengan bidang kerjanya yang berdampak pada pihak lain.",
+          "Membuat keputusan dan mengantisipasi dampak keputusannya serta menyiapkan tindakan penanganannya (mitigasi risiko)."
+        ]
+      }
+    ],
+    "sosial_kultural": [
+      {
+        "nama": "Perekat Bangsa",
+        "level_target": "4",
+        "deskripsi": "Mendayagunakan perbedaan secara konstruktif dan kreatif untuk meningkatkan efektifitas organisasi",
+        "indikator": [
+          "Menginisiasi dan merepresentasikan pemerintah di lingkungan kerja dan masyarakat untuk senantiasa menjaga persatuan dan kesatuan dalam keberagaman dan menerima segala bentuk perbedaan dalam kehidupan bermasyarakat;",
+          "Mampu mendayagunakan perbedaan latar belakang, agama/kepercayaan, suku, gender, sosial ekonomi, preferensi politik untuk mencapai kelancaran pencapaian tujuan organisasi;",
+          "Mampu membuat program yang mengakomodasi perbedaan latar belakang, agama/kepercayaan, suku, gender, sosial ekonomi, preferensi politik."
+        ]
+      }
+    ],
+    "teknis": [
+      {
+        "nama": "Manajemen Sistem Penilaian Kompetensi",
+        "level_target": "4",
+        "deskripsi": "Mampu menyusun mengembangkan norma, standar, kriteria, pedoman, petunjuk teknis, materi penilaian kompetensi",
+        "indikator": [
+          "Mampu melakukan evaluasi atas sistem, teknik dan metode norma, standar, kriteria, prosedur, pedoman, petunjuk teknis penilaian kompetensi yang ada dan pelaksanaanya, mencari kelemahan dan kelebihan serta tingkat validitas penilaian;",
+          "Mampu menyusun sistem, teknik dan metode norma, standar, kriteria, prosedur, pedoman, petunjuk teknis penilaian kompetensi dan penggunaannya;",
+          "Mampu melakukan uji kompetensi terhadap pegawai penguji kompetensi (asesor)."
+        ]
+      },
+      {
+        "nama": "Pengembangan Kompetensi ASN",
+        "level_target": "4",
+        "deskripsi": "Mampu menganalisis pelaksanaan penyusunan kebutuhan pengembangan kompetensi ASN",
+        "indikator": [
+          "4.1 Mampu mengevaluasi konsep dan praktik secara komprehensif serta memberikan rekomendasi dalam rangka peningkatan efisiensi dan/atau efektivitas penyusunan kebutuhan pengembangan kompetensi ASN.",
+          "4.2 Mampu memperbaiki atau mengembangkan metode dalam praktik penyusunan kebutuhan pengembangan kompetensi ASN di lingkup instansinya dengan komprehensif.",
+          "Mampu menjadi rujukan dalam kapasitas praktik penyusunan kebutuhan pengembangan kompetensi ASN, antara lain dalam bentuk sumber informasi, bantuan pendampingan teknis, dan/atau pengujian kompetensi pada lingkup instansinya."
+        ]
+      },
+      {
+        "nama": "Penyelenggaraan Pelatihan ASN",
+        "level_target": "4",
+        "deskripsi": "Mampu meningkatkan efisiensi dan/atau efektivitas penyelenggaraan pelatihan ASN",
+        "indikator": [
+          "Mampu mengevaluasi konsep dan praktik secara komprehensif serta memberikan rekomendasi dalam rangka peningkatan efisiensi dan/atau efektivitas penyelenggaraan pelatihan ASN.",
+          "Mampu memperbaiki atau mengembangkan metode dalam praktik penyelenggaraan pelatihan ASN di lingkup instansinya dengan komprehensif.",
+          "Mampu menjadi rujukan dalam kapasitas praktik penyelenggaraan pelatihan ASN, antara lain dalam bentuk sumber informasi, bantuan pendampingan teknis, dan/atau pengujian kompetensi pada lingkup instansinya."
+        ]
+      },
+      {
+        "nama": "Pengelolaan Jabatan Fungsional",
+        "level_target": "4",
+        "deskripsi": "Mengevaluasi dan merekomendasikan pengembangan dan penilaian jabatan fungsional",
+        "indikator": [
+          "Mampu mengevaluasi pendayagunaan dan pengembangan jabatan fungsional",
+          "Mampu memberikan solusi terhadap permasalahan yang muncul terkait pendayagunaan dan pengembangan jabatan fungsional",
+          "Mampu merekomendasikan pendayagunaan dan pengembangan jabatan fungsional, serta penilaian jabatan fungsional."
+        ]
+      }
+    ]
+  },
+  "persyaratan_jabatan": {
+    "pendidikan": [
+      "Minimum Pendidikan Setara S2/Magister",
+      "Bidang Ilmu: Teknik/Farmasi/Manajemen/Administrasi Pemerintahan/Psikologi/Hukum/Ilmu Sosial/MIPA/Pertanian"
+    ],
+    "pelatihan": [
+      "Pelatihan Kepemimpinan Nasional Tingkat III (PIM III) atau yang setara",
+      "Pelatihan Manajerial sesuai dengan kebutuhan jenjang jabatan"
+    ],
+    "pengalaman": [
+      "Memiliki pengalaman jabatan dalam bidang tugas yang terkait dengan dukungan urusan SDM secara kumulatif paling singkat selama 3 (tiga) tahun.",
+      "Sedang atau pernah menduduki Jabatan Administrator atau Jabatan Fungsional jenjang ahli madya paling singkat 2 (dua) tahun."
+    ],
+    "pangkat": "Pembina Utama Muda/ IV/b."
+  }
+}

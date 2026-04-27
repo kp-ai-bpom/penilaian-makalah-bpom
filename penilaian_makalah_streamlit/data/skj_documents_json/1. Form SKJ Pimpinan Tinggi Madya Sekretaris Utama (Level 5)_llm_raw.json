@@ -1,0 +1,187 @@
+{
+  "profil_jabatan": {
+    "nama_jabatan": "Sekretaris Utama",
+    "kode_jabatan": "1-02-16-01-00-000",
+    "level_jabatan": "Jabatan Pimpinan Tinggi Madya",
+    "kelompok_jabatan": "Jabatan Pimpinan Tinggi Madya",
+    "urusan_pemerintah": "Pengawas Obat dan Makanan"
+  },
+  "ikhtisar_jabatan": "Sekretaris Utama mempunyai tugas menyelenggarakan koordinasi pelaksanaan tugas, pembinaan, dan pemberian dukungan administrasi kepada seluruh unit organisasi di lingkungan Badan Pengawas Obat dan Makanan",
+  "standar_kompetensi": {
+    "manajerial": [
+      {
+        "nama": "Integritas",
+        "level_target": "5",
+        "deskripsi": "Mampu menjadi role model dalam penerapan standar keadilan dan etika di tingkat nasional",
+        "indikator": [
+          "Mempertahankan tingkat standar keadilan dan etika yang tinggi dalam perkataan dan tindakan sehari-hari yang dipatuhi oleh seluruh pemangku kepentingan pada lingkup instansi yang dipimpinnya;",
+          "Menjadi ‘role model’ / keteladanan dalam penerapan standar keadilan dan etika yang tinggi di tingkat nasional;",
+          "Membuat konsep kebijakan dan strategi penerapan sikap integritas dalam pelaksanaan tugas dan norma-norma yang sejalan dengan nilai strategis organisasi."
+        ]
+      },
+      {
+        "nama": "Kerjasama",
+        "level_target": "5",
+        "deskripsi": "Menciptakan situasi kerja sama secara konsisten, baik di dalam maupun di luar instansi",
+        "indikator": [
+          "Menciptakan hubungan kerja yang konstruktif dengan menerapkan norma / etos / nilai-nilai kerja yang baik di dalam dan di luar organisasi; meningkatkan produktivitas dan menjadi panutan dalam organisasi;",
+          "Secara konsisten menjaga sinergi agar pemangku kepentingan dapat bekerja sama dengan orang di dalam maupun di luar organisasi;",
+          "Membangun konsensus untuk menggabungkan sumberdaya dari berbagai pemangku kepentingan untuk tujuan bangsa dan negara."
+        ]
+      },
+      {
+        "nama": "Komunikasi",
+        "level_target": "5",
+        "deskripsi": "Menggagas sistem komunikasi yang terbuka secara strategis untuk mencari solusi dengan tujuan meningkatkan kinerja",
+        "indikator": [
+          "Menghilangkan hambatan komunikasi, mampu berkomunikasi dalam isu-isu nasional yang memiliki resiko tinggi, menggalang hubungan dalam skala strategis di tingkat nasional;",
+          "Menggunakan saluran komunikasi formal dan non formal guna mencapai kesepakatan dengan tujuan meningkatkan kinerja di tingkat instansi/nasional;",
+          "Menggagas sistem komunikasi dengan melibatkan pemangku kepentingan sejak dini untuk mencari solusi dengan tujuan meningkatkan kinerja di tingkat instansi/nasional."
+        ]
+      },
+      {
+        "nama": "Orientasi pada hasil",
+        "level_target": "5",
+        "deskripsi": "Meningkatkan mutu pencapaian kerja organisasi",
+        "indikator": [
+          "Memastikan kualitas sesuai standar dan keberlanjutan hasil kerja organisasi yang memberi kontribusi pada pencapaian target prioritas nasional;",
+          "Memastikan tersedianya sumber daya organisasi untuk menjamin tercapainya target prioritas instansi/nasional;",
+          "Membuat kebijakan untuk menerapkan metode kerja yang lebih efektif-efisien dalam mencapai tujuan prioritas nasional."
+        ]
+      },
+      {
+        "nama": "Pelayanan Publik",
+        "level_target": "5",
+        "deskripsi": "Mampu memastikan kebijakan - kebijakan pelayanan publik yang menjamin terselenggaranya pelayanan publik yang objektif, netral, tidak memihak, tidak diskriminatif, serta tidak terpengaruh kepentingan pribadi/kelompok/party politik.",
+        "indikator": [
+          "Mampu menciptakan kebijakan kebijakan pelayanan publik yang menjamin terselenggaranya pelayanan publik yang objektif, netral, tidak memihak, tidak diskriminatif, serta tidak terpengaruh kepentingan pribadi/kelompok/partai politik;",
+          "Menginternalisasikan nilai dan semangat pelayanan publik yang mengikuti standar objektif, netral, tidak memihak, tidak diskriminatif, transparan, tidak terpengaruh kepentingan pribadi/kelompok kepada setiap individu di lingkungan instansi/nasional;",
+          "Menjamin terselenggaranya pelayanan publik yang objektif, netral, tidak memihak, tidak diskriminatif, serta tidak terpengaruh kepentingan pribadi/kelompok/partai politik."
+        ]
+      },
+      {
+        "nama": "Pengembangan diri dan orang lain",
+        "level_target": "5",
+        "deskripsi": "Menciptakan situasi yang mendorong organisasi untuk mengembangkan kemampuan belajar secara berkelanjutan dalam rangka mendukung pencapaian hasil",
+        "indikator": [
+          "Menciptakan situasi yang mendorong individu, kelompok, unit kerja untuk mengembangkan kemampuan belajar secara berkelanjutan di tingkat instansi;",
+          "Merekomendasikan/memberikan penghargaan bagi upaya pengembangan yang berhasil, memastikan dukungan bagi orang lain dalam mengembangkan kemampuan dalam unit kerja di tingkat instansi;",
+          "Memberikan inspirasi kepada individu atau kelompok untuk belajar secara berkelanjutan dalam penerapan di tingkat instansi."
+        ]
+      },
+      {
+        "nama": "Mengelola Perubahan",
+        "level_target": "5",
+        "deskripsi": "Memimpin, menggalang dan menggerakkan dukungan pemangku kepentingan untuk menjalankan perubahan secara berkelanjutan pada tingkat instansi/nasional",
+        "indikator": [
+          "Membuat kebijakan-kebijakan yang mendorong perubahan yang berdampak pada pencapaian sasaran prioritas nasional;",
+          "Menggalang dan menggerakkan dukungan para pemangku kepentingan untuk mengimplementasikan perubahan yang telah ditetapkan;",
+          "Secara berkelanjutan, mencari cara-cara baru untuk memberi nilai tambah bagi perubahan yang tengah dijalankan agar memberi manfaat yang lebih besar bagi para pemangku kepentingan."
+        ]
+      },
+      {
+        "nama": "Pengambilan Keputusan",
+        "level_target": "5",
+        "deskripsi": "Menghasilkan solusi dan mengambil keputusan untuk mengatasi permasalahan jangka panjang/strategis, berdampak nasional",
+        "indikator": [
+          "Menghasilkan solusi yang dapat mengatasi permasalahan jangka panjang;",
+          "Menghasilkan solusi strategis yang berdampak pada tataran instansi/nasional;",
+          "Membuat keputusan atau kebijakan yang berdampak nasional dengan memitigasi risiko yang mungkin timbul."
+        ]
+      }
+    ],
+    "sosial_kultural": [
+      {
+        "nama": "Perekat Bangsa",
+        "level_target": "5",
+        "deskripsi": "Wakil pemerintah untuk membangun hubungan sosial psikologis",
+        "indikator": [
+          "Menjadi wakil pemerintah yang mampu membangun hubungan sosial psikologis dengan masyarakat sehingga menciptakan kelekatan yang kuat antara ASN dan para pemangku kepentingan serta diantara para pemangku kepentingan itu sendiri;",
+          "Mampu mengkomunikasikan dampak risiko yang teridentifikasi dan merekomendasikan tindakan korektif berdasarkan pertimbangan perbedaan latar belakang, agama/kepercayaan, suku, jender, sosial ekonomi, preferensi politik untuk membangun hubungan jangka panjang;",
+          "Mampu membuat kebijakan yang mengakomodasi perbedaan latar belakang, agama/kepercayaan, suku, jender, sosial ekonomi, preferensi politik yang berdampak positif secara nasional."
+        ]
+      }
+    ],
+    "teknis": [
+      {
+        "nama": "Manajemen Sumber Daya Manusia ASN",
+        "level_target": "4",
+        "deskripsi": "Menyusun perangkat norma standar prosedur instrumen penerapan manajemen SDM",
+        "indikator": [
+          "Mampu menyusun pedoman petunjuk teknis dalam penerapan manajemen SDM (perencanaan SDM, analisis jabatan, analisis beban kerja, standar kompetensi, perencanaan pengembangan kompetensi, evaluasi jabatan manajemen kinerja, administrasi kepegawaian, sistem informasi kepegawaian)",
+          "Memberikan bimbingan dan fasilitasi kepada pengelola kepegawaian dalam penerapan pedoman dan petunjuk teknis (perencanaan SDM, analisis jabatan, analisis beban kerja, standar kompetensi, perencanaan pengembangan kompetensi, evaluasi jabatan manajemen kinerja, administrasi kepegawaian, sistem informasi kepegawaian)",
+          "Mampu meyakinkan dan memperoleh dukungan stakeholder terkait dengan konsep manajemen SDM, pengembangan dan penerapannya"
+        ]
+      },
+      {
+        "nama": "Manajemen Keuangan",
+        "level_target": "4",
+        "deskripsi": "Memberikan rekomendasi terhadap manajemen keuangan",
+        "indikator": [
+          "Mengevaluasi hasil analisis yang dilakukan dan memberikan rekomendasi dalam rangka perbaikan pelaksanaan pengelolaan keuangan",
+          "Memberikan solusi atas permasalahan jangka panjang yang bersifat strategis pada pengelolaan keuangan",
+          "Membuat langkah antisipatif atas perubahan lingkungan eksternal yang dapat mempengaruhi pengelolaan keuangan"
+        ]
+      },
+      {
+        "nama": "Penyusunan Rencana Kerja dan Anggaran",
+        "level_target": "5",
+        "deskripsi": "Membuat kebijakan terintegrasi terkait penyusunan rencana kerja dan anggaran",
+        "indikator": [
+          "Mampu memberikan arahan terkait pola kerja unit yang berada dibawah kendalinya",
+          "Mampu membuat kebijakan atas hal-hal yang berhubungan dengan penyusunan rencana kerja dan anggaran",
+          "Mampu membuat kebijakan yang saling memberikan dampak terhadap tugas pokok dan fungsi penyusunan rencana kerja dan anggaran agar lebih efektif dan efisien dengan memperhatikan rekomendasi yang ada."
+        ]
+      },
+      {
+        "nama": "Advokasi Kebijakan Pengawasan Obat dan Makanan",
+        "level_target": "5",
+        "deskripsi": "Mampu mengembangka, konsep, teori, kebijakan advokasi kebijakan Bidang Pengawasan Obat dan Makanan yang sinergis dan terintegrasi yang berdampak nasional",
+        "indikator": [
+          "Mengembangkan konsep, teori, kebijakan, teknik metode advokasi kebijakan Bidang Pengawasan Obat dan Makanan",
+          "Mengembangkan strategi advokasi kebijakan Bidang Pengawasan Obat dan Makanan yang dapat memberikan dampak positif di tingkat nasional",
+          "Menjadi mentor dan rujukan nasional dalam pemecahan masalah advokasi kebijakan Bidang Pengawasan Obat dan Makanan",
+          "Membangun strategi membangun kerjasama dan jejaring kerja dalam rangka mendukung advokasi kebijakan Bidang Pengawasan Obat dan Makanan dalam di tingkat nasional dan internasional"
+        ]
+      },
+      {
+        "nama": "Pembentukan Peraturan Perundangundangan",
+        "level_target": "5",
+        "deskripsi": "Mampu menyempurnakan naskah rancangan dalam Pembentukan Peraturan Perundangundangan",
+        "indikator": [
+          "Mengidentifikasi, menganalisis teori, konsep, kebijakan Analisis Urgensi Pembentukan Perundang-Undangan serta pelaksanaannya dalam hal menemukan kelebihan dan kekurangan serta rekomendasi perbaikannya.",
+          "Mengembangkan teori, konsep dan kebijakan Analisis Urgensi Pembentukan Perundang-Undangan, meyakinkan stakeholder dan shareholder terkait untuk menerima konsep, teori dan kebijakan yang dikembangkan.",
+          "Menjadi sumber rujukan utama (nasional) dalam implementasi kebijakan dan pemecahan masalah dalam melakukan Analisis Urgensi Pembentukan Perundang-undangan"
+        ]
+      },
+      {
+        "nama": "Pengelolaan Barang Milik Negara",
+        "level_target": "4",
+        "deskripsi": "Mampu mengevaluasi dan menyusun perangkat norma standar prosedur instrumen Pengelolaan Barang Milik Negara",
+        "indikator": [
+          "Mampu melakukan evaluasi terhadap teknis/metode/sistem cara kerja menemu kenali kelebihan dan kekurangan melakukan pengembangan atau perbaikan cara kerja Pengelolaan Barang Milik Negara yang lebih efektif/efisien",
+          "Mampu menyusun pedoman, petunjuk teknis, cara kerja yang dijadikan norma standar, prosedur, instrumen pelaksanaan Pengelolaan Barang Milik Negara",
+          "Mampu meyakinkan dan memperoleh dukungan dari stakeholder pelaksanaan Pengelolaan Barang Milik Negara dan memberikan bimbingan dan fasilitasi kepada instansi lain atau stakeholder terkait Pengelolaan Barang Milik Negara."
+        ]
+      }
+    ]
+  },
+  "persyaratan_jabatan": {
+    "pendidikan": [
+      "Jenjang Mininum Pendidikan Setara S2/Magister",
+      "Bidang Ilmu Manajemen, Administrasi Pemerintahan, Administrasi Negara, Hukum, Psikologi, Farmasi, Kedokteran, Teknik, Sosial, MIPA"
+    ],
+    "pelatihan": [
+      "Pelatihan Kepemimpinan Nasional Tingkat II (PIM II)",
+      "Pelatihan Kepemimpinan Nasional Tingkat I (PIM I)",
+      "Pelatihan Manajemen SDM",
+      "Pelatihan Manajemen Perkantoran",
+      "Regulatory Impact Assessment"
+    ],
+    "pengalaman": [
+      "Memiliki pengalaman Jabatan dalam bidang tugas yang terkait dengan kesekretariatan secara kumulatif paling singkat selama 7 (tujuh) tahun",
+      "Sedang atau pernah Menduduki JPT pratama atau JF jenjang ahli utama paling singkat 2 (dua) tahun"
+    ],
+    "pangkat": "Pembina Utama Madya (IV/c)"
+  }
+}

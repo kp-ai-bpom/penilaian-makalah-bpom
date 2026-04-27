@@ -1,0 +1,894 @@
+{
+  "doc-4f52b942ba77c4c93c89fc28ebacb8a3": {
+    "status": "processed",
+    "chunks_count": 3,
+    "chunks_list": [
+      "chunk-c8f71ba6a4640147fdd65dd8fa3f02e7",
+      "chunk-71e200759faa38219ab5a024dba799bb",
+      "chunk-3a71c55a81f1f30d1cbf606662c2ff78"
+    ],
+    "content_summary": "STANDAR KOMPETENSI JABATAN\nJABATAN PIMPINAN TINGGI PRATAMA\nNama Jabatan | : | Inspektur\nKelompok Jabatan | : | Struktural\nUrusan Pemerintah | : | Pengawasan Intern Pemerintah\nKode Jabatan | : | 1-02-16-01-10-000\nJABATAN PIMPINAN TINGGI PRATAMA\nIKHTIS...",
+    "content_length": 11431,
+    "created_at": "2026-04-23T06:24:50.357598+00:00",
+    "updated_at": "2026-04-23T06:26:52.602876+00:00",
+    "file_path": "2. Draft_SKJ_Inspektur_alx_edit - Inspektur Utama v2.docx",
+    "track_id": "insert_20260423_132450_cc6ea0b6",
+    "metadata": {
+      "processing_start_time": 1776925491,
+      "processing_end_time": 1776925612
+    }
+  },
+  "doc-ee0f10f10c1e1b0bb0cec1963d448959": {
+    "status": "processed",
+    "chunks_count": 3,
+    "chunks_list": [
+      "chunk-f4af5b3bae3564e18502b0d7f2f221ea",
+      "chunk-129568da556c9e6ad2eb2e183bdc7b14",
+      "chunk-804877065d78c38d24d78af57b59c494"
+    ],
+    "content_summary": "STANDAR KOMPETENSI JABATAN PIMPINAN TINGGI MADYA\nNama Jabatan | : | Sekretaris Utama\nKelompok Jabatan | : | Jabatan Pimpinan Tinggi Madya\nUrusan Pemerintah | : | Pengawas Obat dan Makanan\nKode Jabatan | : | 1-02-16-01-00-000\nJABATAN PIMPINAN TINGGI M...",
+    "content_length": 11372,
+    "created_at": "2026-04-23T06:24:50.357598+00:00",
+    "updated_at": "2026-04-23T06:26:51.198738+00:00",
+    "file_path": "1. Form SKJ Pimpinan Tinggi Madya Sekretaris Utama (Level 5).docx",
+    "track_id": "insert_20260423_132450_cc6ea0b6",
+    "metadata": {
+      "processing_start_time": 1776925491,
+      "processing_end_time": 1776925611
+    }
+  },
+  "doc-5fc37b724a0f3b83e833ef00bec3a4fb": {
+    "status": "processed",
+    "chunks_count": 2,
+    "chunks_list": [
+      "chunk-dba8ab65c4e8dff56a0a2e0fb7c04b84",
+      "chunk-f8435859bbcae67ce29564754f44b1ec"
+    ],
+    "content_summary": "STANDAR KOMPETENSI JABATAN PENGAWAS\nNama Jabatan | : | Kepala Sub Bagian Tata Usaha\nKelompok Jabatan | : | Pengawas\nUrusan Pemerintah | : | Kesekretariatan\nKode Jabatan | : | 2-05-16-01-07-510\nJABATAN PENGAWAS\nIKHTISAR JABATAN\nIkhtisar Jabatan | Mela...",
+    "content_length": 8118,
+    "created_at": "2026-04-23T06:24:50.357598+00:00",
+    "updated_at": "2026-04-23T06:28:21.442934+00:00",
+    "file_path": "24. Form SKJ Kasubag TU (es 4).docx",
+    "track_id": "insert_20260423_132450_cc6ea0b6",
+    "metadata": {
+      "processing_start_time": 1776925611,
+      "processing_end_time": 1776925701
+    }
+  },
+  "doc-6113d9178b5867e4ff5b3a08bc566208": {
+    "status": "processed",
+    "chunks_count": 3,
+    "chunks_list": [
+      "chunk-662a0d48d29f2fcaba00b54ae238df3d",
+      "chunk-6f2828d51880ee2a492a14ae017945cb",
+      "chunk-b4bc05b0ed5243e962a6e31850bfeea9"
+    ],
+    "content_summary": "STANDAR KOMPETENSI JABATAN PIMPINAN TINGGI PRATAMA\nNama Jabatan | : | Kepala Pusat Pengembangan SDM POM\nKelompok Jabatan | : | Jabatan Pimpinan Tinggi Pratama\nUrusan Pemerintah | : | Kesekretariatan\nKode Jabatan | : | 1-03-16-01-03-000\nJABATAN PIMPIN...",
+    "content_length": 9526,
+    "created_at": "2026-04-23T06:24:50.357598+00:00",
+    "updated_at": "2026-04-23T06:28:11.501550+00:00",
+    "file_path": "5. Form SKJ Pimpinan Tinggi Pratama (Level 4) Kepala PPSDM.docx",
+    "track_id": "insert_20260423_132450_cc6ea0b6",
+    "metadata": {
+      "processing_start_time": 1776925612,
+      "processing_end_time": 1776925691
+    }
+  },
+  "doc-bd24db4c4a3e8818065a37f621529244": {
+    "status": "processed",
+    "chunks_count": 2,
+    "chunks_list": [
+      "chunk-5232c7794558420b5d870f6e6a1e7ce6",
+      "chunk-ff88c0ac39eb0fad92e70b64033fda56"
+    ],
+    "content_summary": "STANDAR KOMPETENSI JABATAN ADMINISTRATOR\nNama Jabatan | : | Kepala Bagian Pengelolaan Barang Milik Negara\nKelompok Jabatan | : | Administrator\nUrusan Pemerintah | : | Pengawas Obat dan Makanan, Kesekretariatan\nKode Jabatan | : | 2-04-16-01-07-200\nJAB...",
+    "content_length": 8572,
+    "created_at": "2026-04-23T06:24:50.357598+00:00",
+    "updated_at": "2026-04-23T06:29:16.280377+00:00",
+    "file_path": "13. Form SKJ Administrator (Kabag PBMN)_rev1.docx",
+    "track_id": "insert_20260423_132450_cc6ea0b6",
+    "metadata": {
+      "processing_start_time": 1776925691,
+      "processing_end_time": 1776925756
+    }
+  },
+  "doc-6c19ad5a83078243d7e2e851b1e3ca7e": {
+    "status": "processed",
+    "chunks_count": 3,
+    "chunks_list": [
+      "chunk-21ccd7eb9535b3bdb8f4f9eab59cabf4",
+      "chunk-c8926cf11bfc516343676e08d898d991",
+      "chunk-ea3ea57ed1d96f08dd595dc24a94da52"
+    ],
+    "content_summary": "STANDAR KOMPETENSI JABATAN PIMPINAN TINGGI PRATAMA\nNama Jabatan | : | Kepala Biro Perencanaan dan Keuangan\nKelompok Jabatan | : | Jabatan Pimpinan Tinggi Pratama\nUrusan Pemerintah | : | Kesekretariatan\nKode Jabatan | : | 1-03-16-01-06-000\nJABATAN PIM...",
+    "content_length": 9487,
+    "created_at": "2026-04-23T06:24:50.357598+00:00",
+    "updated_at": "2026-04-23T06:29:56.399185+00:00",
+    "file_path": "8. Form SKJ Pimpinan Tinggi Pratama (Level 4)-Karorenkeu_v3_17 nov 2023.docx",
+    "track_id": "insert_20260423_132450_cc6ea0b6",
+    "metadata": {
+      "processing_start_time": 1776925701,
+      "processing_end_time": 1776925796
+    }
+  },
+  "doc-7eef899deabca952e68251446a2cf8e7": {
+    "status": "processed",
+    "chunks_count": 3,
+    "chunks_list": [
+      "chunk-f7696e267b682f0ae8637e393561a1af",
+      "chunk-cc6a334b0f24a4c721c347d4909ed80a",
+      "chunk-3d2657baf93ee4e6b4450d838c2adc90"
+    ],
+    "content_summary": "STANDAR KOMPETENSI JABATAN PIMPINAN TINGGI PRATAMA\nNama Jabatan | : | Biro Hukum dan Organisasi\nKelompok Jabatan | : | Jabatan Pimpinan Tinggi Pratama\nUrusan Pemerintah | : | Kesekretariatan Bidang Pengawas Farmasi dan Makanan\nKode Jabatan | : | 1-03...",
+    "content_length": 9558,
+    "created_at": "2026-04-23T06:24:50.357598+00:00",
+    "updated_at": "2026-04-23T06:30:24.702504+00:00",
+    "file_path": "6. Form SKJ Pimpinan Tinggi Pratama  Kepala Biro Hukor.docx",
+    "track_id": "insert_20260423_132450_cc6ea0b6",
+    "metadata": {
+      "processing_start_time": 1776925756,
+      "processing_end_time": 1776925824
+    }
+  },
+  "doc-0c0f78ac6670bfe8f1a36d195ce34868": {
+    "status": "processed",
+    "chunks_count": 3,
+    "chunks_list": [
+      "chunk-8c140ec4faebb4e0ef5a82683f9e1d13",
+      "chunk-a30c195b635cd32209436aca11fae5bd",
+      "chunk-fbabfbb1b33c95d596e6dbb25cdd69cc"
+    ],
+    "content_summary": "STANDAR KOMPETENSI JABATAN PIMPINAN TINGGI PRATAMA\nNama Jabatan | : | Kepala Biro SDM\nKelompok Jabatan | : | Pimpinan Tinggi Pratama\nUrusan Pemerintah | : | Pengawas Obat dan Makanan, Kesekretariatan\nKode Jabatan | : | 1-03-16-01-01-000\nJABATAN PIMPI...",
+    "content_length": 11229,
+    "created_at": "2026-04-23T06:24:50.357598+00:00",
+    "updated_at": "2026-04-23T06:31:28.096818+00:00",
+    "file_path": "3. Form SKJ Pimpinan Tinggi Pratama Kepala Biro SDM (Revisi berdasarkan Review Menpan).docx",
+    "track_id": "insert_20260423_132450_cc6ea0b6",
+    "metadata": {
+      "processing_start_time": 1776925796,
+      "processing_end_time": 1776925888
+    }
+  },
+  "doc-62d4c114f3c30dc2a27080e1db8aba0e": {
+    "status": "processed",
+    "chunks_count": 2,
+    "chunks_list": [
+      "chunk-c68470920b0391e452e8cf295a631580",
+      "chunk-52943e282cced2a2883ca9646a7db25d"
+    ],
+    "content_summary": "STANDAR KOMPETENSI JABATAN PENGAWAS\nNama Jabatan | : | Kepala Subbagian Protokol\nKelompok Jabatan | : | Pengawas\nUrusan Pemerintah | : | Pengawas Obat dan Makanan, Kesekretariatan\nKode Jabatan | : | 2-05-16-01-07-410\nJABATAN PENGAWAS\nIKHTISAR JABATAN...",
+    "content_length": 7343,
+    "created_at": "2026-04-23T06:24:50.357598+00:00",
+    "updated_at": "2026-04-23T06:32:00.011609+00:00",
+    "file_path": "16. Form SKJ Pengawas (Kasubag Protokol)_Rev.docx",
+    "track_id": "insert_20260423_132450_cc6ea0b6",
+    "metadata": {
+      "processing_start_time": 1776925824,
+      "processing_end_time": 1776925920
+    }
+  },
+  "doc-73766b458f4142061b8b3e101c1a2a45": {
+    "status": "processed",
+    "chunks_count": 3,
+    "chunks_list": [
+      "chunk-7911450b925c5dcf4501b5ffefde6758",
+      "chunk-5f798d0500c5e6000ab44128e978d77c",
+      "chunk-351227775858596676eb70b8544f4564"
+    ],
+    "content_summary": "STANDAR KOMPETENSI JABATAN PIMPINAN TINGGI PRATAMA\nNama Jabatan | : | Kepala Biro Umum\nKelompok Jabatan | : | Pimpinan Tinggi Pratama\nUrusan Pemerintah | : | Pengawas Obat dan Makanan, Kesekretariatan\nKode Jabatan | : | 1-03-16-01-07-000\nJABATAN PIMP...",
+    "content_length": 10188,
+    "created_at": "2026-04-23T06:24:50.357598+00:00",
+    "updated_at": "2026-04-23T06:32:59.724578+00:00",
+    "file_path": "11. Form SKJ JPT Pratama (Kepala Biro Umum)_rev1.docx",
+    "track_id": "insert_20260423_132450_cc6ea0b6",
+    "metadata": {
+      "processing_start_time": 1776925888,
+      "processing_end_time": 1776925979
+    }
+  },
+  "doc-632ac3a2dae54df9f4f73a38c2fb8000": {
+    "status": "processed",
+    "chunks_count": 3,
+    "chunks_list": [
+      "chunk-4359b279106c83d08cc779e445160629",
+      "chunk-7784038b97fc75735c67b8cfa109813e",
+      "chunk-1bb87bfcd47de210ba9b0fe3c3f08c25"
+    ],
+    "content_summary": "STANDAR KOMPETENSI JABATAN\nJABATAN PIMPINAN TINGGI PRATAMA\nNama Jabatan | : | Inspektur II\nKelompok Jabatan | : | Struktural\nUrusan Pemerintah | : | Pengawasan Intern Pemerintah\nKode Jabatan | : | 1-03-16-01-12-000\nJABATAN PIMPINAN TINGGI PRATAMA\nIKH...",
+    "content_length": 11056,
+    "created_at": "2026-04-23T06:24:50.357598+00:00",
+    "updated_at": "2026-04-23T06:33:23.871556+00:00",
+    "file_path": "10. Draft_SKJ_Inspektur_alx_edit - Inspektur 2 v2.docx",
+    "track_id": "insert_20260423_132450_cc6ea0b6",
+    "metadata": {
+      "processing_start_time": 1776925920,
+      "processing_end_time": 1776926003
+    }
+  },
+  "doc-47d9d372b120620afc00a0bef194a5ab": {
+    "status": "processed",
+    "chunks_count": 2,
+    "chunks_list": [
+      "chunk-10e28f578190742ad43e5134837c9a6e",
+      "chunk-b430ca3002e27de3d66c5a036564d716"
+    ],
+    "content_summary": "STANDAR KOMPETENSI JABATAN PENGAWAS\nNama Jabatan | : | Kepala Subbagian Kesekretariatan Deputi Bidang Penindakan\nKelompok Jabatan | : | Pengawas\nUrusan Pemerintah | : | Pengawas Obat dan Makanan, Kesekretariatan\nKode Jabatan | : | 2-05-16-01-07-470\nJ...",
+    "content_length": 7664,
+    "created_at": "2026-04-23T06:24:50.357598+00:00",
+    "updated_at": "2026-04-23T06:34:11.091529+00:00",
+    "file_path": "22. Form SKJ Pengawas (Kasubag Kesekretariatan Deputi Bidang Penindakan)_Rev.docx",
+    "track_id": "insert_20260423_132450_cc6ea0b6",
+    "metadata": {
+      "processing_start_time": 1776925979,
+      "processing_end_time": 1776926051
+    }
+  },
+  "doc-a087062a20c08534d90d52a89e8772be": {
+    "status": "processed",
+    "chunks_count": 2,
+    "chunks_list": [
+      "chunk-592b86b2db55ffa7b07589492eeb448a",
+      "chunk-23f30c8225831347034d63b447779721"
+    ],
+    "content_summary": "STANDAR KOMPETENSI JABATAN ADMINISTRATOR\nNama Jabatan | : | Kepala Bagian Rumah Tangga\nKelompok Jabatan | : | Administrator\nUrusan Pemerintah | : | Pengawas Obat dan Makanan, Kesekretariatan\nKode Jabatan | : | 2-04-16-01-07-300\nJABATAN ADMINISTRATOR\n...",
+    "content_length": 8781,
+    "created_at": "2026-04-23T06:24:50.357598+00:00",
+    "updated_at": "2026-04-23T06:35:06.488930+00:00",
+    "file_path": "14. Form SKJ Administrator (Kabag Rumah Tangga)_rev1.docx",
+    "track_id": "insert_20260423_132450_cc6ea0b6",
+    "metadata": {
+      "processing_start_time": 1776926003,
+      "processing_end_time": 1776926106
+    }
+  },
+  "doc-00b416927c69e1867c86e806263db38f": {
+    "status": "processed",
+    "chunks_count": 2,
+    "chunks_list": [
+      "chunk-838892973262716a683184f3b0b6f10a",
+      "chunk-d01de99a3897e170fecb92aea1e255d7"
+    ],
+    "content_summary": "STANDAR KOMPETENSI JABATAN ADMINISTRATOR\nNama Jabatan | : | Kepala Bagian Pengadaan Barang dan Jasa\nKelompok Jabatan | : | Administrator\nUrusan Pemerintah | : | Pengawas Obat dan Makanan, Kesekretariatan\nKode Jabatan | : | 2-04-16-01-07-100\nJABATAN A...",
+    "content_length": 8224,
+    "created_at": "2026-04-23T06:24:50.357598+00:00",
+    "updated_at": "2026-04-23T06:35:15.615745+00:00",
+    "file_path": "12. Form SKJ Administrator (Kabag PBJ)_rev1.docx",
+    "track_id": "insert_20260423_132450_cc6ea0b6",
+    "metadata": {
+      "processing_start_time": 1776926051,
+      "processing_end_time": 1776926115
+    }
+  },
+  "doc-ba40d8a3bb9d5863574277e2e4156256": {
+    "status": "processed",
+    "chunks_count": 3,
+    "chunks_list": [
+      "chunk-04d794cf43a5f9272618e7fb98730b63",
+      "chunk-45fa84d4359aa746dd6b642b7f947742",
+      "chunk-59a1e59c9b55d2f27b19e4c091ec3160"
+    ],
+    "content_summary": "STANDAR KOMPETENSI JABATAN ADMINISTRATOR\nNama Jabatan | : | Kepala Bagian Tata Usaha\nKelompok Jabatan | : | Administrator\nUrusan Pemerintah | : | Kesekretariatan\nKode Jabatan | : | 2-04-16-01-07-500\nJABATAN ADMINISTRATOR\nIKHTISAR JABATAN\nIkhtisar Jab...",
+    "content_length": 9403,
+    "created_at": "2026-04-23T06:24:50.357598+00:00",
+    "updated_at": "2026-04-23T06:36:10.360392+00:00",
+    "file_path": "23. Form SKJ Administrator (Kabag Tata Usaha).docx",
+    "track_id": "insert_20260423_132450_cc6ea0b6",
+    "metadata": {
+      "processing_start_time": 1776926106,
+      "processing_end_time": 1776926170
+    }
+  },
+  "doc-096141e8d09761334578ba1722437377": {
+    "status": "processed",
+    "chunks_count": 3,
+    "chunks_list": [
+      "chunk-881ebb2b1d0eade222265f9ed0dddd9a",
+      "chunk-7784038b97fc75735c67b8cfa109813e",
+      "chunk-1bb87bfcd47de210ba9b0fe3c3f08c25"
+    ],
+    "content_summary": "STANDAR KOMPETENSI JABATAN\nJABATAN PIMPINAN TINGGI PRATAMA\nNama Jabatan | : | Inspektur I\nKelompok Jabatan | : | Struktural\nUrusan Pemerintah | : | Pengawasan Intern Pemerintah\nKode Jabatan | : | 1-02-16-01-11-000\nJABATAN PIMPINAN TINGGI PRATAMA\nIKHT...",
+    "content_length": 11055,
+    "created_at": "2026-04-23T06:24:50.357598+00:00",
+    "updated_at": "2026-04-23T06:36:26.560072+00:00",
+    "file_path": "9. Draft_SKJ_Inspektur_alx_edit - Inspektur 1 v2 .docx",
+    "track_id": "insert_20260423_132450_cc6ea0b6",
+    "metadata": {
+      "processing_start_time": 1776926115,
+      "processing_end_time": 1776926186
+    }
+  },
+  "doc-2946bdbbbf0626626602c40b826c60be": {
+    "status": "processed",
+    "chunks_count": 2,
+    "chunks_list": [
+      "chunk-d2d18e91656313f1c6554b71e7857f74",
+      "chunk-d63b36b1b6f3662f467c2a1b336f66ef"
+    ],
+    "content_summary": "STANDAR KOMPETENSI JABATAN ADMINISTRATOR\nNama Jabatan | : | Kepala Bagian Protokol dan Kesekretariatan Pimpinan\nKelompok Jabatan | : | Administrator\nUrusan Pemerintah | : | Pengawas Obat dan Makanan, Kesekretariatan\nKode Jabatan | : | 2-04-16-01-07-4...",
+    "content_length": 8488,
+    "created_at": "2026-04-23T06:24:50.357598+00:00",
+    "updated_at": "2026-04-23T06:37:05.260805+00:00",
+    "file_path": "15. Form SKJ Administrator (Kabag PKP)_rev1.docx",
+    "track_id": "insert_20260423_132450_cc6ea0b6",
+    "metadata": {
+      "processing_start_time": 1776926170,
+      "processing_end_time": 1776926225
+    }
+  },
+  "doc-d653f3781c07cd1ae8bea44ca7e461a6": {
+    "status": "processed",
+    "chunks_count": 2,
+    "chunks_list": [
+      "chunk-b34bdbb09c3da287bd3f25d44e529997",
+      "chunk-e9d91870d4e8cec78742f2bab2f1d729"
+    ],
+    "content_summary": "STANDAR KOMPETENSI JABATAN PIMPINAN TINGGI PRATAMA\nNama Jabatan | : | Kepala Biro Kerja Sama dan Hubungan Masyarakat\nKelompok Jabatan | : | Jabatan Pimpinan Tinggi\nUrusan Pemerintah | : | Kesekretariatan\nKode Jabatan | : | 1-03-16-01-05-000\nJABATAN P...",
+    "content_length": 8712,
+    "created_at": "2026-04-23T06:24:50.357598+00:00",
+    "updated_at": "2026-04-23T06:38:22.155061+00:00",
+    "file_path": "7. SKJ Pimp Tinggi Pratama_Karo KSHM_rev 171123.docx",
+    "track_id": "insert_20260423_132450_cc6ea0b6",
+    "metadata": {
+      "processing_start_time": 1776926186,
+      "processing_end_time": 1776926302
+    }
+  },
+  "doc-922322d5dff3d33ad906161dda221f8f": {
+    "status": "processed",
+    "chunks_count": 2,
+    "chunks_list": [
+      "chunk-35f9f49ab3f39d2abbe1c3fc46c00851",
+      "chunk-f99bf9ae6f47931aca0c6b2da10e98f0"
+    ],
+    "content_summary": "STANDAR KOMPETENSI JABATAN PENGAWAS\nNama Jabatan | : | Kepala Sub Bagian Kesekretariatan Kepala Badan\nKelompok Jabatan | : | Manajerial\nUrusan Pemerintah | : | Pengawas Obat dan Makanan, Kesekretariatan\nKode Jabatan | : | 2-05-16-01-07-420\nJABATAN PE...",
+    "content_length": 7601,
+    "created_at": "2026-04-23T06:24:50.357598+00:00",
+    "updated_at": "2026-04-23T06:38:49.885280+00:00",
+    "file_path": "17. Form SKJ Pengawas (Kasubag Kesekretariatan Kepala Badan)_Rev.docx",
+    "track_id": "insert_20260423_132450_cc6ea0b6",
+    "metadata": {
+      "processing_start_time": 1776926225,
+      "processing_end_time": 1776926329
+    }
+  },
+  "doc-45fa4e4efbd3a34621119253e073bcfb": {
+    "status": "processed",
+    "chunks_count": 2,
+    "chunks_list": [
+      "chunk-8fcd6b2e48171211e18d3ba343e0d463",
+      "chunk-1ee6f9263ef617f7cba2076d1465b7a8"
+    ],
+    "content_summary": "STANDAR KOMPETENSI JABATAN PENGAWAS\nNama Jabatan | : | Kepala Subbagian Kesekretariatan Sekretaris Utama\nKelompok Jabatan | : | Pengawas\nUrusan Pemerintah | : | Pengawas Obat dan Makanan, Kesekretariatan\nKode Jabatan | : | 2-05-16-01-07-430\nJABATAN P...",
+    "content_length": 7606,
+    "created_at": "2026-04-23T06:24:50.357598+00:00",
+    "updated_at": "2026-04-23T06:39:40.557380+00:00",
+    "file_path": "18. Form SKJ Pengawas (Kasubag Kesekretariatan Sekretaris Utama)_Rev.docx",
+    "track_id": "insert_20260423_132450_cc6ea0b6",
+    "metadata": {
+      "processing_start_time": 1776926302,
+      "processing_end_time": 1776926380
+    }
+  },
+  "doc-pre-Peraturan BPOM No. 28 Tahun 2025 Tentang Renstra BPOM 2025-2029.pdf": {
+    "status": "failed",
+    "content": "",
+    "error_msg": "File not found: ..\\data\\renstra_bpom\\Peraturan BPOM No. 28 Tahun 2025 Tentang Renstra BPOM 2025-2029.pdf",
+    "content_summary": "",
+    "multimodal_content": [],
+    "scheme_name": null,
+    "content_length": 0,
+    "created_at": "",
+    "updated_at": "",
+    "file_path": "Peraturan BPOM No. 28 Tahun 2025 Tentang Renstra BPOM 2025-2029.pdf",
+    "chunks_list": []
+  },
+  "doc-pre-Renstra Balai Besar POM di Jakarta Tahun 2025 2029.pdf": {
+    "status": "handling",
+    "content": "",
+    "error_msg": "",
+    "content_summary": "",
+    "multimodal_content": [],
+    "scheme_name": null,
+    "content_length": 0,
+    "created_at": "",
+    "updated_at": "",
+    "file_path": "Renstra Balai Besar POM di Jakarta Tahun 2025 2029.pdf",
+    "chunks_list": []
+  },
+  "dup-cd52e722eec23504cbcb002fdfdba48c": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-62d4c114f3c30dc2a27080e1db8aba0e",
+    "content_length": 7343,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-23T15:30:44.978660+00:00",
+    "updated_at": "2026-04-23T15:30:44.978660+00:00",
+    "file_path": "16. Form SKJ Pengawas (Kasubag Protokol)_Rev.docx",
+    "track_id": "insert_20260423_223044_d64813a5",
+    "error_msg": "Content already exists. Original doc_id: doc-62d4c114f3c30dc2a27080e1db8aba0e, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-62d4c114f3c30dc2a27080e1db8aba0e",
+      "original_track_id": "insert_20260423_132450_cc6ea0b6"
+    }
+  },
+  "dup-a5fff3b1389e1965f717b7174d9613d5": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-bd24db4c4a3e8818065a37f621529244",
+    "content_length": 8572,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-23T15:30:44.981173+00:00",
+    "updated_at": "2026-04-23T15:30:44.981173+00:00",
+    "file_path": "13. Form SKJ Administrator (Kabag PBMN)_rev1.docx",
+    "track_id": "insert_20260423_223044_d64813a5",
+    "error_msg": "Content already exists. Original doc_id: doc-bd24db4c4a3e8818065a37f621529244, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-bd24db4c4a3e8818065a37f621529244",
+      "original_track_id": "insert_20260423_132450_cc6ea0b6"
+    }
+  },
+  "dup-a37b456237808ef86f8c3e2dc3570281": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-922322d5dff3d33ad906161dda221f8f",
+    "content_length": 7601,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-23T15:30:44.983719+00:00",
+    "updated_at": "2026-04-23T15:30:44.983719+00:00",
+    "file_path": "17. Form SKJ Pengawas (Kasubag Kesekretariatan Kepala Badan)_Rev.docx",
+    "track_id": "insert_20260423_223044_d64813a5",
+    "error_msg": "Content already exists. Original doc_id: doc-922322d5dff3d33ad906161dda221f8f, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-922322d5dff3d33ad906161dda221f8f",
+      "original_track_id": "insert_20260423_132450_cc6ea0b6"
+    }
+  },
+  "dup-c5cc9319f76eb233a14c15ab888a89be": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-6113d9178b5867e4ff5b3a08bc566208",
+    "content_length": 9526,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-23T15:30:44.985709+00:00",
+    "updated_at": "2026-04-23T15:30:44.985709+00:00",
+    "file_path": "5. Form SKJ Pimpinan Tinggi Pratama (Level 4) Kepala PPSDM.docx",
+    "track_id": "insert_20260423_223044_d64813a5",
+    "error_msg": "Content already exists. Original doc_id: doc-6113d9178b5867e4ff5b3a08bc566208, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-6113d9178b5867e4ff5b3a08bc566208",
+      "original_track_id": "insert_20260423_132450_cc6ea0b6"
+    }
+  },
+  "dup-7d8db1d6e1021d9ced3db5f429c5f3e2": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-73766b458f4142061b8b3e101c1a2a45",
+    "content_length": 10188,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-23T15:30:44.988564+00:00",
+    "updated_at": "2026-04-23T15:30:44.988564+00:00",
+    "file_path": "11. Form SKJ JPT Pratama (Kepala Biro Umum)_rev1.docx",
+    "track_id": "insert_20260423_223044_d64813a5",
+    "error_msg": "Content already exists. Original doc_id: doc-73766b458f4142061b8b3e101c1a2a45, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-73766b458f4142061b8b3e101c1a2a45",
+      "original_track_id": "insert_20260423_132450_cc6ea0b6"
+    }
+  },
+  "dup-fa7b08390ae5dcfffb4fcc3b1497b172": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-2946bdbbbf0626626602c40b826c60be",
+    "content_length": 8488,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-23T15:30:44.990630+00:00",
+    "updated_at": "2026-04-23T15:30:44.990630+00:00",
+    "file_path": "15. Form SKJ Administrator (Kabag PKP)_rev1.docx",
+    "track_id": "insert_20260423_223044_d64813a5",
+    "error_msg": "Content already exists. Original doc_id: doc-2946bdbbbf0626626602c40b826c60be, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-2946bdbbbf0626626602c40b826c60be",
+      "original_track_id": "insert_20260423_132450_cc6ea0b6"
+    }
+  },
+  "dup-84d6d7a8de4656046017182355e8995d": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-632ac3a2dae54df9f4f73a38c2fb8000",
+    "content_length": 11056,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-23T15:30:44.993256+00:00",
+    "updated_at": "2026-04-23T15:30:44.993256+00:00",
+    "file_path": "10. Draft_SKJ_Inspektur_alx_edit - Inspektur 2 v2.docx",
+    "track_id": "insert_20260423_223044_d64813a5",
+    "error_msg": "Content already exists. Original doc_id: doc-632ac3a2dae54df9f4f73a38c2fb8000, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-632ac3a2dae54df9f4f73a38c2fb8000",
+      "original_track_id": "insert_20260423_132450_cc6ea0b6"
+    }
+  },
+  "dup-7dcc617d82177a3eab9537bd11a932f9": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-ee0f10f10c1e1b0bb0cec1963d448959",
+    "content_length": 11372,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-23T15:30:44.993256+00:00",
+    "updated_at": "2026-04-23T15:30:44.993256+00:00",
+    "file_path": "1. Form SKJ Pimpinan Tinggi Madya Sekretaris Utama (Level 5).docx",
+    "track_id": "insert_20260423_223044_d64813a5",
+    "error_msg": "Content already exists. Original doc_id: doc-ee0f10f10c1e1b0bb0cec1963d448959, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-ee0f10f10c1e1b0bb0cec1963d448959",
+      "original_track_id": "insert_20260423_132450_cc6ea0b6"
+    }
+  },
+  "dup-d352d36aefc7e1df72587d66c8a18d88": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-6c19ad5a83078243d7e2e851b1e3ca7e",
+    "content_length": 9487,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-23T15:30:44.997106+00:00",
+    "updated_at": "2026-04-23T15:30:44.997106+00:00",
+    "file_path": "8. Form SKJ Pimpinan Tinggi Pratama (Level 4)-Karorenkeu_v3_17 nov 2023.docx",
+    "track_id": "insert_20260423_223044_d64813a5",
+    "error_msg": "Content already exists. Original doc_id: doc-6c19ad5a83078243d7e2e851b1e3ca7e, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-6c19ad5a83078243d7e2e851b1e3ca7e",
+      "original_track_id": "insert_20260423_132450_cc6ea0b6"
+    }
+  },
+  "dup-c53d32e4268fc13bad4dece032a32d96": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-47d9d372b120620afc00a0bef194a5ab",
+    "content_length": 7664,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-23T15:30:44.999166+00:00",
+    "updated_at": "2026-04-23T15:30:44.999166+00:00",
+    "file_path": "22. Form SKJ Pengawas (Kasubag Kesekretariatan Deputi Bidang Penindakan)_Rev.docx",
+    "track_id": "insert_20260423_223044_d64813a5",
+    "error_msg": "Content already exists. Original doc_id: doc-47d9d372b120620afc00a0bef194a5ab, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-47d9d372b120620afc00a0bef194a5ab",
+      "original_track_id": "insert_20260423_132450_cc6ea0b6"
+    }
+  },
+  "dup-789ead81a498b848072ef21b2370c92a": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-5fc37b724a0f3b83e833ef00bec3a4fb",
+    "content_length": 8118,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-23T15:30:45.000682+00:00",
+    "updated_at": "2026-04-23T15:30:45.000682+00:00",
+    "file_path": "24. Form SKJ Kasubag TU (es 4).docx",
+    "track_id": "insert_20260423_223044_d64813a5",
+    "error_msg": "Content already exists. Original doc_id: doc-5fc37b724a0f3b83e833ef00bec3a4fb, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-5fc37b724a0f3b83e833ef00bec3a4fb",
+      "original_track_id": "insert_20260423_132450_cc6ea0b6"
+    }
+  },
+  "dup-b407a741865aa2aad753691374aa9d14": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-a087062a20c08534d90d52a89e8772be",
+    "content_length": 8781,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-23T15:30:45.003483+00:00",
+    "updated_at": "2026-04-23T15:30:45.003483+00:00",
+    "file_path": "14. Form SKJ Administrator (Kabag Rumah Tangga)_rev1.docx",
+    "track_id": "insert_20260423_223044_d64813a5",
+    "error_msg": "Content already exists. Original doc_id: doc-a087062a20c08534d90d52a89e8772be, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-a087062a20c08534d90d52a89e8772be",
+      "original_track_id": "insert_20260423_132450_cc6ea0b6"
+    }
+  },
+  "dup-5d1e06872cd60572dd60d43c876c1761": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-00b416927c69e1867c86e806263db38f",
+    "content_length": 8224,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-23T15:30:45.005772+00:00",
+    "updated_at": "2026-04-23T15:30:45.005772+00:00",
+    "file_path": "12. Form SKJ Administrator (Kabag PBJ)_rev1.docx",
+    "track_id": "insert_20260423_223044_d64813a5",
+    "error_msg": "Content already exists. Original doc_id: doc-00b416927c69e1867c86e806263db38f, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-00b416927c69e1867c86e806263db38f",
+      "original_track_id": "insert_20260423_132450_cc6ea0b6"
+    }
+  },
+  "dup-fdd7049389a7bb4af5a1f35ddc061bcf": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-0c0f78ac6670bfe8f1a36d195ce34868",
+    "content_length": 11229,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-23T15:30:45.007886+00:00",
+    "updated_at": "2026-04-23T15:30:45.007886+00:00",
+    "file_path": "3. Form SKJ Pimpinan Tinggi Pratama Kepala Biro SDM (Revisi berdasarkan Review Menpan).docx",
+    "track_id": "insert_20260423_223044_d64813a5",
+    "error_msg": "Content already exists. Original doc_id: doc-0c0f78ac6670bfe8f1a36d195ce34868, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-0c0f78ac6670bfe8f1a36d195ce34868",
+      "original_track_id": "insert_20260423_132450_cc6ea0b6"
+    }
+  },
+  "dup-35f39ab7f4e5644d68f8c535c2b36344": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-45fa4e4efbd3a34621119253e073bcfb",
+    "content_length": 7606,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-23T15:30:45.010897+00:00",
+    "updated_at": "2026-04-23T15:30:45.010897+00:00",
+    "file_path": "18. Form SKJ Pengawas (Kasubag Kesekretariatan Sekretaris Utama)_Rev.docx",
+    "track_id": "insert_20260423_223044_d64813a5",
+    "error_msg": "Content already exists. Original doc_id: doc-45fa4e4efbd3a34621119253e073bcfb, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-45fa4e4efbd3a34621119253e073bcfb",
+      "original_track_id": "insert_20260423_132450_cc6ea0b6"
+    }
+  },
+  "dup-a679d040361988dc7dc765a70f118d98": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-096141e8d09761334578ba1722437377",
+    "content_length": 11055,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-23T15:30:45.013630+00:00",
+    "updated_at": "2026-04-23T15:30:45.013630+00:00",
+    "file_path": "9. Draft_SKJ_Inspektur_alx_edit - Inspektur 1 v2 .docx",
+    "track_id": "insert_20260423_223044_d64813a5",
+    "error_msg": "Content already exists. Original doc_id: doc-096141e8d09761334578ba1722437377, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-096141e8d09761334578ba1722437377",
+      "original_track_id": "insert_20260423_132450_cc6ea0b6"
+    }
+  },
+  "dup-2076ab97f993e7297486902af146db6f": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-7eef899deabca952e68251446a2cf8e7",
+    "content_length": 9558,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-23T15:30:45.016793+00:00",
+    "updated_at": "2026-04-23T15:30:45.016793+00:00",
+    "file_path": "6. Form SKJ Pimpinan Tinggi Pratama  Kepala Biro Hukor.docx",
+    "track_id": "insert_20260423_223044_d64813a5",
+    "error_msg": "Content already exists. Original doc_id: doc-7eef899deabca952e68251446a2cf8e7, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-7eef899deabca952e68251446a2cf8e7",
+      "original_track_id": "insert_20260423_132450_cc6ea0b6"
+    }
+  },
+  "dup-9afb62bfda7c22c137ab90e78c836f18": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-d653f3781c07cd1ae8bea44ca7e461a6",
+    "content_length": 8712,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-23T15:30:45.018657+00:00",
+    "updated_at": "2026-04-23T15:30:45.018657+00:00",
+    "file_path": "7. SKJ Pimp Tinggi Pratama_Karo KSHM_rev 171123.docx",
+    "track_id": "insert_20260423_223044_d64813a5",
+    "error_msg": "Content already exists. Original doc_id: doc-d653f3781c07cd1ae8bea44ca7e461a6, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-d653f3781c07cd1ae8bea44ca7e461a6",
+      "original_track_id": "insert_20260423_132450_cc6ea0b6"
+    }
+  },
+  "dup-5b82f29e602539b7d2ddd1522bffaa7e": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-4f52b942ba77c4c93c89fc28ebacb8a3",
+    "content_length": 11431,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-23T15:30:45.022245+00:00",
+    "updated_at": "2026-04-23T15:30:45.022245+00:00",
+    "file_path": "2. Draft_SKJ_Inspektur_alx_edit - Inspektur Utama v2.docx",
+    "track_id": "insert_20260423_223044_d64813a5",
+    "error_msg": "Content already exists. Original doc_id: doc-4f52b942ba77c4c93c89fc28ebacb8a3, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-4f52b942ba77c4c93c89fc28ebacb8a3",
+      "original_track_id": "insert_20260423_132450_cc6ea0b6"
+    }
+  },
+  "dup-f219f7429b2ddcde654c06f2ce870fa3": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-ba40d8a3bb9d5863574277e2e4156256",
+    "content_length": 9403,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-23T15:30:45.025186+00:00",
+    "updated_at": "2026-04-23T15:30:45.025186+00:00",
+    "file_path": "23. Form SKJ Administrator (Kabag Tata Usaha).docx",
+    "track_id": "insert_20260423_223044_d64813a5",
+    "error_msg": "Content already exists. Original doc_id: doc-ba40d8a3bb9d5863574277e2e4156256, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-ba40d8a3bb9d5863574277e2e4156256",
+      "original_track_id": "insert_20260423_132450_cc6ea0b6"
+    }
+  },
+  "doc-a9837259597d035287cd9e209ca92808": {
+    "status": "processed",
+    "chunks_count": 10,
+    "chunks_list": [
+      "chunk-96d74b7dea0b505de11bbd6a2ed00af4",
+      "chunk-6b708dafe0ef1a880a666b828ef56030",
+      "chunk-48ef1f167e20cd8586b1384a1582074e",
+      "chunk-4fd99f316c33adc9407f570b5fe09f30",
+      "chunk-7ca09da38f9163acaf68ad0c030fcc66",
+      "chunk-b8f82f974625844876ab1791d797e506",
+      "chunk-c717644f9b3948a3b103fa6e57d7f3b2",
+      "chunk-7e81c53359cd48cc22814fe8e04af7a4",
+      "chunk-ccc5c122c37c58899b9e26d55a1d861d",
+      "chunk-237f6b0467f670ca49cd84d4c175d0ae"
+    ],
+    "content_summary": "- 2 -\nc. bahwa berdasarkan pertimbangan sebagaimana\ndimaksud dalam huruf a dan huruf b, perlu menetapkan\nPeraturan Menteri Pendayagunaan Aparatur Negara dan\nReformasi Birokrasi tentang Pengisian Jabatan Pimpinan\nTinggi Secara Terbuka dan Kompetitif d...",
+    "content_length": 38274,
+    "created_at": "2026-04-23T15:31:21.950051+00:00",
+    "updated_at": "2026-04-23T16:15:18.004609+00:00",
+    "file_path": "Permenpan Nomor 15 Tahun 2019.pdf",
+    "track_id": "insert_20260423_223121_a7e7a38c",
+    "metadata": {
+      "processing_start_time": 1776960657,
+      "processing_end_time": 1776960918
+    }
+  },
+  "doc-9c6c42a7ca9a3e7cf443791f17311176": {
+    "status": "processed",
+    "chunks_count": 12,
+    "chunks_list": [
+      "chunk-a62159da161d35d8dfbe50f79e6ef987",
+      "chunk-44f7d92dd788ae9929ffd6be6d23f000",
+      "chunk-571ade7c9c5b97e2bae0c35a663f78b7",
+      "chunk-86682fd9a430712ea30b0fa9d703524f",
+      "chunk-72e4376159b6da2b02fd07bfe2c56a97",
+      "chunk-e7b7431fc7f6df08e819b30e3e8e4b41",
+      "chunk-1628d7be216a2c6caeb2a8e682215032",
+      "chunk-6ac125d5175aecb17b2c2f117ef9cfb8",
+      "chunk-ffa1f6482bf3e7293cd264df5b26c035",
+      "chunk-13a7423ab4a6c7d9a1afe88975d3838b",
+      "chunk-7a8080b0f9e662d6b1059012a51a07e1",
+      "chunk-21c80d24367e66eee4716703011f1c56"
+    ],
+    "content_summary": "KEPALA BADAN PENGAWAS OBAT DAN MAKANAN\nREPUBLIK INDONESIA\nPERATURAN BADAN PENGAWAS OBAT DAN MAKANAN\nNOMOR 2 TAHUN 2024\nTENTANG\nPEDOMAN PENGISIAN JABATAN PIMPINAN TINGGI MADYA DAN PRATAMA\nMELALUI SELEKSI TERBUKA\nDI LINGKUNGAN BADAN PENGAWAS OBAT DAN M...",
+    "content_length": 43164,
+    "created_at": "2026-04-23T15:31:21.950051+00:00",
+    "updated_at": "2026-04-23T15:38:50.974218+00:00",
+    "file_path": "Peraturan BPOM Nomor 2 Tahun 2024.pdf",
+    "track_id": "insert_20260423_223121_a7e7a38c",
+    "metadata": {
+      "processing_start_time": 1776958282,
+      "processing_end_time": 1776958730
+    }
+  },
+  "doc-63cf0bdd1527dfd2149cdd456fa0040c": {
+    "status": "failed",
+    "error_msg": "RetryError[C[20/85]: chunk-896351854a12283a4a72dc7c9966ce8b: <Future at 0x1cd1ac7ed10 state=finished raised RateLimitError>]",
+    "chunks_count": 85,
+    "chunks_list": [
+      "chunk-299857af23d87a842b3361477e1d0025",
+      "chunk-f6b0967fba8c64977d5007de9910fcc8",
+      "chunk-710aa678ea778176df44c8e334a1e279",
+      "chunk-2975c4fc8308d72875f7df40b7837bdb",
+      "chunk-bd3a109464b2187dd25d362f60a9f207",
+      "chunk-6e8011a315bf6879631688d13d3a0d75",
+      "chunk-fba2dd7a8c86ba86e5e963ed2c08d98e",
+      "chunk-66b91b1e1ff65bdf81f79b322d8c7c08",
+      "chunk-c4a5a3e6b213d261d29e9dc76099e1cb",
+      "chunk-582d4f1b0041a13196d2a0b539a84441",
+      "chunk-10a72594f6e39f2546193b3ea84154c3",
+      "chunk-2826e517747341e515c6bf22c1924b44",
+      "chunk-807a4dab78ec9c393127e79e1aacecb0",
+      "chunk-ba4362fd4c3dab33ff3ddedefb794968",
+      "chunk-d1d940619625f259406285980bf122a7",
+      "chunk-4ede4cf3772f5a066c38eaf847d82f7c",
+      "chunk-06e7cbd954aa15c0ed7fbbee7de5890e",
+      "chunk-8fbbcd8dc170672e4a0ee4167ec06b8f",
+      "chunk-896351854a12283a4a72dc7c9966ce8b",
+      "chunk-1651deab4cfcd8241c0bd7db0fe0a80d",
+      "chunk-9a4357f90896a9f6fbd252049370d6d4",
+      "chunk-a0f0ca9128ea35866b6ec3b79b6c51df",
+      "chunk-731c5cb0dbf88ac404ca220e337eb655",
+      "chunk-533c7b43636ae1a75215fb4ab24d468d",
+      "chunk-6deacbbdb8f1a5e725c00f41ab2c6fbf",
+      "chunk-7985047e2a09497ceaae168c2b9ec8f1",
+      "chunk-1c303849486c022ec7c2af445cb12bce",
+      "chunk-9df7c3dbdebe99561d54f91299f227a4",
+      "chunk-1d342c8d420759959524aad55b333884",
+      "chunk-028ae041d9644906c20581a55ea835dc",
+      "chunk-9cb9330b50e23c254b96832f58927ac1",
+      "chunk-bd4631995880dc520d0ebc8426491b19",
+      "chunk-fa6ac3e7b34f19b5d9f926755782d8ea",
+      "chunk-4b94565c18705b174b92e653bf1d425c",
+      "chunk-1d93e3094d28700508f5f6b7098ad6ac",
+      "chunk-df4098a36bec2d44acb8723ab2308518",
+      "chunk-4063a14204d00f0cbd13e39ee03b050f",
+      "chunk-ec7628a1f58ae306b493a09d05216b3e",
+      "chunk-f668ca4dd13d6dcb8bf15dedd51cbd85",
+      "chunk-aa52a0cb584aaa84ce4b54e6fc375835",
+      "chunk-6c7b30b39f4b3eea72a9813e14f3af0b",
+      "chunk-cde8a28ed053e8ff2f052403b48c45b9",
+      "chunk-7d288d1e739f9c35d293ea728988784e",
+      "chunk-7f5025833be35665a2c9e89e4f112fb6",
+      "chunk-1b8dbfcd160d019dd30a7d1509addf1b",
+      "chunk-7c275c27577afe26bd15302fec239a67",
+      "chunk-b73e2e852b0a564b80fc42ccaa12d67b",
+      "chunk-5c75cdb8219ad95b4c9f06e6510e3ab9",
+      "chunk-b0ce99065bb0e2b4bb66aac5e0d79a5c",
+      "chunk-ee25d92314fcf54dca072adceafa8793",
+      "chunk-0f8514d7a402b1ca7d7e3c47039cac61",
+      "chunk-3cb95574ccae477af3b81f7e11f60e5f",
+      "chunk-68bfba3dd499e71b0095da6133dc9cfc",
+      "chunk-6f7ee2e3d32b067a794bf22a7835857d",
+      "chunk-4d75b97f840dcb29b7f7ecac60b1c313",
+      "chunk-e0187955d9498e72a1efacbab80d349a",
+      "chunk-4271ca4747eb874e8dd83cf592d27b21",
+      "chunk-27500c37c01a8840ace6a637d21de68d",
+      "chunk-8b35f672a7a3d4c8231dc68c40bb9a6f",
+      "chunk-03ee4560694a5eef8823cd93cea133fd",
+      "chunk-b3af7a7df55fe0606a10ceaf84f94cc3",
+      "chunk-3cfce51588b7f53c5af1056ddc02c992",
+      "chunk-9e30d52997e943840c1b87891ba6c080",
+      "chunk-5764621e63678236f67d055d56fe9590",
+      "chunk-142d916510fecd77c0325ab21c7b26b3",
+      "chunk-f662ad251d7343561dca070eedfa9f8f",
+      "chunk-2670134856057553f081a05b3f099ecb",
+      "chunk-252a3345c07cb7499b5543e73eb10614",
+      "chunk-8c0761f454f2a8a7adca3a8d4b4d4d01",
+      "chunk-2d2d33d76c57d5f2505dd5b6f94aa44a",
+      "chunk-8b8151d8f7d88c4add84093eebf810d8",
+      "chunk-24928a08b85a61a89b34723c5d2d43b0",
+      "chunk-281075fb34de9c61e45cbd63c1c2da6d",
+      "chunk-ea78ba38dd71f4e1d4272eeb382260e5",
+      "chunk-5df0666203885e86e8061fac8e79dab5",
+      "chunk-335a96e7dd140e96b1ac661dd502a20e",
+      "chunk-080204532ea6aa8ac2831ac56b6f9250",
+      "chunk-66e07d323312cc2884d9ba5d8c304431",
+      "chunk-90f774305d424673d43213d82e142420",
+      "chunk-b561b9b5669473234c2ece44cdceb814",
+      "chunk-0c7c8debae20a5c04e696c1475fbb8eb",
+      "chunk-7b3fc6a547b690bc9bba96530646f41a",
+      "chunk-6f7fa2d887e66ee6b51b513c79c6e8e3",
+      "chunk-f6d5f70d27d385a876a954e0d0bc911e",
+      "chunk-1388e3c71f77e24bde0ae3ccc09a3f48"
+    ],
+    "content_summary": "RENCANA\nSTRATEGIS\nBADAN POM\n2025 -2029\nBALAI BESAR POM DI JAKARTA\nKEPUTUSAN KEPALA BALAI BESAR PENGAWAS OBAT DAN MAKANAN DI\nJAKARTA\nNOMOR HK.02.02.7A.12.25.266 TAHUN 2025\nTENTANG\nRENCANA STRATEGIS BALAI BESAR PENGAWAS OBAT DAN MAKANAN DI\nJAKARTA TAHU...",
+    "content_length": 338588,
+    "created_at": "2026-04-23T16:10:57.146056+00:00",
+    "updated_at": "2026-04-23T16:15:43.136662+00:00",
+    "file_path": "Renstra Balai Besar POM di Jakarta Tahun 2025 2029.pdf",
+    "track_id": "insert_20260423_231057_895a1c37",
+    "metadata": {
+      "processing_start_time": 1776960657,
+      "processing_end_time": 1776960943
+    }
+  }
+}
