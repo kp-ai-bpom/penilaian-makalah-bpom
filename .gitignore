@@ -14,3 +14,15 @@ wheels/
 .env
 
 storage/
+
+penilaian_makalah_streamlit
+DATABASE_MIGRATION.md
+DEPLOYMENT_GUIDE.md
+IMPLEMENTATION_SUMMARY.md
+IMPLEMENTATION_UNCERTAINTY_STREAMLIT_DEV.md
+README_IMPLEMENTATION.md
+streamlit_dev.py
+streamlit.py
+
+
+penilaian_makalah/data/Makalah Lengkap JPTP 2026/

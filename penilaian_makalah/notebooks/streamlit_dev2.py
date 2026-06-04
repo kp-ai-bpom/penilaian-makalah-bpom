@@ -12,16 +12,22 @@ import datetime
 import re
 from pathlib import Path
 from xml.etree import ElementTree as ET
+from collections import Counter
 
 import streamlit as st
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from langchain_openai import ChatOpenAI
+from langchain_core.messages import HumanMessage
 from dotenv import load_dotenv
 
+# Load environment variables
 env_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../.env"))
 if os.path.exists(env_path):
     load_dotenv(dotenv_path=env_path, override=True)
 else:
-    load_dotenv(override=True)  # Fallback to current working directory .env
+    load_dotenv(override=True)
 
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger("penilaian_makalah")
@@ -55,6 +61,27 @@ SCORE_WEIGHTS = {
     "n3_sistematika":        1,
     "n4_ketajaman_analisis": 2,
     "n5_penggunaan_bahasa":  1,
+}
+
+# ── Uncertainty-Aware Evaluation Constants ────────────────────────────────────
+M_SAMPLES           = 7              # Number of evaluation samples (default)
+TEMPERATURE         = 1.0            # Fixed temperature for uncertainty sampling
+NSV_THRESHOLD       = 0.1            # Threshold for "acceptable uncertainty"
+SAMPLE_RETRY_LIMIT  = 2              # Max retries for failed samples
+MIN_SCORE           = 40
+MAX_SCORE           = 100
+SCORE_RANGE         = MAX_SCORE - MIN_SCORE
+
+# Criteria mapping
+CRITERIA_KEYS = ["n1_kesesuaian_judul", "n2_kesesuaian_isi", "n3_sistematika", 
+                 "n4_ketajaman_analisis", "n5_penggunaan_bahasa"]
+CRITERIA_SHORT = ["n1", "n2", "n3", "n4", "n5"]
+CRITERIA_LABELS = {
+    "n1": "Kesesuaian Judul",
+    "n2": "Kesesuaian Isi",
+    "n3": "Sistematika",
+    "n4": "Ketajaman Analisis",
+    "n5": "Penggunaan Bahasa",
 }
 
 # ── Prompts ───────────────────────────────────────────────────────────────────
@@ -263,13 +290,11 @@ def parse_response(raw: str) -> dict:
             raw = raw[4:]
     
     raw = raw.strip()
-    # Ekstrak hanya blok JSON
     start = raw.find('{')
     end = raw.rfind('}')
     if start != -1 and end != -1:
         raw = raw[start:end+1]
         
-    # Hapus trailing commas yang sering bikin json.loads error
     raw = re.sub(r',\s*([\]}])', r'\1', raw)
     
     return json.loads(raw)
@@ -280,6 +305,237 @@ def score_color(score: float) -> str:
     elif score >= 70: return "#f59e0b"
     elif score >= 55: return "#f97316"
     else:             return "#ef4444"
+
+
+# ── Uncertainty Sampling Functions ────────────────────────────────────────────
+
+def calculate_uncertainty_metrics(scores_list: list) -> dict:
+    """
+    Calculate NSV, WAU, and uncertainty metrics from M samples.
+    """
+    score_distributions = {k: [] for k in CRITERIA_SHORT}
+    
+    for res in scores_list:
+        if not res:
+            continue
+        for i, key_short in enumerate(CRITERIA_SHORT):
+            key_full = CRITERIA_KEYS[i]
+            if key_full in res:
+                score_distributions[key_short].append(res[key_full])
+    
+    evaluation_results = {
+        "consensus_scores": {},
+        "uncertainty": {"per_criteria": {}},
+        "valid_samples": len([s for s in scores_list if s])
+    }
+    
+    nsv_dict = {}
+    
+    for i, (criteria_short, criteria_full) in enumerate(zip(CRITERIA_SHORT, CRITERIA_KEYS)):
+        values = score_distributions[criteria_short]
+        
+        if not values:
+            evaluation_results["consensus_scores"][criteria_full] = 0
+            evaluation_results["uncertainty"]["per_criteria"][criteria_short] = {
+                "mean": 0, "std": 0, "nsv": 0, "status": "❌ NO DATA", "raw_samples": []
+            }
+            nsv_dict[criteria_short] = 0
+            continue
+        
+        mean_score = np.mean(values)
+        std_dev = np.std(values, ddof=1) if len(values) > 1 else 0.0
+        nsv = std_dev / SCORE_RANGE
+        nsv_dict[criteria_short] = nsv
+        
+        status = "⚠️ PERLU REVIEW" if nsv > NSV_THRESHOLD else "✅ YAKIN"
+        
+        evaluation_results["consensus_scores"][criteria_full] = round(mean_score, 2)
+        evaluation_results["uncertainty"]["per_criteria"][criteria_short] = {
+            "mean": round(mean_score, 2),
+            "std": round(std_dev, 2),
+            "nsv": round(nsv, 3),
+            "status": status,
+            "raw_samples": [round(v, 1) for v in values]
+        }
+    
+    # Calculate WAU (Weighted Aggregate Uncertainty)
+    if all(k in nsv_dict for k in CRITERIA_SHORT):
+        wau = (nsv_dict["n1"] + nsv_dict["n2"] + nsv_dict["n3"] + 
+               (2 * nsv_dict["n4"]) + nsv_dict["n5"]) / 6
+        
+        evaluation_results["uncertainty"]["weighted_aggregate"] = round(wau, 3)
+        evaluation_results["uncertainty"]["overall_status"] = (
+            "⚠️ BUTUH REVIEW HUMAN" if wau > NSV_THRESHOLD else "✅ YAKIN (Konsisten)"
+        )
+        evaluation_results["uncertainty"]["most_uncertain_criteria"] = max(nsv_dict, key=nsv_dict.get)
+    
+    return evaluation_results
+
+
+def render_uncertainty_visualization(uncertainty_data: dict):
+    """
+    Render enhanced uncertainty metrics with professional visualizations.
+    Better than image.png - includes range plots, WAU score card, and detailed table.
+    """
+    if not uncertainty_data:
+        st.info("Tidak ada data ketidakpastian untuk ditampilkan.")
+        return
+    
+    per_criteria = uncertainty_data.get("per_criteria", {})
+    wau = uncertainty_data.get("weighted_aggregate", 0)
+    overall_status = uncertainty_data.get("overall_status", "")
+    most_uncertain = uncertainty_data.get("most_uncertain_criteria", "-")
+    
+    # WAU Score Card - Professional design
+    wau_color = "#22c55e" if "YAKIN" in overall_status else "#ef4444"
+    bg_color = "#f0fdf4" if "YAKIN" in overall_status else "#fef2f2"
+    
+    st.markdown(f"""
+    <div style="background:{bg_color}; border:2px solid {wau_color}; border-radius:16px; padding:20px; margin-bottom:24px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+            <div>
+                <div style="font-size:11px; color:#64748b; letter-spacing:2px; text-transform:uppercase;">Kalkulator Ketidakpastian LLM</div>
+                <div style="font-size:12px; color:#64748b; margin-top:4px;">Weighted Aggregate Uncertainty (WAU)</div>
+            </div>
+            <div style="text-align:center;">
+                <div style="font-size:48px; font-weight:800; color:{wau_color};">{wau:.4f}</div>
+                <div style="font-size:11px; color:#64748b;">Threshold: {NSV_THRESHOLD}</div>
+            </div>
+            <div style="text-align:right;">
+                <div style="background:{wau_color}; color:white; padding:6px 12px; border-radius:20px; font-size:12px; font-weight:600;">
+                    {overall_status}
+                </div>
+                <div style="font-size:11px; color:#64748b; margin-top:4px;">Kriteria terumit: {most_uncertain.upper()}</div>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Create tabs for different views
+    tab1, tab2, tab3 = st.tabs(["📊 Visualisasi Range", "📋 Tabel Ringkasan", "🔍 Detail Sampel"])
+    
+    with tab1:
+        st.markdown("**Analisis Ketidakpastian per Kriteria**")
+        
+        for short_key in CRITERIA_SHORT:
+            if short_key in per_criteria:
+                data = per_criteria[short_key]
+                mean_val = data.get("mean", 0)
+                std_val = data.get("std", 0)
+                nsv_val = data.get("nsv", 0)
+                raw_samples = data.get("raw_samples", [])
+                status = data.get("status", "")
+                
+                nsv_color = "#22c55e" if nsv_val <= NSV_THRESHOLD else "#f97316"
+                status_icon = "✅" if "YAKIN" in status else "⚠️"
+                
+                # Header with metrics
+                col1, col2, col3, col4, col5 = st.columns([1.5, 1, 1, 1, 1])
+                with col1:
+                    st.markdown(f"**{status_icon} {CRITERIA_LABELS.get(short_key, short_key.upper())}**")
+                with col2:
+                    st.metric("Mean", f"{mean_val:.1f}", delta=None)
+                with col3:
+                    st.metric("Std Dev", f"{std_val:.2f}", delta=None)
+                with col4:
+                    st.metric("NSV", f"{nsv_val:.3f}", delta_color="off")
+                with col5:
+                    st.markdown(f"<span style='color:{nsv_color}; font-weight:600;'>{status}</span>", unsafe_allow_html=True)
+                
+                # Range visualization with matplotlib
+                if raw_samples and len(raw_samples) > 1:
+                    fig, ax = plt.subplots(figsize=(12, 2.5), dpi=100)
+                    
+                    min_val = min(raw_samples)
+                    max_val = max(raw_samples)
+                    x_min = max(MIN_SCORE, min_val - 5)
+                    x_max = min(MAX_SCORE, max_val + 5)
+                    
+                    # Draw confidence interval band
+                    ax.axvspan(mean_val - std_val, mean_val + std_val, alpha=0.2, color=nsv_color, label=f'±1 Std Dev ({std_val:.1f})')
+                    
+                    # Draw min-max range line
+                    ax.hlines(y=0, xmin=min_val, xmax=max_val, colors=nsv_color, linewidth=3, alpha=0.5, label=f'Range: {min_val:.0f}-{max_val:.0f}')
+                    
+                    # Plot sample points with jitter
+                    y_positions = np.random.normal(0, 0.05, len(raw_samples))
+                    ax.scatter(raw_samples, y_positions, s=120, alpha=0.8, color=nsv_color, 
+                              edgecolors='black', linewidth=1.5, zorder=3, label=f'{len(raw_samples)} samples')
+                    
+                    # Plot mean line
+                    ax.axvline(mean_val, color='#3b82f6', linestyle='--', linewidth=2.5, label=f'Mean: {mean_val:.1f}')
+                    
+                    # Formatting
+                    ax.set_xlim(x_min, x_max)
+                    ax.set_ylim(-0.2, 0.2)
+                    ax.set_xlabel('Skor', fontsize=10, fontweight='bold')
+                    ax.set_yticks([])
+                    ax.legend(loc='upper right', fontsize=8, framealpha=0.9)
+                    ax.grid(axis='x', alpha=0.3, linestyle=':')
+                    ax.set_title(f'Distribusi Skor {CRITERIA_LABELS.get(short_key, short_key.upper())}', fontsize=11, fontweight='bold', pad=10)
+                    
+                    plt.tight_layout()
+                    st.pyplot(fig, use_container_width=True)
+                    plt.close(fig)
+    
+    with tab2:
+        # Create summary table
+        table_data = []
+        for short_key in CRITERIA_SHORT:
+            if short_key in per_criteria:
+                data = per_criteria[short_key]
+                raw_samples = data.get("raw_samples", [])
+                table_data.append({
+                    "Kriteria": CRITERIA_LABELS.get(short_key, short_key.upper()),
+                    "Rata-rata": f"{data.get('mean', 0):.1f}",
+                    "Std Dev": f"{data.get('std', 0):.2f}",
+                    "NSV": f"{data.get('nsv', 0):.3f}",
+                    "Status": data.get('status', '-'),
+                    "Min": f"{min(raw_samples) if raw_samples else 0:.0f}",
+                    "Max": f"{max(raw_samples) if raw_samples else 0:.0f}",
+                })
+        
+        if table_data:
+            df_table = pd.DataFrame(table_data)
+            st.dataframe(
+                df_table, 
+                use_container_width=True, 
+                hide_index=True,
+                column_config={
+                    "Kriteria": st.column_config.TextColumn("Kriteria", width="medium"),
+                }
+            )
+    
+    with tab3:
+        # Detailed raw samples with distribution
+        st.markdown("**Distribusi Skor Mentah per Kriteria**")
+        
+        for short_key in CRITERIA_SHORT:
+            if short_key in per_criteria:
+                samples = per_criteria[short_key].get("raw_samples", [])
+                if samples:
+                    sample_counts = Counter(samples)
+                    sample_str = " | ".join([f"{val:.0f} (×{count})" if count > 1 else f"{val:.0f}" 
+                                            for val, count in sorted(sample_counts.items())])
+                    
+                    with st.expander(f"{CRITERIA_LABELS.get(short_key, short_key.upper())} - {len(samples)} samples"):
+                        st.code(sample_str, language="text")
+                        
+                        # Simple distribution bar
+                        unique_vals = sorted(set(samples))
+                        if len(unique_vals) > 1:
+                            counts = [samples.count(v) for v in unique_vals]
+                            fig, ax = plt.subplots(figsize=(8, 3))
+                            bars = ax.bar([str(v) for v in unique_vals], counts, color='#3b82f6', edgecolor='black')
+                            ax.set_xlabel('Skor')
+                            ax.set_ylabel('Frekuensi')
+                            ax.set_title(f'Distribusi {CRITERIA_LABELS.get(short_key, short_key.upper())}')
+                            for bar, count in zip(bars, counts):
+                                ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.1, 
+                                       str(count), ha='center', va='bottom', fontweight='bold')
+                            st.pyplot(fig, use_container_width=True)
+                            plt.close(fig)
+
 
 # ── MinIO Helper ─────────────────────────────────────────────────────────────
 def get_minio_client():
@@ -319,7 +575,6 @@ def list_minio_files(bucket: str) -> list:
 
 
 def list_minio_files_detailed(bucket: str) -> list:
-    """Returns list of dicts with Key, Size, LastModified."""
     client = get_minio_client()
     if not client:
         return []
@@ -392,6 +647,7 @@ def init_db() -> bool:
                     evidence JSONB,
                     ringkasan TEXT,
                     query_mode TEXT,
+                    uncertainty_metrics JSONB,
                     created_at TIMESTAMPTZ DEFAULT NOW()
                 );
             """)
@@ -423,16 +679,18 @@ def save_evaluation(paper_filename, jabatan, result_dict, query_mode) -> bool:
         justification = result_dict.get("justification", {})
         evidence      = result_dict.get("evidence", {})
         ringkasan     = result_dict.get("Ringkasan", "")
+        uncertainty   = result_dict.get("uncertainty_metrics", {})
         with conn.cursor() as cur:
             cur.execute("""
                 INSERT INTO evaluation_results
-                  (paper_filename, jabatan, scores, final_score, justification, evidence, ringkasan, query_mode)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                  (paper_filename, jabatan, scores, final_score, justification, evidence, ringkasan, query_mode, uncertainty_metrics)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
             """, (
                 paper_filename, jabatan,
                 json.dumps(scores), final_score,
                 json.dumps(justification), json.dumps(evidence),
                 ringkasan, query_mode,
+                json.dumps(uncertainty),
             ))
         conn.commit()
         return True
@@ -452,7 +710,7 @@ def get_evaluation_history(jabatan_filter=None, limit=100, score_min=0) -> list:
             if jabatan_filter and jabatan_filter != "Semua":
                 cur.execute("""
                     SELECT id, paper_filename, jabatan, scores, final_score,
-                           justification, evidence, ringkasan, query_mode, created_at
+                           justification, evidence, ringkasan, query_mode, uncertainty_metrics, created_at
                     FROM evaluation_results
                     WHERE jabatan = %s AND final_score >= %s
                     ORDER BY created_at DESC LIMIT %s
@@ -460,14 +718,14 @@ def get_evaluation_history(jabatan_filter=None, limit=100, score_min=0) -> list:
             else:
                 cur.execute("""
                     SELECT id, paper_filename, jabatan, scores, final_score,
-                           justification, evidence, ringkasan, query_mode, created_at
+                           justification, evidence, ringkasan, query_mode, uncertainty_metrics, created_at
                     FROM evaluation_results
                     WHERE final_score >= %s
                     ORDER BY created_at DESC LIMIT %s
                 """, (score_min, limit))
             rows = cur.fetchall()
             cols = ["id", "paper_filename", "jabatan", "scores", "final_score",
-                    "justification", "evidence", "ringkasan", "query_mode", "created_at"]
+                    "justification", "evidence", "ringkasan", "query_mode", "uncertainty_metrics", "created_at"]
             return [dict(zip(cols, row)) for row in rows]
     except Exception as e:
         log.error(f"Get history failed: {e}")
@@ -577,22 +835,163 @@ async def retrieve_assessment_context(rag, selected_jabatan: str, query_mode: st
         return f"Error retrieving context: {str(e)}"
 
 
-async def evaluate_paper_with_context(rag, makalah_text: str, assessment_context: str, tema_text: str, query_mode: str) -> dict:
+async def evaluate_paper_with_uncertainty(rag, makalah_text: str, assessment_context: str, 
+                                         tema_text: str, m_samples: int = M_SAMPLES,
+                                         temperature: float = TEMPERATURE) -> dict:
+    """
+    Evaluate paper with uncertainty sampling (M samples).
+    - UI menampilkan Ringkasan, Justification, Evidence dari LAST sample
+    - Download JSON menyimpan ALL samples
+    """
     evaluation_prompt = PROMPT_PENILAIAN.format(
         assessment_context=assessment_context,
         makalah_text=makalah_text,
         tema_text=tema_text,
     )
     
-    # Memanggil LLM secara langsung tanpa melakukan pencarian database lagi,
-    # karena assessment_context (konteks jabatan) sudah diambil sebelumnya.
-    # Ini akan mempercepat proses penilaian secara signifikan.
-    eval_response = await rag.llm_model_func(evaluation_prompt)
+    log.info(f"🚀 Starting {m_samples} sampling for uncertainty analysis...")
     
-    return parse_response(eval_response)
-
-
-
+    # Create LLM function for sampling
+    async def llm_sample(prompt: str, sample_id: int) -> dict | None:
+        llm = ChatOpenAI(
+            # model=os.getenv("LLM_PENILAI", "anthropic/claude-sonnet-4.6"),
+            model=os.getenv("LLM_PENILAI", "openai/gpt-4o-mini"),
+            api_key=os.getenv("LLM_BINDING_API_KEY"),
+            base_url=os.getenv("LLM_BINDING_HOST"),
+            temperature=temperature,
+        )
+        try:
+            response = await llm.ainvoke([HumanMessage(content=prompt)])
+            content = response.content.strip()
+            
+            # Extract JSON
+            json_match = re.search(r'\{.*\}', content, re.DOTALL)
+            if not json_match:
+                log.warning(f"Sample {sample_id}: No JSON found")
+                return None
+            
+            clean_json = json_match.group(0)
+            clean_json = re.sub(r',\s*([\]}])', r'\1', clean_json)
+            data = json.loads(clean_json)
+            
+            # Extract scores
+            scores = data.get("scores", {})
+            valid_scores = {}
+            for i, key_full in enumerate(CRITERIA_KEYS):
+                short_key = CRITERIA_SHORT[i]
+                val = scores.get(key_full, scores.get(short_key))
+                if isinstance(val, (int, float)) and MIN_SCORE <= val <= MAX_SCORE:
+                    valid_scores[key_full] = float(val)
+            
+            if valid_scores and len(valid_scores) == len(CRITERIA_KEYS):
+                return {
+                    "sample_id": sample_id,
+                    "scores": valid_scores,
+                    "Ringkasan": data.get("Ringkasan", ""),
+                    "justification": data.get("justification", {}),
+                    "evidence": data.get("evidence", {}),
+                    "raw_response": content,  # Save raw response for debugging
+                }
+            else:
+                log.warning(f"Sample {sample_id}: Invalid scores")
+                return None
+        except Exception as e:
+            log.warning(f"Sample {sample_id}: Error - {e}")
+            return None
+    
+    # Run M samples in parallel with retries
+    async def sample_with_retry(prompt, sample_id, attempt=0):
+        result = await llm_sample(prompt, sample_id)
+        if result is None and attempt < SAMPLE_RETRY_LIMIT:
+            log.warning(f"Sample {sample_id}: Retry attempt {attempt + 1}")
+            return await sample_with_retry(prompt, sample_id, attempt + 1)
+        return result
+    
+    tasks = [sample_with_retry(evaluation_prompt, i) for i in range(m_samples)]
+    results = await asyncio.gather(*tasks)
+    
+    # Filter out None results
+    valid_results = [r for r in results if r is not None]
+    log.info(f"✅ Valid samples: {len(valid_results)}/{m_samples}")
+    
+    if not valid_results:
+        # Return empty result if no valid samples
+        return {
+            "scores": {k: 0 for k in CRITERIA_KEYS},
+            "final_score": 0,
+            "uncertainty_metrics": {},
+            "valid_samples": 0,
+            "total_samples": m_samples,
+            "raw_samples": [],
+            "full_samples": [],
+            "Ringkasan": "Gagal mendapatkan sampel yang valid",
+            "justification": {},
+            "evidence": {},
+            "temperature_used": temperature,
+            "m_samples_used": m_samples,
+            "error": "No valid samples"
+        }
+    
+    # Extract scores only for uncertainty calculation
+    scores_list = [r["scores"] for r in valid_results]
+    
+    # Calculate uncertainty metrics
+    metrics = calculate_uncertainty_metrics(scores_list)
+    
+    # Get consensus scores
+    consensus = metrics["consensus_scores"]
+    final_score = compute_final_score(consensus)
+    
+    # --- IMPORTANT: Use LAST sample for UI display ---
+    # Sort by sample_id to ensure we get the last one
+    valid_results_sorted = sorted(valid_results, key=lambda x: x.get("sample_id", 0))
+    last_sample = valid_results_sorted[-1] if valid_results_sorted else None
+    
+    # Also find sample closest to consensus (for reference in JSON)
+    best_sample = None
+    if scores_list and consensus:
+        best_score_diff = float('inf')
+        for sample in valid_results:
+            sample_scores = sample.get("scores", {})
+            diff = sum((sample_scores.get(k, 0) - consensus.get(k, 0)) ** 2 for k in CRITERIA_KEYS)
+            if diff < best_score_diff:
+                best_score_diff = diff
+                best_sample = sample
+    
+    # Prepare result
+    result = {
+        # Consensus scores (for final score calculation)
+        "scores": consensus,
+        "final_score": final_score,
+        
+        # Uncertainty metrics
+        "uncertainty_metrics": metrics["uncertainty"],
+        "valid_samples": len(valid_results),
+        "total_samples": m_samples,
+        
+        # Raw data for download (ALL samples)
+        "raw_samples": scores_list,  # Just scores from all samples
+        "full_samples": valid_results,  # Complete samples with ringkasan, justification, evidence
+        
+        # For UI display: use LAST sample
+        "Ringkasan": last_sample.get("Ringkasan", "") if last_sample else "",
+        "justification": last_sample.get("justification", {}) if last_sample else {},
+        "evidence": last_sample.get("evidence", {}) if last_sample else {},
+        
+        # For reference: sample closest to consensus (stored in JSON only)
+        "best_sample_by_consensus": {
+            "sample_id": best_sample.get("sample_id") if best_sample else None,
+            "scores": best_sample.get("scores") if best_sample else {},
+            "Ringkasan": best_sample.get("Ringkasan", "") if best_sample else "",
+        } if best_sample else None,
+        
+        # Metadata
+        "temperature_used": temperature,
+        "m_samples_used": m_samples,
+        "last_sample_id": last_sample.get("sample_id") if last_sample else None,
+    }
+    
+    return result
 # ══════════════════════════════════════════════════════════════════════════════
 # PAGE CONFIG & CSS
 # ══════════════════════════════════════════════════════════════════════════════
@@ -610,7 +1009,6 @@ st.markdown("""
 
 html, body, [class*="css"] { font-family: 'Plus Jakarta Sans', sans-serif; }
 
-/* Sidebar nav buttons */
 .nav-btn { width: 100%; text-align: left; padding: 12px 16px; margin: 4px 0;
   border-radius: 10px; border: none; background: #1e293b; color: #94a3b8;
   font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
@@ -618,12 +1016,10 @@ html, body, [class*="css"] { font-family: 'Plus Jakarta Sans', sans-serif; }
 .nav-btn.active { background: linear-gradient(135deg, #3b82f6, #6366f1);
   color: white; box-shadow: 0 4px 12px rgba(59,130,246,0.3); }
 
-/* Score card */
 .score-card { border-radius: 16px; padding: 24px; text-align: center; margin-bottom: 24px; }
 .score-num { font-size: 72px; font-weight: 800; line-height: 1; }
 .score-label { font-size: 12px; color: #64748b; letter-spacing: 2px; text-transform: uppercase; }
 
-/* Step indicator */
 .step-row { display: flex; align-items: center; gap: 8px; margin-bottom: 24px; }
 .step-circle { width: 32px; height: 32px; border-radius: 50%; display: flex;
   align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; }
@@ -632,7 +1028,6 @@ html, body, [class*="css"] { font-family: 'Plus Jakarta Sans', sans-serif; }
 .step-idle { background: #1e293b; color: #64748b; border: 1px solid #334155; }
 .step-line { flex: 1; height: 2px; background: #1e293b; }
 
-/* Metric card */
 .metric-box { background: #1e293b; border: 1px solid #334155; border-radius: 12px;
   padding: 16px; text-align: center; }
 
@@ -651,7 +1046,6 @@ def init_session():
         "skj_data": None,
         "db_ok": False,
         "rag_error": None,
-        # Penilaian state
         "eval_jabatan": None,
         "eval_paper_text": None,
         "eval_paper_name": None,
@@ -660,8 +1054,9 @@ def init_session():
         "eval_saved": False,
         "minio_selected_files": [],
         "query_mode": "hybrid",
-        # History state
         "history_data": None,
+        "m_samples": M_SAMPLES,
+        "temperature": TEMPERATURE,
     }
     for k, v in defaults.items():
         if k not in st.session_state:
@@ -669,12 +1064,12 @@ def init_session():
 
 init_session()
 
-# ── Auto-init DB silently
+# Auto-init DB silently
 if not st.session_state.db_ok:
     ok = init_db()
     st.session_state.db_ok = ok
 
-# ── Auto-init RAG silently (via cache_resource)
+# Auto-init RAG silently
 rag_instance = None
 rag_ready = False
 try:
@@ -693,7 +1088,7 @@ with st.sidebar:
     <div style="text-align:center; padding: 16px 0 8px;">
       <div style="font-size:32px;">📋</div>
       <div style="font-size:18px; font-weight:800; color:#e2e8f0;">Penilaian Makalah</div>
-      <div style="font-size:11px; color:#00008B; letter-spacing:1px;">Powered by LightRAG · BPOM</div>
+      <div style="font-size:11px; color:#64748b; letter-spacing:1px;">Powered by LightRAG · BPOM</div>
     </div>
     """, unsafe_allow_html=True)
     st.divider()
@@ -729,11 +1124,24 @@ with st.sidebar:
     qmode = st.selectbox("Query Mode", ["hybrid", "mix", "local", "global", "naive"],
                          index=0, help="Mode query LightRAG")
     st.session_state.query_mode = qmode
+    
+    st.divider()
+    
+    # Uncertainty Sampling Settings
+    st.markdown("### 🎲 Uncertainty Settings")
+    m_samples_val = st.slider("Jumlah Sampel (M)", min_value=3, max_value=15, value=st.session_state.m_samples, step=1,
+                              help="Semakin banyak sampel, semakin akurat estimasi ketidakpastian namun lebih lambat dan mahal")
+    st.session_state.m_samples = m_samples_val
+    
+    temp_val = st.slider("Temperature Sampling", min_value=0.5, max_value=2.0, value=st.session_state.temperature, step=0.1,
+                         help="Temperature tinggi = variasi skor lebih besar (untuk mengukur ketidakpastian)")
+    st.session_state.temperature = temp_val
+    
+    st.caption(f"NSV Threshold: {NSV_THRESHOLD}")
 
     st.divider()
     st.caption(f"LLM: `{os.getenv('LLM_MODEL','?')}`")
     st.caption(f"Embed: `{os.getenv('EMBEDDING_MODEL','?')}`")
-
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -745,9 +1153,7 @@ def render_score_card(result: dict):
     final     = result.get("final_score", compute_final_score(scores))
     justif    = result.get("justification", {})
     evidence  = result.get("evidence", {})
-    ringkasan = result.get("Ringkasan", result.get("sneek_peek", ""))
-    kelebihan = result.get("kelebihan_utama", [])
-    kekurangan = result.get("kekurangan_utama", [])
+    ringkasan = result.get("Ringkasan", "")
     color     = score_color(final)
 
     st.markdown(f"""
@@ -763,16 +1169,12 @@ def render_score_card(result: dict):
         st.markdown("**📄 Ringkasan Makalah**")
         st.info(ringkasan)
 
-    if kelebihan or kekurangan:
-        c_kel, c_kek = st.columns(2)
-        with c_kel:
-            st.markdown("##### ✅ Kelebihan Utama")
-            for k in kelebihan:
-                st.markdown(f"- {k}")
-        with c_kek:
-            st.markdown("##### ⚠️ Kekurangan Utama")
-            for k in kekurangan:
-                st.markdown(f"- {k}")
+    # Display uncertainty metrics
+    if result.get("uncertainty_metrics"):
+        st.divider()
+        st.markdown("### 🎲 Analisis Ketidakpastian Skor (M-Sampling)")
+        st.caption(f"Berdasarkan {result.get('valid_samples', 0)} sampel valid dari {st.session_state.m_samples} total sampling dengan temperature={st.session_state.temperature}")
+        render_uncertainty_visualization(result.get("uncertainty_metrics"))
         st.divider()
 
     st.markdown("**Rincian Skor per Kriteria**")
@@ -814,7 +1216,7 @@ def page_penilaian():
     skj_data    = st.session_state.skj_data or {}
     jabatan_list = list(skj_data.keys())
 
-    # ── Step 1: Pilih Jabatan & Tema ─────────────────────────────────────────────────
+    # Step 1: Pilih Jabatan & Tema
     with st.container(border=True):
         st.markdown("""<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
           <div style="background:#3b82f6;color:white;width:28px;height:28px;border-radius:50%;
@@ -843,7 +1245,7 @@ def page_penilaian():
 
     st.divider()
 
-    # ── Step 2: Pilih / Upload Makalah ───────────────────────────────────────
+    # Step 2: Pilih / Upload Makalah
     with st.container(border=True):
         st.markdown("""<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
           <div style="background:#3b82f6;color:white;width:28px;height:28px;border-radius:50%;
@@ -853,13 +1255,11 @@ def page_penilaian():
 
         src_tab1, src_tab2 = st.tabs(["📂 Pilih dari MinIO", "⬆️ Upload File Baru"])
 
-        loaded_papers = {}  # {filename: text}
-
         with src_tab1:
             minio_files_detail = list_minio_files_detailed(BUCKET_MAKALAH)
             if minio_files_detail:
                 df_minio = pd.DataFrame(minio_files_detail)
-                df_minio.insert(0, "Pilih", False)  # Kolom checkbox
+                df_minio.insert(0, "Pilih", False)
                 
                 st.markdown(f"**{len(minio_files_detail)} file tersedia di MinIO (bucket: `{BUCKET_MAKALAH}`)**")
                 st.markdown("Centang file yang ingin dinilai pada tabel di bawah:")
@@ -910,7 +1310,6 @@ def page_penilaian():
                         txt = extract_text_from_uploaded(uf)
                         if txt.strip():
                             st.session_state.setdefault("loaded_papers", {})[uf.name] = txt
-                            # Also save to MinIO
                             uf.seek(0)
                             upload_to_minio(BUCKET_MAKALAH, uf.name, uf.read())
                             st.toast(f"✅ Berhasil unggah: {uf.name}")
@@ -932,7 +1331,7 @@ def page_penilaian():
 
     st.divider()
 
-    # ── Step 3: Mulai Penilaian ───────────────────────────────────────────────
+    # Step 3: Mulai Penilaian
     with st.container(border=True):
         st.markdown("""<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
           <div style="background:#3b82f6;color:white;width:28px;height:28px;border-radius:50%;
@@ -950,14 +1349,14 @@ def page_penilaian():
             elif not loaded_papers:
                 st.info("ℹ️ Selesaikan Langkah 2: Load minimal 1 makalah terlebih dahulu.")
         else:
-            st.info(f"Siap menilai **{len(loaded_papers)}** makalah untuk jabatan **{sel_jabatan}** dengan tema **{sel_tema}** (mode: `{qmode}`)")
+            st.info(f"Siap menilai **{len(loaded_papers)}** makalah untuk jabatan **{sel_jabatan}** dengan tema **{sel_tema}** (mode: `{qmode}`, M-Samples: {st.session_state.m_samples}, Temperature: {st.session_state.temperature})")
 
-        eval_btn = st.button("🚀 Mulai Penilaian Otomatis", type="primary",
+        eval_btn = st.button("🚀 Mulai Penilaian Otomatis (M-Sampling)", type="primary",
                              disabled=not can_eval, use_container_width=True)
 
         if eval_btn:
             results = {}
-            with st.status("Memproses Penilaian...", expanded=True) as status_box:
+            with st.status("Memproses Penilaian dengan Uncertainty Sampling...", expanded=True) as status_box:
                 try:
                     # Stage 1: retrieve context once
                     st.write(f"⏳ Mengambil konteks jabatan '{sel_jabatan}'...")
@@ -968,16 +1367,18 @@ def page_penilaian():
                     st.write(f"⏳ Mengunduh file ketentuan tema: {sel_tema}...")
                     tema_data = download_from_minio(BUCKET_TEMA, sel_tema)
                     tema_text = extract_text_from_bytes(tema_data, sel_tema) if tema_data else "Tidak ada teks tema."
-                    # Batasi panjang teks tema jika terlalu panjang agar tidak merusak prompt (opsional, batas 5000 karakter)
                     if len(tema_text) > 5000:
                         tema_text = tema_text[:5000] + "\n\n... (teks dipotong karena terlalu panjang)"
 
-                    # Stage 2: evaluate each paper
+                    # Stage 2: evaluate each paper with M-Sampling
                     total = len(loaded_papers)
                     for idx, (fname, txt) in enumerate(loaded_papers.items(), 1):
-                        st.write(f"⏳ Menilai: {fname} ({idx}/{total})...")
-                        result = run_async(evaluate_paper_with_context(rag_instance, txt, ctx, tema_text, qmode))
-                        result["final_score"] = compute_final_score(result.get("scores", {}))
+                        st.write(f"⏳ Menilai dengan {st.session_state.m_samples} sampel: {fname} ({idx}/{total})...")
+                        result = run_async(evaluate_paper_with_uncertainty(
+                            rag_instance, txt, ctx, tema_text, 
+                            m_samples=st.session_state.m_samples,
+                            temperature=st.session_state.temperature
+                        ))
                         results[fname] = result
 
                         # Auto-save to DB & MinIO
@@ -989,13 +1390,13 @@ def page_penilaian():
                                         f"eval_{ts}_{Path(fname).stem}.json",
                                         result_json.encode("utf-8"))
 
-                    status_box.update(label=f"✅ Penilaian selesai! {len(results)} makalah telah dinilai.", state="complete", expanded=False)
+                    status_box.update(label=f"✅ Penilaian selesai! {len(results)} makalah telah dinilai dengan {st.session_state.m_samples} sampel masing-masing.", state="complete", expanded=False)
                     st.session_state["eval_results_batch"] = results
 
                 except Exception as e:
                     status_box.update(label=f"❌ Error: {e}", state="error")
 
-    # ── Step 4: Tampilkan Hasil ───────────────────────────────────────────────
+    # Step 4: Tampilkan Hasil
     batch = st.session_state.get("eval_results_batch", {})
     if batch:
         st.divider()
@@ -1005,6 +1406,8 @@ def page_penilaian():
         rows = []
         for fn, r in batch.items():
             sc = r.get("scores", {})
+            unc = r.get("uncertainty_metrics", {})
+            wau = unc.get("weighted_aggregate", 0)
             rows.append({
                 "Makalah": fn,
                 "Judul": sc.get("n1_kesesuaian_judul", None),
@@ -1013,6 +1416,8 @@ def page_penilaian():
                 "Analisis": sc.get("n4_ketajaman_analisis", None),
                 "Bahasa": sc.get("n5_penggunaan_bahasa", None),
                 "Nilai Akhir": r.get("final_score", 0),
+                "WAU": wau,
+                "Status": unc.get("overall_status", "-")[:20],
             })
         df = pd.DataFrame(rows)
         st.dataframe(df, use_container_width=True, hide_index=True)
@@ -1035,10 +1440,37 @@ def page_penilaian():
                     st.divider()
                     col_dl, col_js = st.columns(2)
                     with col_dl:
+                            # Prepare full export with ALL samples
+                        export_data = {
+                            "metadata": {
+                                "paper_filename": fn,
+                                "jabatan": sel_jabatan,
+                                "query_mode": qmode,
+                                "evaluation_date": datetime.datetime.now().isoformat(),
+                                "temperature_used": r.get("temperature_used", st.session_state.temperature),
+                                "m_samples": r.get("total_samples", st.session_state.m_samples),
+                                "valid_samples": r.get("valid_samples", 0),
+                            },
+                            "consensus_results": {
+                                "final_score": r.get("final_score"),
+                                "scores": r.get("scores"),
+                                "uncertainty_metrics": r.get("uncertainty_metrics"),
+                            },
+                            "ui_display_sample": {
+                                "sample_id": r.get("last_sample_id"),
+                                "Ringkasan": r.get("Ringkasan"),
+                                "justification": r.get("justification"),
+                                "evidence": r.get("evidence"),
+                            },
+                            "all_samples": r.get("full_samples", []),  # ALL M samples with full details
+                            "scores_only": r.get("raw_samples", []),   # Just scores from all samples
+                            "best_sample_by_consensus": r.get("best_sample_by_consensus"),
+                        }
+
                         st.download_button(
-                            "⬇️ Download JSON",
-                            data=json.dumps(r, ensure_ascii=False, indent=2),
-                            file_name=f"penilaian_{Path(fn).stem}.json",
+                            "⬇️ Download JSON (Lengkap - Semua Sample)",
+                            data=json.dumps(export_data, ensure_ascii=False, indent=2),
+                            file_name=f"penilaian_{Path(fn).stem}_all_{st.session_state.m_samples}samples.json",
                             mime="application/json",
                             use_container_width=True,
                             key=f"dl_batch_{fn}",
@@ -1051,7 +1483,6 @@ def page_penilaian():
             for k in ["loaded_papers", "eval_results_batch", "eval_context"]:
                 st.session_state.pop(k, None)
             st.rerun()
-
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -1163,6 +1594,10 @@ def page_riwayat():
             if isinstance(justif, str):
                 try: justif = json.loads(justif)
                 except: justif = {}
+            uncertainty = h.get("uncertainty_metrics") or {}
+            if isinstance(uncertainty, str):
+                try: uncertainty = json.loads(uncertainty)
+                except: uncertainty = {}
 
             # Score card compact
             st.markdown(f"""
@@ -1171,6 +1606,20 @@ def page_riwayat():
               <div style="font-size:11px;color:#94a3b8;letter-spacing:2px;">NILAI AKHIR</div>
               <div style="font-size:48px;font-weight:800;color:{color};line-height:1.1;">{final:.1f}</div>
             </div>""", unsafe_allow_html=True)
+
+            # Show uncertainty if available
+            if uncertainty:
+                wau = uncertainty.get("weighted_aggregate", 0)
+                status = uncertainty.get("overall_status", "")
+                st.markdown(f"""
+                <div style="background:#1e293b;border-radius:12px;padding:12px;margin-bottom:16px;">
+                  <div style="display:flex;justify-content:space-between;">
+                    <span style="font-size:12px;color:#94a3b8;">WAU (Ketidakpastian):</span>
+                    <span style="font-size:16px;font-weight:700;color:{"#22c55e" if "YAKIN" in status else "#f97316"}">{wau:.4f}</span>
+                  </div>
+                  <div style="font-size:11px;color:#64748b;">{status}</div>
+                </div>
+                """, unsafe_allow_html=True)
 
             ringkasan = h.get("ringkasan", "")
             if ringkasan:
@@ -1193,6 +1642,7 @@ def page_riwayat():
                 "evidence": h.get("evidence") or {},
                 "ringkasan": h.get("ringkasan", ""),
                 "query_mode": h.get("query_mode", ""),
+                "uncertainty_metrics": uncertainty,
                 "created_at": str(h["created_at"]),
             }
             st.download_button(
@@ -1213,7 +1663,7 @@ def page_settings():
 
     dtab1, dtab2 = st.tabs(["📥 Ingestion Dokumen Knowledge Base", "🔧 Konfigurasi Sistem"])
 
-    # ── Tab Ingestion ─────────────────────────────────────────────────────────
+    # Tab Ingestion
     with dtab1:
         st.markdown("Upload dokumen SKJ, peraturan, atau renstra untuk dimasukkan ke LightRAG knowledge base.")
 
@@ -1319,7 +1769,7 @@ def page_settings():
                             ))
                         st.success(f"✅ {len(docs)} dokumen berhasil diingest dari `{folder_path}`")
 
-    # ── Tab Settings ──────────────────────────────────────────────────────────
+    # Tab Settings
     with dtab2:
         col_a, col_b = st.columns(2)
 
@@ -1331,6 +1781,8 @@ def page_settings():
             st.code(os.getenv("LLM_BINDING", "(tidak ditemukan)"))
             st.markdown("**LLM Host**")
             st.code(os.getenv("LLM_BINDING_HOST", "(tidak ditemukan)"))
+            st.markdown("**LLM Penilai**")
+            st.code(os.getenv("LLM_PENILAI", "(tidak ditemukan)"))
             st.markdown("**Embedding Model**")
             st.code(os.getenv("EMBEDDING_MODEL", "(tidak ditemukan)"))
             st.markdown("**Embedding Dim**")
@@ -1365,6 +1817,13 @@ def page_settings():
                 st.warning(f"⚠️ Tidak terhubung ({MINIO_ENDPOINT})")
 
             st.divider()
+            st.markdown("### 🎲 Uncertainty Configuration")
+            st.markdown(f"**Default M-Samples:** {M_SAMPLES}")
+            st.markdown(f"**Default Temperature:** {TEMPERATURE}")
+            st.markdown(f"**NSV Threshold:** {NSV_THRESHOLD}")
+            st.markdown(f"**Score Range:** {MIN_SCORE} - {MAX_SCORE}")
+
+            st.divider()
             st.markdown("**Storage LightRAG**")
             st.code(f"Working Dir: {WORKING_DIR}")
             st.code(f"KV: {os.getenv('LIGHTRAG_KV_STORAGE','?')}")
@@ -1384,7 +1843,3 @@ elif page == "📊 Riwayat Penilaian":
     page_riwayat()
 elif page == "⚙️ Docs & Settings":
     page_settings()
-
-
-
-

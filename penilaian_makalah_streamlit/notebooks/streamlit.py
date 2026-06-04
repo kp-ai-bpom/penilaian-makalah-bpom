@@ -29,8 +29,8 @@ log = logging.getLogger("penilaian_makalah")
 # ── Constants ─────────────────────────────────────────────────────────────────
 WORKING_DIR      = os.getenv("LIGHTRAG_WORKING_DIR", "/rag_storage")
 MINIO_ENDPOINT   = os.getenv("MINIO_ENDPOINT", "http://localhost:9000")
-MINIO_ACCESS_KEY = os.getenv("MINIO_ACCESS_KEY", "")
-MINIO_SECRET_KEY = os.getenv("MINIO_SECRET_KEY", "")
+MINIO_ACCESS_KEY = os.getenv("MINIO_ACCESS_KEY", "admin")
+MINIO_SECRET_KEY = os.getenv("MINIO_SECRET_KEY", "password123")
 BUCKET_MAKALAH   = os.getenv("BUCKET_MAKALAH", "makalah")
 BUCKET_KNOWLEDGE = os.getenv("BUCKET_KNOWLEDGE", "knowledge")
 BUCKET_RIWAYAT   = os.getenv("BUCKET_RIWAYAT", "riwayat-penilaian-makalah")
@@ -40,7 +40,7 @@ PG_HOST  = os.getenv("POSTGRES_HOST", "localhost")
 PG_PORT  = os.getenv("POSTGRES_PORT", "5432")
 PG_DB    = os.getenv("POSTGRES_DATABASE", "lightrag")
 PG_USER  = os.getenv("POSTGRES_USER", "postgres")
-PG_PASS  = os.getenv("POSTGRES_PASSWORD", "")
+PG_PASS  = os.getenv("POSTGRES_PASSWORD", "light_postgres_root")
 
 SCORE_LABELS = {
     "n1_kesesuaian_judul":   "Kesesuaian Judul dengan Tema",
@@ -56,6 +56,21 @@ SCORE_WEIGHTS = {
     "n4_ketajaman_analisis": 2,
     "n5_penggunaan_bahasa":  1,
 }
+
+# ── Uncertainty-Aware Evaluation Constants ────────────────────────────────────
+MIN_SCORE           = 40
+MAX_SCORE           = 100
+SCORE_RANGE         = MAX_SCORE - MIN_SCORE
+M_SAMPLES           = 5              # Number of evaluation samples
+TEMPERATURE         = 1.0            # Fixed temperature for sampling
+NSV_THRESHOLD       = 0.1            # Threshold for Normalized Score Variance
+SAMPLE_RETRY_LIMIT  = 2              # Max retries for failed samples
+SAMPLE_TIMEOUT_SEC  = 60             # Timeout per sample (seconds)
+
+# Criteria keys for uncertainty metrics
+CRITERIA_KEYS = ["n1_kesesuaian_judul", "n2_kesesuaian_isi", "n3_sistematika", 
+                 "n4_ketajaman_analisis", "n5_penggunaan_bahasa"]
+CRITERIA_SHORT = ["n1", "n2", "n3", "n4", "n5"]
 
 # ── Prompts ───────────────────────────────────────────────────────────────────
 QUERY_KEYWORDS = """
@@ -275,6 +290,175 @@ def parse_response(raw: str) -> dict:
     return json.loads(raw)
 
 
+# ── Uncertainty-Aware Evaluation Helpers ──────────────────────────────────────
+import numpy as np
+
+async def get_sample_score_async(rag, prompt_text: str, attempt: int = 1) -> dict | None:
+    """
+    Fungsi mengambil sampel skor dengan retry logic untuk handle JSON parse failures.
+    Returns: dict dengan keys n1-n5 (scores) atau None jika gagal.
+    """
+    try:
+        response = await rag.llm_model_func(prompt_text)
+        content = response.strip() if isinstance(response, str) else response
+        
+        # Extract JSON dari response (ignore markdown/backticks)
+        json_match = re.search(r'\{.*\}', str(content), re.DOTALL)
+        if not json_match:
+            if attempt < SAMPLE_RETRY_LIMIT:
+                log.warning(f"JSON tidak ditemukan di sample attempt {attempt}, retry...")
+                return await get_sample_score_async(rag, prompt_text, attempt + 1)
+            return None
+            
+        clean_json_string = json_match.group(0)
+        data = json.loads(clean_json_string)
+        
+        # Ekstraksi dan validasi scores
+        scores = data.get("scores", {})
+        valid_scores = {}
+        for k in CRITERIA_KEYS:
+            v = scores.get(k)
+            if isinstance(v, (int, float)) and MIN_SCORE <= v <= MAX_SCORE:
+                valid_scores[k] = float(v)
+        
+        # Jika ada score yang valid, return hasil
+        if valid_scores and len(valid_scores) == len(CRITERIA_KEYS):
+            return valid_scores
+        else:
+            if attempt < SAMPLE_RETRY_LIMIT:
+                log.warning(f"Scores tidak valid di attempt {attempt}, retry...")
+                return await get_sample_score_async(rag, prompt_text, attempt + 1)
+            return None
+            
+    except Exception as e:
+        if attempt < SAMPLE_RETRY_LIMIT:
+            log.warning(f"Error di sample attempt {attempt}: {e}, retry...")
+            return await get_sample_score_async(rag, prompt_text, attempt + 1)
+        return None
+
+
+def calculate_uncertainty_metrics(scores_list: list) -> dict:
+    """
+    Menghitung NSV, WAU, dan metrik uncertainty lainnya dari M samples.
+    Input: List of dicts {n1, n2, n3, n4, n5}
+    Output: dict dengan consensus_scores, uncertainty metrics
+    """
+    # Initialize distributions
+    score_distributions = {k: [] for k in CRITERIA_SHORT}
+    
+    # Collect valid scores
+    for res in scores_list:
+        if not res:
+            continue
+        for i, key_short in enumerate(CRITERIA_SHORT):
+            key_full = CRITERIA_KEYS[i]
+            if key_full in res:
+                score_distributions[key_short].append(res[key_full])
+    
+    # Calculate metrics
+    evaluation_results = {
+        "consensus_scores": {},
+        "uncertainty": {"per_criteria": {}},
+        "valid_samples": len([s for s in scores_list if s])
+    }
+    
+    nsv_dict = {}
+    
+    for i, (criteria_short, criteria_full) in enumerate(zip(CRITERIA_SHORT, CRITERIA_KEYS)):
+        values = score_distributions[criteria_short]
+        
+        if not values:
+            evaluation_results["consensus_scores"][criteria_full] = 0
+            evaluation_results["uncertainty"]["per_criteria"][criteria_short] = {
+                "mean": 0,
+                "std": 0,
+                "nsv": 0,
+                "status": "❌ NO DATA",
+                "raw_samples": []
+            }
+            nsv_dict[criteria_short] = 0
+            continue
+        
+        mean_score = np.mean(values)
+        std_dev = np.std(values, ddof=1) if len(values) > 1 else 0.0
+        nsv = std_dev / SCORE_RANGE
+        nsv_dict[criteria_short] = nsv
+        
+        status = "⚠️ PERLU REVIEW" if nsv > NSV_THRESHOLD else "✅ YAKIN"
+        
+        evaluation_results["consensus_scores"][criteria_full] = round(mean_score, 2)
+        evaluation_results["uncertainty"]["per_criteria"][criteria_short] = {
+            "mean": round(mean_score, 2),
+            "std": round(std_dev, 2),
+            "nsv": round(nsv, 3),
+            "status": status,
+            "raw_samples": [round(v, 1) for v in values]
+        }
+    
+    # Calculate WAU (Weighted Aggregate Uncertainty)
+    # Weight: n4 dikalikan 2, total pembagi = 6
+    if all(k in nsv_dict for k in CRITERIA_SHORT):
+        wau = (
+            nsv_dict["n1"] + 
+            nsv_dict["n2"] + 
+            nsv_dict["n3"] + 
+            (2 * nsv_dict["n4"]) + 
+            nsv_dict["n5"]
+        ) / 6
+        
+        evaluation_results["uncertainty"]["weighted_aggregate"] = round(wau, 3)
+        evaluation_results["uncertainty"]["overall_status"] = (
+            "⚠️ BUTUH REVIEW HUMAN" if wau > NSV_THRESHOLD else "✅ YAKIN (Konsisten)"
+        )
+        
+        # Find most uncertain criteria
+        if nsv_dict:
+            evaluation_results["uncertainty"]["most_uncertain_criteria"] = max(nsv_dict, key=nsv_dict.get)
+    
+    return evaluation_results
+
+
+async def evaluate_paper_with_uncertainty(rag, makalah_text: str, assessment_context: str, 
+                                          tema_text: str, m_samples: int = M_SAMPLES) -> dict:
+    """
+    Menilai makalah dengan M samples untuk uncertainty-aware scoring.
+    Returns dict dengan consensus_scores, uncertainty metrics, raw_samples
+    """
+    # Format evaluation prompt
+    evaluation_prompt = PROMPT_PENILAIAN.format(
+        assessment_context=assessment_context,
+        makalah_text=makalah_text,
+        tema_text=tema_text,
+    )
+    
+    # Run M samples in parallel
+    log.info(f"🚀 Mulai {m_samples} sampling untuk ketidakpastian skor...")
+    tasks = [get_sample_score_async(rag, evaluation_prompt) for _ in range(m_samples)]
+    results = await asyncio.gather(*tasks)
+    
+    # Calculate metrics dari results
+    metrics = calculate_uncertainty_metrics(results)
+    
+    # Compute final score from consensus scores
+    consensus = metrics["consensus_scores"]
+    final_score = compute_final_score(consensus)
+    
+    # Combine dengan basic evaluation structure
+    result = {
+        "scores": consensus,
+        "final_score": final_score,
+        "uncertainty_metrics": metrics["uncertainty"],
+        "valid_samples": metrics["valid_samples"],
+        "raw_samples": results,  # Store all M samples for audit trail
+        # Placeholder fields (akan diisi oleh LLM jika diperlukan)
+        "Ringkasan": "",
+        "justification": {},
+        "evidence": {},
+    }
+    
+    return result
+
+
 def score_color(score: float) -> str:
     if score >= 85:   return "#22c55e"
     elif score >= 70: return "#f59e0b"
@@ -392,6 +576,9 @@ def init_db() -> bool:
                     evidence JSONB,
                     ringkasan TEXT,
                     query_mode TEXT,
+                    raw_samples JSONB DEFAULT NULL,
+                    uncertainty_metrics JSONB DEFAULT NULL,
+                    valid_samples INT DEFAULT NULL,
                     created_at TIMESTAMPTZ DEFAULT NOW()
                 );
             """)
@@ -423,16 +610,24 @@ def save_evaluation(paper_filename, jabatan, result_dict, query_mode) -> bool:
         justification = result_dict.get("justification", {})
         evidence      = result_dict.get("evidence", {})
         ringkasan     = result_dict.get("Ringkasan", "")
+        raw_samples   = result_dict.get("raw_samples", None)
+        uncertainty_metrics = result_dict.get("uncertainty_metrics", None)
+        valid_samples = result_dict.get("valid_samples", None)
+        
         with conn.cursor() as cur:
             cur.execute("""
                 INSERT INTO evaluation_results
-                  (paper_filename, jabatan, scores, final_score, justification, evidence, ringkasan, query_mode)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                  (paper_filename, jabatan, scores, final_score, justification, evidence, 
+                   ringkasan, query_mode, raw_samples, uncertainty_metrics, valid_samples)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """, (
                 paper_filename, jabatan,
                 json.dumps(scores), final_score,
                 json.dumps(justification), json.dumps(evidence),
                 ringkasan, query_mode,
+                json.dumps(raw_samples) if raw_samples else None,
+                json.dumps(uncertainty_metrics) if uncertainty_metrics else None,
+                valid_samples,
             ))
         conn.commit()
         return True
@@ -452,7 +647,8 @@ def get_evaluation_history(jabatan_filter=None, limit=100, score_min=0) -> list:
             if jabatan_filter and jabatan_filter != "Semua":
                 cur.execute("""
                     SELECT id, paper_filename, jabatan, scores, final_score,
-                           justification, evidence, ringkasan, query_mode, created_at
+                           justification, evidence, ringkasan, query_mode, 
+                           raw_samples, uncertainty_metrics, valid_samples, created_at
                     FROM evaluation_results
                     WHERE jabatan = %s AND final_score >= %s
                     ORDER BY created_at DESC LIMIT %s
@@ -460,14 +656,16 @@ def get_evaluation_history(jabatan_filter=None, limit=100, score_min=0) -> list:
             else:
                 cur.execute("""
                     SELECT id, paper_filename, jabatan, scores, final_score,
-                           justification, evidence, ringkasan, query_mode, created_at
+                           justification, evidence, ringkasan, query_mode,
+                           raw_samples, uncertainty_metrics, valid_samples, created_at
                     FROM evaluation_results
                     WHERE final_score >= %s
                     ORDER BY created_at DESC LIMIT %s
                 """, (score_min, limit))
             rows = cur.fetchall()
             cols = ["id", "paper_filename", "jabatan", "scores", "final_score",
-                    "justification", "evidence", "ringkasan", "query_mode", "created_at"]
+                    "justification", "evidence", "ringkasan", "query_mode",
+                    "raw_samples", "uncertainty_metrics", "valid_samples", "created_at"]
             return [dict(zip(cols, row)) for row in rows]
     except Exception as e:
         log.error(f"Get history failed: {e}")
@@ -660,6 +858,9 @@ def init_session():
         "eval_saved": False,
         "minio_selected_files": [],
         "query_mode": "hybrid",
+        # Uncertainty state
+        "m_samples": M_SAMPLES,
+        "eval_uncertainty_mode": True,
         # History state
         "history_data": None,
     }
@@ -731,6 +932,25 @@ with st.sidebar:
     st.session_state.query_mode = qmode
 
     st.divider()
+    
+    # Uncertainty-aware evaluation config
+    st.markdown("### 🎲 Uncertainty-Aware Config")
+    uncertainty_enabled = st.checkbox("Aktifkan Multi-Sample Evaluation", 
+                                      value=st.session_state.get("eval_uncertainty_mode", True),
+                                      help="Evaluasi makalah dengan M samples untuk analisis ketidakpastian")
+    st.session_state.eval_uncertainty_mode = uncertainty_enabled
+    
+    if uncertainty_enabled:
+        m_val = st.slider("M Samples", min_value=3, max_value=10, 
+                         value=st.session_state.get("m_samples", M_SAMPLES),
+                         help="Jumlah evaluasi sampling (lebih tinggi = lebih akurat tapi lebih banyak token)")
+        st.session_state.m_samples = m_val
+        st.caption(f"NSV Threshold: {NSV_THRESHOLD} (WAU mode: weighted)")
+    else:
+        st.caption("Mode single evaluation (standard)")
+        st.session_state.m_samples = 1
+
+    st.divider()
     st.caption(f"LLM: `{os.getenv('LLM_MODEL','?')}`")
     st.caption(f"Embed: `{os.getenv('EMBEDDING_MODEL','?')}`")
 
@@ -797,6 +1017,129 @@ def render_score_card(result: dict):
                     st.markdown(f"**📝 Justifikasi:**\n{j}")
                 if e:
                     st.markdown(f"**🔎 Bukti:**\n_{e}_")
+
+
+def render_uncertainty_metrics(result: dict):
+    """Render uncertainty analysis visualization with per-criteria distribution charts"""
+    import matplotlib.pyplot as plt
+    from collections import Counter
+    
+    uncertainty = result.get("uncertainty_metrics")
+    if not uncertainty:
+        return
+    
+    per_criteria = uncertainty.get("per_criteria", {})
+    wau = uncertainty.get("weighted_aggregate")
+    overall_status = uncertainty.get("overall_status", "")
+    most_uncertain = uncertainty.get("most_uncertain_criteria", "")
+    
+    # Header card
+    wau_color = "#22c55e" if "YAKIN" in overall_status else "#f97316"
+    st.markdown(f"""
+    <div style="background:linear-gradient(135deg,{wau_color}22,{wau_color}11);
+      border:2px solid {wau_color};border-radius:12px;padding:16px;text-align:center;margin-bottom:16px;">
+      <div style="font-size:11px;color:#94a3b8;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;">
+        Weighted Aggregate Uncertainty (WAU)
+      </div>
+      <div style="font-size:36px;font-weight:800;color:{wau_color};line-height:1;">
+        {wau if wau is not None else 'N/A'}
+      </div>
+      <div style="font-size:12px;color:#64748b;margin-top:4px;">{overall_status}</div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Uncertainty metrics table
+    st.markdown("**📊 Ringkasan Ketidakpastian per Kriteria**")
+    unc_rows = []
+    for i, short_key in enumerate(CRITERIA_SHORT):
+        if short_key in per_criteria:
+            data = per_criteria[short_key]
+            unc_rows.append({
+                "Kriteria": short_key.upper(),
+                "Mean": f"{data.get('mean', 0):.1f}",
+                "Std Dev": f"{data.get('std', 0):.2f}",
+                "NSV": f"{data.get('nsv', 0):.3f}",
+                "Status": data.get("status", "—")
+            })
+    
+    if unc_rows:
+        df_unc = pd.DataFrame(unc_rows)
+        st.dataframe(df_unc, use_container_width=True, hide_index=True)
+    
+    # Per-criteria visualizations
+    st.markdown("**📈 Distribusi Sampel per Kriteria**")
+    
+    # Create tabs for each criteria
+    tab_cols = st.columns(len(CRITERIA_SHORT))
+    
+    for tab_idx, short_key in enumerate(CRITERIA_SHORT):
+        if short_key in per_criteria:
+            with tab_cols[tab_idx]:
+                data = per_criteria[short_key]
+                raw_samples = data.get("raw_samples", [])
+                mean_val = data.get("mean", 0)
+                std_val = data.get("std", 0)
+                nsv_val = data.get("nsv", 0)
+                status = data.get("status", "")
+                
+                if raw_samples and len(raw_samples) > 0:
+                    # Create histogram visualization
+                    fig, ax = plt.subplots(figsize=(6, 3.5))
+                    
+                    # Count occurrences
+                    sample_counts = Counter(raw_samples)
+                    sorted_scores = sorted(sample_counts.keys())
+                    counts = [sample_counts[s] for s in sorted_scores]
+                    
+                    # Create bar chart
+                    colors = ['#22c55e' if nsv_val <= 0.1 else '#f97316' for _ in sorted_scores]
+                    bars = ax.bar(sorted_scores, counts, color=colors, alpha=0.7, edgecolor='black', linewidth=1.5)
+                    
+                    # Add mean line
+                    ax.axvline(mean_val, color='#3b82f6', linestyle='--', linewidth=2.5, label=f'Mean: {mean_val:.1f}')
+                    
+                    # Add range shading
+                    min_val = min(raw_samples)
+                    max_val = max(raw_samples)
+                    ax.axvspan(min_val - 0.5, max_val + 0.5, alpha=0.1, color='gray', label=f'Range: {min_val}-{max_val}')
+                    
+                    # Labels and formatting
+                    ax.set_xlabel('Skor', fontsize=10, fontweight='bold')
+                    ax.set_ylabel('Jumlah', fontsize=10, fontweight='bold')
+                    ax.set_title(f'{short_key.upper()}\n{status}', fontsize=11, fontweight='bold', pad=10)
+                    ax.set_xticks(sorted_scores)
+                    ax.legend(fontsize=8, loc='upper right')
+                    ax.grid(axis='y', alpha=0.3, linestyle=':')
+                    ax.set_ylim(0, max(counts) + 0.5)
+                    
+                    plt.tight_layout()
+                    st.pyplot(fig, use_container_width=True)
+                    
+                    # Statistics row
+                    col1, col2, col3, col4 = st.columns(4)
+                    with col1:
+                        st.metric("Min", f"{min_val:.0f}", delta=None)
+                    with col2:
+                        st.metric("Mean", f"{mean_val:.1f}", delta=None)
+                    with col3:
+                        st.metric("Max", f"{max_val:.0f}", delta=None)
+                    with col4:
+                        st.metric("Std Dev", f"{std_val:.2f}", delta=None)
+    
+    # Raw samples detail (collapsible)
+    with st.expander("🔍 Detail Nilai Sampel Mentah"):
+        for short_key in CRITERIA_SHORT:
+            if short_key in per_criteria:
+                samples = per_criteria[short_key].get("raw_samples", [])
+                if samples:
+                    # Show formatted list with counts
+                    sample_counts = Counter(samples)
+                    formatted = ", ".join([f"{val}×{count}" if count > 1 else f"{val}" 
+                                          for val, count in sorted(sample_counts.items())])
+                    st.markdown(f"**{short_key.upper()}** {len(samples)} sampel: `{formatted}`")
+    
+    if most_uncertain:
+        st.info(f"⚠️ Kriteria paling tidak pasti: **{most_uncertain.upper()}** (NSV tertinggi)")
 
 
 def page_penilaian():
@@ -957,6 +1300,9 @@ def page_penilaian():
 
         if eval_btn:
             results = {}
+            uncertainty_mode = st.session_state.get("eval_uncertainty_mode", True)
+            m_samples_to_use = st.session_state.get("m_samples", M_SAMPLES) if uncertainty_mode else 1
+            
             with st.status("Memproses Penilaian...", expanded=True) as status_box:
                 try:
                     # Stage 1: retrieve context once
@@ -975,9 +1321,16 @@ def page_penilaian():
                     # Stage 2: evaluate each paper
                     total = len(loaded_papers)
                     for idx, (fname, txt) in enumerate(loaded_papers.items(), 1):
-                        st.write(f"⏳ Menilai: {fname} ({idx}/{total})...")
-                        result = run_async(evaluate_paper_with_context(rag_instance, txt, ctx, tema_text, qmode))
-                        result["final_score"] = compute_final_score(result.get("scores", {}))
+                        if uncertainty_mode:
+                            st.write(f"⏳ Menilai dengan {m_samples_to_use} samples: {fname} ({idx}/{total})...")
+                            result = run_async(evaluate_paper_with_uncertainty(
+                                rag_instance, txt, ctx, tema_text, m_samples=m_samples_to_use
+                            ))
+                        else:
+                            st.write(f"⏳ Menilai: {fname} ({idx}/{total})...")
+                            result = run_async(evaluate_paper_with_context(rag_instance, txt, ctx, tema_text, qmode))
+                            result["final_score"] = compute_final_score(result.get("scores", {}))
+                        
                         results[fname] = result
 
                         # Auto-save to DB & MinIO
@@ -1005,6 +1358,10 @@ def page_penilaian():
         rows = []
         for fn, r in batch.items():
             sc = r.get("scores", {})
+            uncertainty = r.get("uncertainty_metrics", {})
+            wau = uncertainty.get("weighted_aggregate", None)
+            overall_status = uncertainty.get("overall_status", "N/A")
+            
             rows.append({
                 "Makalah": fn,
                 "Judul": sc.get("n1_kesesuaian_judul", None),
@@ -1013,6 +1370,8 @@ def page_penilaian():
                 "Analisis": sc.get("n4_ketajaman_analisis", None),
                 "Bahasa": sc.get("n5_penggunaan_bahasa", None),
                 "Nilai Akhir": r.get("final_score", 0),
+                "WAU": wau if wau is not None else "—",
+                "Status Uncertainty": "✅ YAKIN" if "YAKIN" in overall_status else ("⚠️ REVIEW" if "REVIEW" in overall_status else "—"),
             })
         df = pd.DataFrame(rows)
         st.dataframe(df, use_container_width=True, hide_index=True)
@@ -1032,6 +1391,13 @@ def page_penilaian():
                     )
                 with col_right:
                     render_score_card(r)
+                    
+                    # Show uncertainty metrics if available
+                    if r.get("uncertainty_metrics"):
+                        st.divider()
+                        st.markdown("#### 🎲 Analisis Ketidakpastian")
+                        render_uncertainty_metrics(r)
+                    
                     st.divider()
                     col_dl, col_js = st.columns(2)
                     with col_dl:
@@ -1152,8 +1518,15 @@ def page_riwayat():
         final = h.get("final_score", 0) or 0
         color = score_color(final)
         date_str = str(h["created_at"])[:10] if h["created_at"] else "-"
+        
+        # Get uncertainty info if available
+        uncertainty_metrics = h.get("uncertainty_metrics") or {}
+        wau = uncertainty_metrics.get("weighted_aggregate")
+        overall_status = uncertainty_metrics.get("overall_status", "")
+        unc_label = f" | WAU: {wau}" if wau else ""
+        
         with st.expander(
-            f"[{final:.1f}]  {h['paper_filename']}  ·  {h['jabatan']}  ·  {date_str}"
+            f"[{final:.1f}]  {h['paper_filename']}  ·  {h['jabatan']}  ·  {date_str}{unc_label}"
         ):
             scores = h.get("scores") or {}
             if isinstance(scores, str):
@@ -1176,6 +1549,24 @@ def page_riwayat():
             if ringkasan:
                 st.markdown(f"**Ringkasan:** {ringkasan[:300]}{'...' if len(ringkasan) > 300 else ''}")
 
+            # Show uncertainty if available
+            if uncertainty_metrics:
+                st.divider()
+                st.markdown("**🎲 Ketidakpastian:**")
+                per_criteria = uncertainty_metrics.get("per_criteria", {})
+                unc_rows_hist = []
+                for short_key in CRITERIA_SHORT:
+                    if short_key in per_criteria:
+                        data = per_criteria[short_key]
+                        unc_rows_hist.append({
+                            "Kriteria": short_key.upper(),
+                            "Mean": f"{data.get('mean', 0):.1f}",
+                            "NSV": f"{data.get('nsv', 0):.3f}",
+                            "Status": data.get("status", "—")
+                        })
+                if unc_rows_hist:
+                    st.dataframe(pd.DataFrame(unc_rows_hist), use_container_width=True, hide_index=True)
+
             st.markdown("**Skor per Kriteria:**")
             for key, label in SCORE_LABELS.items():
                 score = scores.get(key, "-")
@@ -1193,6 +1584,8 @@ def page_riwayat():
                 "evidence": h.get("evidence") or {},
                 "ringkasan": h.get("ringkasan", ""),
                 "query_mode": h.get("query_mode", ""),
+                "uncertainty_metrics": uncertainty_metrics,
+                "valid_samples": h.get("valid_samples"),
                 "created_at": str(h["created_at"]),
             }
             st.download_button(
